@@ -22,7 +22,7 @@ public class Tests
     }
 }
 
-public struct Bag
+internal struct Bag
 {
     public readonly int r;
     public readonly int g;
@@ -34,28 +34,31 @@ public struct Bag
         this.g = g;
         this.b = b;
     }
+    
+    internal bool FitsIn(Bag other) => r <= other.r && g <= other.g && b <= other.b;
+    internal bool CanFit(Bag other) => other.FitsIn(this);
 }
 
 public class Game
 {
     private Bag bag;
-    private List<(int r, int g, int b)> handfuls = new();
+    private List<Bag> handfuls = new();
 
-    public Game(string id, Bag bag)
+    internal Game(string id, Bag bag)
     {
         this.bag = bag;
     }
 
-    public static Game safasas(string s, Bag whereStore)
+    internal static Game safasas(string s, Bag whereStore)
     {
         return new Game(s, whereStore);
     }
 
     public Game Handful(int i, int i1, int i2)
     {
-        handfuls.Add((i, i1, i2));
+        handfuls.Add(new(i, i1, i2));
         return this;
     }
 
-    public bool IsPossible => handfuls.All(h => h.r <= bag.r && h.g <= bag.g && h.b <= bag.b);
+    public bool IsPossible => handfuls.All(bag.CanFit);
 }
