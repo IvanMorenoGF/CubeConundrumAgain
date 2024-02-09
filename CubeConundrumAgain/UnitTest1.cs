@@ -15,6 +15,10 @@ public class Tests
         Game.safasas("1", new(0, 0, 0))
             .Handful(1, 0, 0)
             .IsPossible.Should().BeFalse();
+
+        Game.safasas("1", new(1, 1, 1))
+            .Handful(1, 1, 1)
+            .IsPossible.Should().BeTrue();
     }
 }
 
