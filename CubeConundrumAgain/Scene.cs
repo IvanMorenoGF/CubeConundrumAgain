@@ -4,10 +4,19 @@ public class Scene
 {
     readonly string buriedOne;
     readonly (string theOne, string theOther) couple = ("Adan", "Eva");
+    private readonly string sceneId;
 
-    public Scene(string buriedOne) => this.buriedOne = buriedOne;
+    public Scene(string buriedOne)
+    {
+        this.buriedOne = buriedOne;
+        this.sceneId = "Death";
+    }
 
-    public Scene(string adan, string eva) => couple = (theOne: adan, theOther: eva);
+    public Scene(string adan, string eva)
+    {
+        couple = (theOne: adan, theOther: eva);
+        this.sceneId = "Love";
+    }
 
     public static Scene Death()
     {
@@ -34,6 +43,9 @@ public class Scene
         return new(adan, eva);
     }
     
-    public bool AreCoupled(string one, string other) => IsInTheCast(one) && IsInTheCast(other);
+    public bool IsLoveScene => sceneId == "Love";
+    public bool IsDeathScene => sceneId == "Death";
+    
+    public bool AreCoupled(string one, string other) => IsInTheCast(one) && IsInTheCast(other) && IsLoveScene;
     public bool IsInTheCast(string who) => who == couple.theOne || who == couple.theOther;
 }
