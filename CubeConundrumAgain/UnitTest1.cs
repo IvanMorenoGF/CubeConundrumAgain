@@ -1,6 +1,4 @@
 using FluentAssertions;
-using LanguageExt;
-using static LanguageExt.Option<CubeConundrumAgain.Scene>;
 
 namespace CubeConundrumAgain;
 
@@ -22,35 +20,12 @@ public class Tests
             .Happened(Scene.Death().Buried("Adan"))
             .IsAlive("Adan").Should().BeFalse();
     }
-}
 
-public class Scene
-{
-    readonly string buriedOne;
-
-    public Scene(string buriedOne) => this.buriedOne = buriedOne;
-
-    public static Scene Death()
+    [Test]
+    public void fdsafsa()
     {
-        return new("");
+        Scene.Love().Between("Adan", "Eva").Loves("Adan", "Eva").Should().BeTrue();
+        Scene.Love().Between("Adan", "Eva").Loves("Eva", "Adan").Should().BeTrue();
+        Scene.Love().Between("Adan", "Eva").Loves("Eva", "dsfafsa").Should().BeFalse();
     }
-
-    public Scene Buried(string who)
-    {
-        return new(who);
-    }
-
-    public bool IsInTheTomb(string who)
-    {
-        return buriedOne == who;
-    }
-}
-
-public class Story
-{
-    Option<Scene> scene;
-    Story(Option<Scene> scene) => this.scene = scene;
-    public static Story OnceUponATime() => new(None);
-    public bool IsAlive(string who) => scene.Match(where => !where.IsInTheTomb(who), () => true);
-    public Story Happened(Option<Scene> what) => new(what);
 }
