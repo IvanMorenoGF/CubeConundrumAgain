@@ -1,5 +1,6 @@
 using LanguageExt;
 using static LanguageExt.Lst<LanguageExt.Option<CubeConundrumAgain.Scene>>;
+using static LanguageExt.Option<CubeConundrumAgain.Character>;
 
 namespace CubeConundrumAgain;
 
@@ -19,45 +20,38 @@ public class Story
             () => false
         );
 
-    public Character WhomLoves(string lover)
-        => FirstLoveScene().Match
-        (
-            scene => scene.LoverOf(lover),
-            () => new Character("")
-        );
-
     Option<Scene> FirstLoveScene()
     {
         return allScenes.First(x => x.IsSome && ((Scene)x).IsLoveScene);
     }
 
-    public Character WhoLoves(Character loved)
+    public bool IsHeartbroken(Character who) => WhomLoves(who) != WhoLoves(who);
+
+    public Option<Character> WhoLoves(Character loved)
     {
+        if (!allScenes.Any(x => x.IsSome && ((Scene)x).IsLoveScene && ((Scene)x).IsInTheCast(loved)))
+            return None;
+        
         var firstSceneWithLoved =
             allScenes.First(x => x.IsSome && ((Scene)x).IsLoveScene && ((Scene)x).IsInTheCast(loved));
+        
         var aksdf = firstSceneWithLoved.Match
         (
             scene => scene.LoverOf(loved),
             () => new Character("")
         );
-        return WhomLoves(aksdf) == loved ? aksdf : "";
+        return WhomLoves(aksdf).Match(x => x == loved ? aksdf : None, None);
     }
 
-    public bool IsHeartbroken(Character who) => WhomLoves_New(who) != WhoLoves_New(who);
-
-    public Option<Character> WhoLoves_New(Character loved)
-    {
-        if (!allScenes.Any(x => x.IsSome && ((Scene)x).IsLoveScene && ((Scene)x).IsInTheCast(loved)))
-            return Option<Character>.None;
-        
-        return WhoLoves(loved) == "" ? Option<Character>.None : WhoLoves(loved);
-    }
-
-    public Option<Character> WhomLoves_New(Character who)
+    public Option<Character> WhomLoves(Character who)
     {
         if (!allScenes.Any(x => x.IsSome && ((Scene)x).IsLoveScene && ((Scene)x).IsInTheCast(who)))
-            return Option<Character>.None;
+            return None;
 
-        return WhomLoves(who) == "" ? Option<Character>.None : WhomLoves(who);
+        return FirstLoveScene().Match
+        (
+            scene => scene.LoverOf(who),
+            () => new Character("")
+        );
     }
 }
