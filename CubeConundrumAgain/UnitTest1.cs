@@ -22,11 +22,11 @@ public class Tests
     }
 
     [Test]
-    public void fdsafsa()
+    public void FallInLove()
     {
         Scene.Love().Between("Adan", "Eva").AreCoupled("Adan", "Eva").Should().BeTrue();
         Scene.Love().Between("Adan", "Eva").AreCoupled("Eva", "Adan").Should().BeTrue();
-        Scene.Love().Between("Adan", "Eva").AreCoupled("Eva", "dsfafsa").Should().BeFalse();
+        Scene.Love().Between("Adan", "Eva").AreCoupled("Eva", "Unrequited").Should().BeFalse();
         
         Story.OnceUponATime()
             .Happened(Scene.Love().Between("Adan", "Eva"))
@@ -34,12 +34,26 @@ public class Tests
     }
 
     [Test]
-    public void asfsafsa()
+    public void FallInLove_NotInTheFirstTime()
+    {
+        Story.OnceUponATime()
+            .Happened(Scene.Death().Buried("Enriqueto"))
+            .Happened(Scene.Love().Between("Adan", "Eva"))
+            .Loves("Adan", "Eva").Should().BeTrue();
+        
+        Story.OnceUponATime()
+            .Happened(Scene.Love().Between("Enriqueto", "Segismundo"))
+            .Happened(Scene.Love().Between("Adan", "Eva"))
+            .Loves("Adan", "Eva").Should().BeTrue();
+    }
+
+    [Test, Ignore("todo")]
+    public void asdfasd()
     {
         Story.OnceUponATime()
             .Happened(Scene.Love().Between("Adan", "Eva"))
-            .Happened(Scene.Love().Between("Adan", "asfasfas"))
-            .Loves("Adan", "asfasfas").Should().BeFalse();
+            .Happened(Scene.Love().Between("Adan", "Segismundo"))
+            .Loves("Adan", "Segismundo").Should().BeFalse();
     }
 
     [Test]

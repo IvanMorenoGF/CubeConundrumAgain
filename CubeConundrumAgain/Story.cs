@@ -6,52 +6,58 @@ namespace CubeConundrumAgain;
 
 public class Story
 {
+    readonly Seq<Scene> scenes;
     readonly Lst<Option<Scene>> allScenes;
-    Story(Option<Scene> scene) => allScenes = Empty.Add(scene);
-    Story(Lst<Option<Scene>> scene) => this.allScenes = scene;
-    public static Story OnceUponATime() => new(Option<Scene>.None);
-    public bool IsAlive(string who) => allScenes.Last().Match(where => !where.IsInTheTomb(who), () => true);
+
+    Story(Lst<Option<Scene>> scene)
+    {
+        this.allScenes = scene;
+        scenes = scene.AsEnumerable().Select(x => x.Match(scene => scene, () => new Scene("", ""))).ToSeq();
+    }
+
+    public static Story OnceUponATime() => new(Empty);
     public Story Happened(Option<Scene> what) => new(allScenes.Add(what));
 
-    public bool Loves(string from, string to)
-        => allScenes.First(x => x.IsSome).Match
-        (
-            where => where.AreCoupled(from, to),
-            () => false
-        );
+    public bool IsAlive(Character who) => !scenes.AsEnumerable().Any(x => x.IsInTheTomb(who));
 
-    Option<Scene> FirstLoveScene()
-    {
-        return allScenes.First(x => x.IsSome && ((Scene)x).IsLoveScene);
-    }
+    public bool Loves(string from, string to)
+        => scenes.AsEnumerable().Any(x => x.AreCoupled(from, to));
+
+    Option<Scene> FirstLoveScene() => scenes.AsEnumerable().First(x => x.IsLoveScene);
 
     public bool IsHeartbroken(Character who) => WhomLoves(who) != WhoLoves(who);
 
     public Option<Character> WhoLoves(Character loved)
     {
-        if (!allScenes.Any(x => x.IsSome && ((Scene)x).IsLoveScene && ((Scene)x).IsInTheCast(loved)))
+        if (!PartOfLoveStory(loved))
             return None;
-        
-        var firstSceneWithLoved =
-            allScenes.First(x => x.IsSome && ((Scene)x).IsLoveScene && ((Scene)x).IsInTheCast(loved));
-        
-        var aksdf = firstSceneWithLoved.Match
-        (
-            scene => scene.LoverOf(loved),
-            () => new Character("")
-        );
-        return WhomLoves(aksdf).Match(x => x == loved ? aksdf : None, None);
+
+        var firstSceneWithLoved = scenes.First(x => PartOfLoveStory(loved, x));
+        return WhomLoves(firstSceneWithLoved.LoverOf(loved))
+            .Match
+            (
+                x => x == loved ? firstSceneWithLoved.LoverOf(loved) : None,
+                None
+            );
     }
 
     public Option<Character> WhomLoves(Character who)
-    {
-        if (!allScenes.Any(x => x.IsSome && ((Scene)x).IsLoveScene && ((Scene)x).IsInTheCast(who)))
-            return None;
+        => PartOfLoveStory(who)
+            ? FirstLoveScene().Match
+            (
+                scene => scene.LoverOf(who),
+                () => None
+            )
+            : None;
 
-        return FirstLoveScene().Match
-        (
-            scene => scene.LoverOf(who),
-            () => new Character("")
-        );
-    }
+    Option<Scene> FirstLoveStoryOf(Character who)
+        => scenes.Any(x => PartOfLoveStory(who, x))
+            ? scenes.First(x => PartOfLoveStory(who, x))
+            : Option<Scene>.None;
+
+    bool PartOfLoveStory(Character who)
+        => scenes.Any(x => PartOfLoveStory(who, x));
+
+    static bool PartOfLoveStory(Character who, Scene x)
+        => x.IsLoveScene && x.IsInTheCast(who);
 }
