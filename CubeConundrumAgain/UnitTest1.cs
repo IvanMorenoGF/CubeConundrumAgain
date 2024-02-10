@@ -127,4 +127,18 @@ public class Tests
             .Happened(Scene.Love().Between("Adan", "Unrequited"))
             .IsHeartbroken("Unrequited").Should().BeTrue();
     }
+
+    [Test]
+    public void CannotBeLoved_IfDead()
+    {
+        OnceUponATime()
+            .Happened(Scene.Death().Buried("Adan"))
+            .Happened(Scene.Love().Between("Adan", "Eva"))
+            .WhoLoves("Adan").IsNone.Should().BeTrue();
+        
+        OnceUponATime()
+            .Happened(Scene.Death().Buried("Adan"))
+            .Happened(Scene.Love().Between("Adan", "Eva"))
+            .WhoLoves("Eva").IsNone.Should().BeTrue();
+    }
 }
