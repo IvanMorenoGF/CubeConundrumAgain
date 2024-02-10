@@ -8,7 +8,6 @@ public class Story
     internal readonly Seq<Scene> scenes;
     internal Story(Seq<Scene> scenes) => this.scenes = scenes;
     public bool IsAlive(Character who) => !scenes.Any(x => x.IsInTheTomb(who));
-    public bool Loves(string from, string to) => scenes.Any(x => x.AreCoupled(from, to));
     Option<Scene> FirstLoveScene() => scenes.First(x => x.IsLoveScene);
     public bool IsHeartbroken(Character who) => WhomLoves(who) != WhoLoves(who);
 

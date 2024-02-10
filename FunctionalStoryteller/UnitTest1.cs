@@ -24,41 +24,6 @@ public class Tests
     }
 
     [Test]
-    public void FallInLove()
-    {
-        Love().Between("Adan", "Eva").AreCoupled("Adan", "Eva").Should().BeTrue();
-        Love().Between("Adan", "Eva").AreCoupled("Eva", "Adan").Should().BeTrue();
-        Love().Between("Adan", "Eva").AreCoupled("Eva", "Unrequited").Should().BeFalse();
-        
-        OnceUponATime()
-            .Happened(Love().Between("Adan", "Eva"))
-            .Loves("Adan", "Eva").Should().BeTrue();
-    }
-
-    [Test]
-    public void FallInLove_NotInTheFirstTime()
-    {
-        OnceUponATime()
-            .Happened(Death().Buried("Enriqueto"))
-            .Happened(Love().Between("Adan", "Eva"))
-            .Loves("Adan", "Eva").Should().BeTrue();
-        
-        OnceUponATime()
-            .Happened(Love().Between("Enriqueto", "Segismundo"))
-            .Happened(Love().Between("Adan", "Eva"))
-            .Loves("Adan", "Eva").Should().BeTrue();
-    }
-
-    [Test, Ignore("todo")]
-    public void asdfasd()
-    {
-        OnceUponATime()
-            .Happened(Love().Between("Adan", "Eva"))
-            .Happened(Love().Between("Adan", "Segismundo"))
-            .Loves("Adan", "Segismundo").Should().BeFalse();
-    }
-
-    [Test]
     public void IsInTheCast()
     {
         Love().Between("Adan", "Eva").IsInTheCast("Adan").Should().BeTrue();
