@@ -14,13 +14,17 @@ public class Tests
     }
 
     [Test]
-    public void BuryAdan()
+    public void BuryAdan_DoesNotKillEva()
     {
         Death().Buried("Adan").IsInTheTomb("Adan").Should().BeTrue();
 
         OnceUponATime()
             .Happened(Death().Buried("Adan"))
             .IsAlive("Adan").Should().BeFalse();
+
+        OnceUponATime()
+            .Happened(Death().Buried("Adan").Grieving("Eva"))
+            .IsAlive("Eva").Should().BeTrue();
     }
 
     [Test]
