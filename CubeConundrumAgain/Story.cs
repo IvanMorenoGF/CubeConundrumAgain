@@ -7,17 +7,9 @@ namespace CubeConundrumAgain;
 public class Story
 {
     readonly Seq<Scene> scenes;
-    readonly Lst<Option<Scene>> allScenes;
-
-    Story(Lst<Option<Scene>> scene)
-    {
-        this.allScenes = scene;
-        scenes = scene.AsEnumerable().Select(x => x.Match(scene => scene, () => new Scene("", ""))).ToSeq();
-    }
-
-    public static Story OnceUponATime() => new(Empty);
-    public Story Happened(Option<Scene> what) => new(allScenes.Add(what));
-
+    Story(Seq<Scene> scenes) => this.scenes = scenes;
+    public static Story OnceUponATime() => new(Seq<Scene>.Empty);
+    public Story Happened(Scene what) => new(scenes.Add(what));
     public bool IsAlive(Character who) => !scenes.AsEnumerable().Any(x => x.IsInTheTomb(who));
 
     public bool Loves(string from, string to)
