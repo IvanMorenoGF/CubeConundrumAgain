@@ -41,4 +41,12 @@ public class Tests
             .Happened(Scene.Love().Between("Adan", "asfasfas"))
             .Loves("Adan", "asfasfas").Should().BeFalse();
     }
+
+    [Test]
+    public void IsInTheCast()
+    {
+        Scene.Love().Between("Adan", "Eva").IsInTheCast("Adan").Should().BeTrue();
+        Scene.Love().Between("Adan", "Eva").IsInTheCast("Eva").Should().BeTrue();
+        Scene.Love().Between("Adan", "Eva").IsInTheCast("IsNot").Should().BeFalse();
+    }
 }

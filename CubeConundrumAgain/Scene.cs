@@ -3,11 +3,11 @@ namespace CubeConundrumAgain;
 public class Scene
 {
     readonly string buriedOne;
-    readonly (string adan, string eva) couple = ("Adan", "Eva");
+    readonly (string theOne, string theOther) couple = ("Adan", "Eva");
 
     public Scene(string buriedOne) => this.buriedOne = buriedOne;
 
-    public Scene(string adan, string eva) => couple = (adan, eva);
+    public Scene(string adan, string eva) => couple = (theOne: adan, theOther: eva);
 
     public static Scene Death()
     {
@@ -34,5 +34,6 @@ public class Scene
         return new(adan, eva);
     }
     
-    public bool AreCoupled(string adan, string eva) => (adan, eva) == couple || (eva, adan) == couple;
+    public bool AreCoupled(string one, string other) => IsInTheCast(one) && IsInTheCast(other);
+    public bool IsInTheCast(string who) => who == couple.theOne || who == couple.theOther;
 }
