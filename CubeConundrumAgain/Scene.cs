@@ -34,5 +34,5 @@ public class Scene
         return new(adan, eva);
     }
     
-    public bool Loves(string adan, string eva) => (adan, eva) == couple || (eva, adan) == couple;
+    public bool AreCoupled(string adan, string eva) => (adan, eva) == couple || (eva, adan) == couple;
 }

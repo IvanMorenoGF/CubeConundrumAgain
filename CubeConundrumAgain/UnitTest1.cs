@@ -24,8 +24,14 @@ public class Tests
     [Test]
     public void fdsafsa()
     {
-        Scene.Love().Between("Adan", "Eva").Loves("Adan", "Eva").Should().BeTrue();
-        Scene.Love().Between("Adan", "Eva").Loves("Eva", "Adan").Should().BeTrue();
-        Scene.Love().Between("Adan", "Eva").Loves("Eva", "dsfafsa").Should().BeFalse();
+        Scene.Love().Between("Adan", "Eva").AreCoupled("Adan", "Eva").Should().BeTrue();
+        Scene.Love().Between("Adan", "Eva").AreCoupled("Eva", "Adan").Should().BeTrue();
+        Scene.Love().Between("Adan", "Eva").AreCoupled("Eva", "dsfafsa").Should().BeFalse();
+        
+        Story.OnceUponATime()
+            .Happened(Scene.Love().Between("Adan", "Eva"))
+            .Loves("Adan", "Eva").Should().BeTrue();
     }
+    
+    
 }
