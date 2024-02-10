@@ -71,11 +71,25 @@ public class Tests
     }
 
     [Test]
-    public void HeartbreakSomeone()
+    public void Monogamy()
     {
         Story.OnceUponATime()
             .Happened(Scene.Love().Between("Adan", "Eva"))
             .Happened(Scene.Love().Between("Adan", "Unrequited"))
             .WhoLoves("Unrequited").Should().Be("");
+    }
+
+    [Test]
+    public void HeartbreakSomeone()
+    {
+        Story.OnceUponATime()
+            .Happened(Scene.Love().Between("Adan", "Eva"))
+            .Happened(Scene.Love().Between("Adan", "Unrequited"))
+            .IsHeartbroken("Adan").Should().BeFalse();
+        
+        Story.OnceUponATime()
+            .Happened(Scene.Love().Between("Adan", "Eva"))
+            .Happened(Scene.Love().Between("Adan", "Unrequited"))
+            .IsHeartbroken("Unrequited").Should().BeTrue();
     }
 }

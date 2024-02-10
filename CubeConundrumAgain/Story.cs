@@ -41,4 +41,6 @@ public class Story
         );
         return WhomLoves(aksdf) == loved ? aksdf : "";
     }
+
+    public bool IsHeartbroken(Character who) => WhomLoves(who) != WhoLoves(who);
 }
