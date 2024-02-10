@@ -57,4 +57,18 @@ public class Tests
             .Happened(Scene.Love().Between("Adan", "Eva"))
             .WhomIsInLoveWith("Adan").Should().Be("Eva");
     }
+
+    [Test]
+    public void WhoLovesSomeone()
+    {
+        Story.OnceUponATime()
+            .Happened(Scene.Love().Between("Adan", "Eva"))
+            .WhoLoves("Adan").Should().Be("Eva");
+        
+        Story.OnceUponATime()
+            .Happened(Scene.Love().Between("Adan", "Eva"))
+            .WhoLoves("Eva").Should().Be("Adan");
+    }
+    
+    
 }

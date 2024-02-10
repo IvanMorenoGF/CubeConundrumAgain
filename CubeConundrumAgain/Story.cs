@@ -30,4 +30,9 @@ public class Story
     {
         return allScenes.First(x => x.IsSome && ((Scene)x).IsLoveScene);
     }
+
+    public Character WhoLoves(Character loved)
+    {
+        return WhomIsInLoveWith(loved);
+    }
 }
