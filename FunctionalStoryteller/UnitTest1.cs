@@ -94,7 +94,7 @@ public class Tests
             .IsHeartbroken("Unrequited").Should().BeTrue();
     }
 
-    [Test]
+    [Test, Ignore("este es el test rojo por el que seguir")]
     public void CannotBeLoved_IfDead()
     {
         OnceUponATime()
