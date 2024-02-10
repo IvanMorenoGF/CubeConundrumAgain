@@ -92,4 +92,16 @@ public class Tests
             .Happened(Scene.Love().Between("Adan", "Unrequited"))
             .IsHeartbroken("Unrequited").Should().BeTrue();
     }
+
+    [Test]
+    public void asfasf()
+    {
+        Story.OnceUponATime()
+            .Happened(Scene.Love().Between("Adan", "Eva"))
+            .WhoLoves_New("Other").IsNone.Should().BeTrue();
+        
+        Story.OnceUponATime()
+            .Happened(Scene.Love().Between("Adan", "Eva"))
+            .WhomLoves_New("Other").IsNone.Should().BeTrue();
+    }
 }

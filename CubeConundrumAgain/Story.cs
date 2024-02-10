@@ -12,7 +12,7 @@ public class Story
     public bool IsAlive(string who) => allScenes.Last().Match(where => !where.IsInTheTomb(who), () => true);
     public Story Happened(Option<Scene> what) => new(allScenes.Add(what));
 
-    public bool Loves(string from, string to) 
+    public bool Loves(string from, string to)
         => allScenes.First(x => x.IsSome).Match
         (
             where => where.AreCoupled(from, to),
@@ -22,7 +22,7 @@ public class Story
     public Character WhomLoves(string lover)
         => FirstLoveScene().Match
         (
-            scene => scene.LoverOf(lover), 
+            scene => scene.LoverOf(lover),
             () => new Character("")
         );
 
@@ -33,14 +33,31 @@ public class Story
 
     public Character WhoLoves(Character loved)
     {
-        var firstSceneWithLoved = allScenes.First(x => x.IsSome && ((Scene)x).IsLoveScene && ((Scene)x).IsInTheCast(loved));
+        var firstSceneWithLoved =
+            allScenes.First(x => x.IsSome && ((Scene)x).IsLoveScene && ((Scene)x).IsInTheCast(loved));
         var aksdf = firstSceneWithLoved.Match
         (
-            scene => scene.LoverOf(loved), 
+            scene => scene.LoverOf(loved),
             () => new Character("")
         );
         return WhomLoves(aksdf) == loved ? aksdf : "";
     }
 
     public bool IsHeartbroken(Character who) => WhomLoves(who) != WhoLoves(who);
+
+    public Option<Character> WhoLoves_New(Character loved)
+    {
+        if (!allScenes.Any(x => x.IsSome && ((Scene)x).IsLoveScene && ((Scene)x).IsInTheCast(loved)))
+            return Option<Character>.None;
+        
+        return WhoLoves(loved) == "" ? Option<Character>.None : WhoLoves(loved);
+    }
+
+    public Option<Character> WhomLoves_New(Character who)
+    {
+        if (!allScenes.Any(x => x.IsSome && ((Scene)x).IsLoveScene && ((Scene)x).IsInTheCast(who)))
+            return Option<Character>.None;
+
+        return WhomLoves(who) == "" ? Option<Character>.None : WhomLoves(who);
+    }
 }
