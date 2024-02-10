@@ -32,6 +32,13 @@ public class Tests
             .Happened(Scene.Love().Between("Adan", "Eva"))
             .Loves("Adan", "Eva").Should().BeTrue();
     }
-    
-    
+
+    [Test]
+    public void asfsafsa()
+    {
+        Story.OnceUponATime()
+            .Happened(Scene.Love().Between("Adan", "Eva"))
+            .Happened(Scene.Love().Between("Adan", "asfasfas"))
+            .Loves("Adan", "asfasfas").Should().BeFalse();
+    }
 }
