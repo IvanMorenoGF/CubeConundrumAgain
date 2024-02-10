@@ -45,7 +45,8 @@ public class Scene
     
     public bool IsLoveScene => sceneId == "Love";
     public bool IsDeathScene => sceneId == "Death";
-    
+
+    public string LoverOf(string lover) => couple.theOne == lover ? couple.theOther : couple.theOne;
     public bool AreCoupled(string one, string other) => IsInTheCast(one) && IsInTheCast(other) && IsLoveScene;
     public bool IsInTheCast(string who) => who == couple.theOne || who == couple.theOther;
 }

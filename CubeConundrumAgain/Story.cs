@@ -17,4 +17,16 @@ public class Story
             where => where.AreCoupled(from, to),
             () => false
         );
+
+    public string WhomIsInLoveWith(string lover)
+        => FirstLoveScene().Match
+        (
+            scene => scene.LoverOf(lover), 
+            () => ""
+        );
+
+    private Option<Scene> FirstLoveScene()
+    {
+        return allScenes.First(x => x.IsSome && ((Scene)x).IsLoveScene);
+    }
 }

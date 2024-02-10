@@ -49,4 +49,12 @@ public class Tests
         Scene.Love().Between("Adan", "Eva").IsInTheCast("Eva").Should().BeTrue();
         Scene.Love().Between("Adan", "Eva").IsInTheCast("IsNot").Should().BeFalse();
     }
+
+    [Test]
+    public void WhomIsSomeoneInLoveWith()
+    {
+        Story.OnceUponATime()
+            .Happened(Scene.Love().Between("Adan", "Eva"))
+            .WhomIsInLoveWith("Adan").Should().Be("Eva");
+    }
 }
