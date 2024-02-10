@@ -28,18 +28,17 @@ public class Story
     public bool IsHeartbroken(Character who) => WhomLoves(who) != WhoLoves(who);
 
     public Option<Character> WhoLoves(Character loved)
-    {
-        if (!PartOfLoveStory(loved))
-            return None;
-
-        var firstSceneWithLoved = scenes.First(x => PartOfLoveStory(loved, x));
-        return WhomLoves(firstSceneWithLoved.LoverOf(loved))
+        => FirstLoveStoryOf(loved)
             .Match
             (
-                x => x == loved ? firstSceneWithLoved.LoverOf(loved) : None,
+                firstSceneWithLoved => WhomLoves(firstSceneWithLoved.LoverOf(loved))
+                    .Match
+                    (
+                        x => x == loved ? firstSceneWithLoved.LoverOf(loved) : None,
+                        None
+                    ),
                 None
             );
-    }
 
     public Option<Character> WhomLoves(Character who)
         => PartOfLoveStory(who)
