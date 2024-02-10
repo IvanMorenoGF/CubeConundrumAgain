@@ -1,14 +1,15 @@
 using FluentAssertions;
+using static CubeConundrumAgain.Storyteller;
 
 namespace CubeConundrumAgain;
 
 public class Tests
 {
     [Test]
-    public void OnceUponATime()
+    public void PeopleIsAlive()
     {
-        Story.OnceUponATime().IsAlive("Adan").Should().BeTrue();
-        Story.OnceUponATime().IsAlive("Eva").Should().BeTrue();
+        OnceUponATime().IsAlive("Adan").Should().BeTrue();
+        OnceUponATime().IsAlive("Eva").Should().BeTrue();
     }
 
     [Test]
@@ -16,7 +17,7 @@ public class Tests
     {
         Scene.Death().Buried("Adan").IsInTheTomb("Adan").Should().BeTrue();
 
-        Story.OnceUponATime()
+        OnceUponATime()
             .Happened(Scene.Death().Buried("Adan"))
             .IsAlive("Adan").Should().BeFalse();
     }
@@ -28,7 +29,7 @@ public class Tests
         Scene.Love().Between("Adan", "Eva").AreCoupled("Eva", "Adan").Should().BeTrue();
         Scene.Love().Between("Adan", "Eva").AreCoupled("Eva", "Unrequited").Should().BeFalse();
         
-        Story.OnceUponATime()
+        OnceUponATime()
             .Happened(Scene.Love().Between("Adan", "Eva"))
             .Loves("Adan", "Eva").Should().BeTrue();
     }
@@ -36,12 +37,12 @@ public class Tests
     [Test]
     public void FallInLove_NotInTheFirstTime()
     {
-        Story.OnceUponATime()
+        OnceUponATime()
             .Happened(Scene.Death().Buried("Enriqueto"))
             .Happened(Scene.Love().Between("Adan", "Eva"))
             .Loves("Adan", "Eva").Should().BeTrue();
         
-        Story.OnceUponATime()
+        OnceUponATime()
             .Happened(Scene.Love().Between("Enriqueto", "Segismundo"))
             .Happened(Scene.Love().Between("Adan", "Eva"))
             .Loves("Adan", "Eva").Should().BeTrue();
@@ -50,7 +51,7 @@ public class Tests
     [Test, Ignore("todo")]
     public void asdfasd()
     {
-        Story.OnceUponATime()
+        OnceUponATime()
             .Happened(Scene.Love().Between("Adan", "Eva"))
             .Happened(Scene.Love().Between("Adan", "Segismundo"))
             .Loves("Adan", "Segismundo").Should().BeFalse();
@@ -67,7 +68,7 @@ public class Tests
     [Test]
     public void WhomIsSomeoneInLoveWith()
     {
-        Story.OnceUponATime()
+        OnceUponATime()
             .Happened(Scene.Love().Between("Adan", "Eva"))
             .WhomLoves("Adan")
             .Match(x => x.Should().Be("Eva"), Assert.Fail);
@@ -76,12 +77,12 @@ public class Tests
     [Test]
     public void WhoLovesSomeone()
     {
-        Story.OnceUponATime()
+        OnceUponATime()
             .Happened(Scene.Love().Between("Adan", "Eva"))
             .WhoLoves("Adan")
             .Match(x => x.Should().Be("Eva"), Assert.Fail);
         
-        Story.OnceUponATime()
+        OnceUponATime()
             .Happened(Scene.Love().Between("Adan", "Eva"))
             .WhoLoves("Eva")
             .Match(x => x.Should().Be("Adan"), Assert.Fail);
@@ -90,20 +91,20 @@ public class Tests
     [Test]
     public void Monogamy()
     {
-        Story.OnceUponATime()
+        OnceUponATime()
             .Happened(Scene.Love().Between("Adan", "Eva"))
             .Happened(Scene.Love().Between("Adan", "Unrequited"))
             .WhoLoves("Unrequited").IsNone.Should().BeTrue();
     }
 
     [Test]
-    public void asfasf()
+    public void ExternalPeople_IsNotInLoveStory()
     {
-        Story.OnceUponATime()
+        OnceUponATime()
             .Happened(Scene.Love().Between("Adan", "Eva"))
             .WhoLoves("Other").IsNone.Should().BeTrue();
         
-        Story.OnceUponATime()
+        OnceUponATime()
             .Happened(Scene.Love().Between("Adan", "Eva"))
             .WhomLoves("Other").IsNone.Should().BeTrue();
     }
@@ -111,17 +112,17 @@ public class Tests
     [Test]
     public void OnlyUnrequitedIsHeartbroken()
     {
-        Story.OnceUponATime()
+        OnceUponATime()
             .Happened(Scene.Love().Between("Adan", "Eva"))
             .Happened(Scene.Love().Between("Adan", "Unrequited"))
             .IsHeartbroken("Adan").Should().BeFalse();
         
-        Story.OnceUponATime()
+        OnceUponATime()
             .Happened(Scene.Love().Between("Adan", "Eva"))
             .Happened(Scene.Love().Between("Adan", "Unrequited"))
             .IsHeartbroken("Eva").Should().BeFalse();
         
-        Story.OnceUponATime()
+        OnceUponATime()
             .Happened(Scene.Love().Between("Adan", "Eva"))
             .Happened(Scene.Love().Between("Adan", "Unrequited"))
             .IsHeartbroken("Unrequited").Should().BeTrue();
