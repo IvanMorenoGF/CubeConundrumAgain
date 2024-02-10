@@ -4,7 +4,7 @@ public class Scene
 {
     readonly string buriedOne;
     readonly (Character theOne, Character theOther) couple = ("Adan", "Eva");
-    private readonly string sceneId;
+    readonly string sceneId;
 
     public Scene(Character buriedOne)
     {
@@ -12,9 +12,9 @@ public class Scene
         this.sceneId = "Death";
     }
 
-    public Scene(Character adan, Character eva)
+    public Scene(Character left, Character right)
     {
-        couple = (theOne: adan, theOther: eva);
+        couple = (theOne: left, theOther: right);
         this.sceneId = "Love";
     }
 
