@@ -26,7 +26,7 @@ public class Story
             () => new Character("")
         );
 
-    private Option<Scene> FirstLoveScene()
+    Option<Scene> FirstLoveScene()
     {
         return allScenes.First(x => x.IsSome && ((Scene)x).IsLoveScene);
     }

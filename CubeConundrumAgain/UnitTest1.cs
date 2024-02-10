@@ -63,11 +63,13 @@ public class Tests
     {
         Story.OnceUponATime()
             .Happened(Scene.Love().Between("Adan", "Eva"))
-            .WhoLoves("Adan").Should().Be("Eva");
+            .WhoLoves_New("Adan")
+            .Match(x => x.Should().Be("Eva"), Assert.Fail);
         
         Story.OnceUponATime()
             .Happened(Scene.Love().Between("Adan", "Eva"))
-            .WhoLoves("Eva").Should().Be("Adan");
+            .WhoLoves_New("Eva")
+            .Match(x => x.Should().Be("Adan"), Assert.Fail);
     }
 
     [Test]
@@ -76,7 +78,7 @@ public class Tests
         Story.OnceUponATime()
             .Happened(Scene.Love().Between("Adan", "Eva"))
             .Happened(Scene.Love().Between("Adan", "Unrequited"))
-            .WhoLoves("Unrequited").Should().Be("");
+            .WhoLoves_New("Unrequited").IsNone.Should().BeTrue();
     }
 
     [Test]
