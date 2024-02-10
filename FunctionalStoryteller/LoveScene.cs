@@ -13,7 +13,8 @@ public sealed class LoveScene : Scene
 
     public LoveScene(Character left, Character right) => couple = (left, right);
 
-
+    public LoveScene With(Character atLeft = null, Character atRight = null)
+        => Between(atLeft ?? couple.left, atRight ?? couple.right);
     public LoveScene Between(Character one, Character other) => new(one, other);
     public Character LoverOf(Character lover) => couple.left == lover ? couple.right : couple.left;
 }

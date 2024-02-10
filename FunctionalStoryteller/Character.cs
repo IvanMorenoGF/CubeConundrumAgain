@@ -6,10 +6,10 @@ public class Character
 
     Character(string name) => this.name = name;
     public static Character None => new("");
-    
-    public static bool operator ==(Character left, Character right) => left.name == right.name;
+
     public static bool operator !=(Character left, Character right) => !(left == right);
-    
+    public static bool operator ==(Character left, Character right) => left.Equals(right);
+
     public override bool Equals(object other)
     {
         return other is Character otherCharacter
