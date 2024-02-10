@@ -29,7 +29,7 @@ public class Scene
     public bool IsLoveScene => sceneId == "Love";
     public bool IsDeathScene => sceneId == "Death";
 
-    public string LoverOf(Character lover) => couple.theOne == lover ? couple.theOther : couple.theOne;
+    public Character LoverOf(Character lover) => couple.theOne == lover ? couple.theOther : couple.theOne;
     public bool AreCoupled(Character one, Character other) => IsInTheCast(one) && IsInTheCast(other) && IsLoveScene;
     public bool IsInTheCast(Character who) => who == couple.theOne || who == couple.theOther;
 }

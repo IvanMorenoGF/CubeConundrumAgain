@@ -55,7 +55,7 @@ public class Tests
     {
         Story.OnceUponATime()
             .Happened(Scene.Love().Between("Adan", "Eva"))
-            .WhomIsInLoveWith("Adan").Should().Be("Eva");
+            .WhomLoves("Adan").Should().Be("Eva");
     }
 
     [Test]
@@ -69,6 +69,13 @@ public class Tests
             .Happened(Scene.Love().Between("Adan", "Eva"))
             .WhoLoves("Eva").Should().Be("Adan");
     }
-    
-    
+
+    [Test]
+    public void HeartbreakSomeone()
+    {
+        Story.OnceUponATime()
+            .Happened(Scene.Love().Between("Adan", "Eva"))
+            .Happened(Scene.Love().Between("Adan", "Unrequited"))
+            .WhoLoves("Unrequited").Should().Be("");
+    }
 }

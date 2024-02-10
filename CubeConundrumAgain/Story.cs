@@ -19,11 +19,11 @@ public class Story
             () => false
         );
 
-    public string WhomIsInLoveWith(string lover)
+    public Character WhomLoves(string lover)
         => FirstLoveScene().Match
         (
             scene => scene.LoverOf(lover), 
-            () => ""
+            () => new Character("")
         );
 
     private Option<Scene> FirstLoveScene()
@@ -33,6 +33,12 @@ public class Story
 
     public Character WhoLoves(Character loved)
     {
-        return WhomIsInLoveWith(loved);
+        var firstSceneWithLoved = allScenes.First(x => x.IsSome && ((Scene)x).IsLoveScene && ((Scene)x).IsInTheCast(loved));
+        var aksdf = firstSceneWithLoved.Match
+        (
+            scene => scene.LoverOf(loved), 
+            () => new Character("")
+        );
+        return WhomLoves(aksdf) == loved ? aksdf : "";
     }
 }
