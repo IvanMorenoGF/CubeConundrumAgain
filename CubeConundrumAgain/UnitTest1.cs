@@ -80,20 +80,6 @@ public class Tests
     }
 
     [Test]
-    public void HeartbreakSomeone()
-    {
-        Story.OnceUponATime()
-            .Happened(Scene.Love().Between("Adan", "Eva"))
-            .Happened(Scene.Love().Between("Adan", "Unrequited"))
-            .IsHeartbroken("Adan").Should().BeFalse();
-        
-        Story.OnceUponATime()
-            .Happened(Scene.Love().Between("Adan", "Eva"))
-            .Happened(Scene.Love().Between("Adan", "Unrequited"))
-            .IsHeartbroken("Unrequited").Should().BeTrue();
-    }
-
-    [Test]
     public void asfasf()
     {
         Story.OnceUponATime()
@@ -103,5 +89,24 @@ public class Tests
         Story.OnceUponATime()
             .Happened(Scene.Love().Between("Adan", "Eva"))
             .WhomLoves_New("Other").IsNone.Should().BeTrue();
+    }
+
+    [Test]
+    public void OnlyUnrequitedIsHeartbroken()
+    {
+        Story.OnceUponATime()
+            .Happened(Scene.Love().Between("Adan", "Eva"))
+            .Happened(Scene.Love().Between("Adan", "Unrequited"))
+            .IsHeartbroken("Adan").Should().BeFalse();
+        
+        Story.OnceUponATime()
+            .Happened(Scene.Love().Between("Adan", "Eva"))
+            .Happened(Scene.Love().Between("Adan", "Unrequited"))
+            .IsHeartbroken("Eva").Should().BeFalse();
+        
+        Story.OnceUponATime()
+            .Happened(Scene.Love().Between("Adan", "Eva"))
+            .Happened(Scene.Love().Between("Adan", "Unrequited"))
+            .IsHeartbroken("Unrequited").Should().BeTrue();
     }
 }

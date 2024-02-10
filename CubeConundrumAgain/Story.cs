@@ -43,7 +43,7 @@ public class Story
         return WhomLoves(aksdf) == loved ? aksdf : "";
     }
 
-    public bool IsHeartbroken(Character who) => WhomLoves(who) != WhoLoves(who);
+    public bool IsHeartbroken(Character who) => WhomLoves_New(who) != WhoLoves_New(who);
 
     public Option<Character> WhoLoves_New(Character loved)
     {
