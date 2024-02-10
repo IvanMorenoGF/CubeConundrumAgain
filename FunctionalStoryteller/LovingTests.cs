@@ -49,6 +49,12 @@ public class LovingTests
             .Happened(Love().Between("Adan", "Eva"))
             .Happened(Love().Between("Adan", "Unrequited"))
             .WhoLoves("Unrequited").IsNone.Should().BeTrue();
+        
+        OnceUponATime()
+            .Happened(Love().Between("Adan", "Eva"))
+            .Happened(Love().Between("Adan", "Segismundo"))
+            .WhoLoves("Adan")
+            .Match(x => x.Should().Be("Eva"), Assert.Fail);
     }
 
     [Test]
@@ -61,5 +67,21 @@ public class LovingTests
         OnceUponATime()
             .Happened(Love().Between("Adan", "Eva"))
             .WhomLoves("Other").IsNone.Should().BeTrue();
+    }
+
+    [Test]
+    public void FallInLove_NotInTheFirstTime()
+    {
+        OnceUponATime()
+            .Happened(Death().Buried("Enriqueto"))
+            .Happened(Love().Between("Adan", "Eva"))
+            .WhoLoves("Adan")
+            .Match(x => x.Should().Be("Eva"), Assert.Fail);
+        
+        OnceUponATime()
+            .Happened(Love().Between("Enriqueto", "Segismundo"))
+            .Happened(Love().Between("Adan", "Eva"))
+            .WhoLoves("Eva")
+            .Match(x => x.Should().Be("Adan"), Assert.Fail);
     }
 }
