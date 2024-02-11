@@ -1,7 +1,7 @@
 using LanguageExt;
-using static LanguageExt.Option<CubeConundrumAgain.Character>;
+using static LanguageExt.Option<FunctionalStoryteller.Character>;
 
-namespace CubeConundrumAgain;
+namespace FunctionalStoryteller;
 
 public class Story
 {

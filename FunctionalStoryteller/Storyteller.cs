@@ -1,6 +1,6 @@
 using LanguageExt;
 
-namespace CubeConundrumAgain;
+namespace FunctionalStoryteller;
 
 public static class Storyteller
 {

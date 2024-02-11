@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
-using static CubeConundrumAgain.Scene;
-using static CubeConundrumAgain.Storyteller;
+using static FunctionalStoryteller.Scene;
+using static FunctionalStoryteller.Storyteller;
 
-namespace CubeConundrumAgain;
+namespace FunctionalStoryteller.Tests;
 
 public class LovingTests
 {
@@ -83,5 +83,24 @@ public class LovingTests
             .Happened(Love().Between("Adan", "Eva"))
             .WhoLoves("Eva")
             .Match(x => x.Should().Be("Adan"), Assert.Fail);
+    }
+    
+    [Test]
+    public void OnlyUnrequitedIsHeartbroken()
+    {
+        OnceUponATime()
+            .Happened(Love().Between("Adan", "Eva"))
+            .Happened(Love().Between("Adan", "Unrequited"))
+            .IsHeartbroken("Adan").Should().BeFalse();
+        
+        OnceUponATime()
+            .Happened(Love().Between("Adan", "Eva"))
+            .Happened(Love().Between("Adan", "Unrequited"))
+            .IsHeartbroken("Eva").Should().BeFalse();
+        
+        OnceUponATime()
+            .Happened(Love().Between("Adan", "Eva"))
+            .Happened(Love().Between("Adan", "Unrequited"))
+            .IsHeartbroken("Unrequited").Should().BeTrue();
     }
 }

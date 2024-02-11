@@ -1,7 +1,7 @@
 ﻿using LanguageExt;
-using static LanguageExt.Seq<CubeConundrumAgain.Character>;
+using static LanguageExt.Seq<FunctionalStoryteller.Character>;
 
-namespace CubeConundrumAgain;
+namespace FunctionalStoryteller;
 
 public sealed class DeathScene : Scene
 {

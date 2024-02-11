@@ -1,4 +1,4 @@
-﻿namespace CubeConundrumAgain;
+﻿namespace FunctionalStoryteller;
 
 public class Character
 {

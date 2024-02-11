@@ -1,6 +1,6 @@
 using LanguageExt;
 
-namespace CubeConundrumAgain;
+namespace FunctionalStoryteller;
 
 public abstract class Scene
 {
