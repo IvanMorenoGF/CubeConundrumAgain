@@ -2,10 +2,9 @@
 
 public class Character
 {
-    private readonly string name;
+    readonly string name;
 
     Character(string name) => this.name = name;
-    public static Character None => new("");
 
     public static bool operator !=(Character left, Character right) => !(left == right);
     public static bool operator ==(Character left, Character right) => left.Equals(right);
