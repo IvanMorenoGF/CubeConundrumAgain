@@ -12,7 +12,7 @@ public class Story
 
     public Option<Character> WhoLoves(Character loved)
         => this.All<LoveScene>(loved)
-            .Where(scene => this.First<LoveScene>(of: scene.LoverOf(loved)).Equals(scene))
+            .Where(scene => FellInLove(loved, scene))
             .Map(scene => scene.PotentialLoverOf(loved))
             .FirstOrDefault()
             .Match
@@ -21,6 +21,7 @@ public class Story
                 Option<Character>.None
             );
 
+    bool FellInLove(Character who, LoveScene when) => this.First<LoveScene>(of: when.LoverOf(who)).Equals(when);
     public Option<Character> FirstLoveOf(Character who)
         => this.First<LoveScene>(of: who).Bind(s => s.PotentialLoverOf(who));
 
