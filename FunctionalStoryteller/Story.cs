@@ -13,11 +13,11 @@ public class Story
     public Option<Character> WhoLoves(Character loved)
         => this
             .All<LoveScene>(loved)
-            .Where(date => FellInLoveAt(loved, date))
-            .Bind(scene => scene.PotentialLoverOf(loved))
+            .Where(date => FellInLoveWith(loved, date))
+            .Bind(date => date.PotentialLoverOf(loved))
             .FirstOrDefault(lover => SharingAstralPlane(loved, lover));
 
-    bool FellInLoveAt(Character who, LoveScene date) => this.First<LoveScene>(of: date.LoverOf(who)).Equals(date);
+    bool FellInLoveWith(Character who, LoveScene date) => this.First<LoveScene>(of: date.LoverOf(who)).Equals(date);
 
     public Option<Character> FirstLoveOf(Character who)
         => this.First<LoveScene>(of: who).Bind(s => s.PotentialLoverOf(who));
