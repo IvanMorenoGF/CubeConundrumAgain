@@ -37,6 +37,17 @@ public class MiscTests
             .Tell()
             .Should().BeEquivalentTo(OnceUponATime().Happened(Death()).Happened(Death().Buried("Adan")));
     }
+
+    [Test]
+    public void SwapScenes()
+    {
+        StoryBoard.Blank(2)
+            .TellAt(1, Death())
+            .TellAt(2, Death().Buried("Adan"))
+            .Swap(1, 2)
+            .Tell()
+            .Should().BeEquivalentTo(OnceUponATime().Happened(Death().Buried("Adan")).Happened(Death()));
+    }
 }
 
 public class StoryBoard
@@ -60,6 +71,15 @@ public class StoryBoard
         var newScenes = new Option<Scene>[scenes.Length];
         scenes.CopyTo(newScenes, 0);
         newScenes[vignette - 1] = what;
+        return new StoryBoard(newScenes);
+    }
+    
+    public StoryBoard Swap(int theOne, int theOther)
+    {
+        var newScenes = new Option<Scene>[scenes.Length];
+        scenes.CopyTo(newScenes, 0);
+        newScenes[theOne - 1] = scenes[theOther - 1];
+        newScenes[theOther - 1] = scenes[theOne - 1];
         return new StoryBoard(newScenes);
     }
 
