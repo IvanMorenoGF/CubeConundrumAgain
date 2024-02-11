@@ -105,8 +105,19 @@ public class LovingTests
     }
 
     [Test]
-    public void afsa()
+    public void RejectSomeone_AnywaysFallsInLove()
     {
+        OnceUponATime()
+            .Happened(Love().Between("Adan", "Eva"))
+            .Happened(Love().Between("Adan", "Rejected"))
+            .WhomLoves("Rejected")
+            .Match(x => x.Should().Be("Adan"), Assert.Fail);
         
+        OnceUponATime()
+            .Happened(Love().Between("Adan", "Eva"))
+            .Happened(Love().Between("Adan", "Rejected"))
+            .Happened(Love().Between("Segismundo", "Rejected"))
+            .WhomLoves("Rejected")
+            .Match(x => x.Should().Be("Segismundo"), Assert.Fail);
     }
 }
