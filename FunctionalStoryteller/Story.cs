@@ -27,8 +27,15 @@ public class Story
         => this.First<LoveScene>(of: who).Bind(s => s.PotentialLoverOf(who));
 
     public bool SharingAstralPlane(string theOne, string theOther) => IsAlive(theOne) == IsAlive(theOther);
-    public bool IsHeartbroken(Character who) => this.PartOfAny<LoveScene>(who);
-    
+
+    public bool IsHeartbroken(Character who) 
+        => WhomLoves(who)
+            .Match
+            (
+                x => scenes.OfType<DeathScene>().Any(s => s.AreInTheCast(who, x)),
+                false
+            );
+
     public override bool Equals(object obj)
         => obj is Story story &&
            scenes.SequenceEqual(story.scenes);

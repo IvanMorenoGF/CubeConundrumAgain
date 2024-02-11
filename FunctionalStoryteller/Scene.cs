@@ -8,5 +8,6 @@ public abstract record Scene
     public static LoveScene Love() => new();
 
     public bool IsInTheCast(Character who) => Cast.Contains(who);
+    public bool AreInTheCast(params Character[] who) => who.All(IsInTheCast);
     protected abstract Seq<Character> Cast { get; }
 }

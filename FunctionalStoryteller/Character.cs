@@ -1,6 +1,6 @@
 ﻿namespace FunctionalStoryteller;
 
-public class Character
+public sealed class Character
 {
     readonly string name;
 
