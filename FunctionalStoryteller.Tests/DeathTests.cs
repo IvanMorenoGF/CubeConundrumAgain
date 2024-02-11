@@ -65,5 +65,17 @@ public class DeathTests
         
         OnceUponATime().SharingAstralPlane("Adan", "Eva").Should().BeTrue();
     }
-    
+
+    [Test]
+    public void BecomeWidow()
+    {
+        OnceUponATime()
+            .Happened(Love().Between("Adan", "Eva"))
+            .Happened(Death().Buried("Adan").Grieving("Eva"))
+            .IsWidow("Eva").Should().BeTrue();
+        
+        OnceUponATime()
+            .Happened(Death().Buried("Adan").Grieving("Eva"))
+            .IsWidow("Eva").Should().BeFalse();
+    }
 }

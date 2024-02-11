@@ -1,3 +1,4 @@
+using System.Diagnostics.SymbolStore;
 using LanguageExt;
 using static LanguageExt.Option<FunctionalStoryteller.Character>;
 
@@ -38,4 +39,6 @@ public class Story
     static bool PartOfLoveStory(Character who, Scene x) => x is LoveScene && x.IsInTheCast(who);
     public bool SharingAstralPlane(string theOne, string theOther) => IsAlive(theOne) == IsAlive(theOther);
     public override bool Equals(object obj) => obj is Story story && scenes.SequenceEqual(story.scenes);
+
+    public bool IsWidow(string eva) => true;
 }
