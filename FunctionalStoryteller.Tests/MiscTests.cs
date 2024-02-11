@@ -15,21 +15,34 @@ public class MiscTests
     }
 
     [Test]
-    public void asfasfas()
+    public void CreateBlankStoryboard()
     {
-        StoryBoard.Blank().IsEmpty().Should().BeTrue();
+        StoryBoard.Blank(2).IsEmpty().Should().BeTrue();
+        StoryBoard.Blank(2).TellAt(1, Scene.Death()).IsEmpty().Should().BeFalse();
     }
 }
 
-public class StoryBoard 
+public class StoryBoard
 {
-    public static StoryBoard Blank()
+    Scene asfsaf;
+
+    StoryBoard(Scene what)
     {
-        return new StoryBoard();
+        asfsaf = what;
+    }
+
+    public static StoryBoard Blank(int i)
+    {
+        return new StoryBoard(null);
     }
 
     public bool IsEmpty()
     {
-        return true;
+        return asfsaf == null;
+    }
+
+    public StoryBoard TellAt(int when, Scene what)
+    {
+        return new StoryBoard(what);
     }
 }
