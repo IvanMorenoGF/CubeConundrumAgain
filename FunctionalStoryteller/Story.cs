@@ -17,7 +17,7 @@ public class Story
                 firstSceneWithLoved => WhomLoves(firstSceneWithLoved.LoverOf(loved))
                     .Match
                     (
-                        lover => lover == loved && (IsAlive(loved) == IsAlive(firstSceneWithLoved.LoverOf(loved))) ? firstSceneWithLoved.LoverOf(loved) : None,
+                        lover => lover == loved && IsAlive(loved) == IsAlive(firstSceneWithLoved.LoverOf(loved)) ? firstSceneWithLoved.LoverOf(loved) : None,
                         None
                     ),
                 None

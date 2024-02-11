@@ -13,4 +13,23 @@ public class MiscTests
         Love().Between("Adan", "Eva").IsInTheCast("Eva").Should().BeTrue();
         Love().Between("Adan", "Eva").IsInTheCast("IsNot").Should().BeFalse();
     }
+
+    [Test]
+    public void asfasfas()
+    {
+        StoryBoard.Blank().IsEmpty().Should().BeTrue();
+    }
+}
+
+public class StoryBoard 
+{
+    public static StoryBoard Blank()
+    {
+        return new StoryBoard();
+    }
+
+    public bool IsEmpty()
+    {
+        return true;
+    }
 }
