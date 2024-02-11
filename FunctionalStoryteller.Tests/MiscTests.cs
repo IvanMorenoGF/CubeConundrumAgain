@@ -13,12 +13,17 @@ public class MiscTests
         Love().Between("Adan", "Eva").IsInTheCast("Eva").Should().BeTrue();
         Love().Between("Adan", "Eva").IsInTheCast("IsNot").Should().BeFalse();
     }
+    
+    [Test]
+    public void TellScene_AtVignette()
+    {
+        StoryBoard.Blank(1).Tell().Should().BeEquivalentTo(OnceUponATime());
+    }
 
     [Test]
-    public void CreateBlankStoryboard()
+    public void afsafas()
     {
-        StoryBoard.Blank(2).IsEmpty().Should().BeTrue();
-        StoryBoard.Blank(2).TellAt(1, Scene.Death()).IsEmpty().Should().BeFalse();
+        StoryBoard.Blank(1).TellAt(1, Death()).Tell().Should().NotBeEquivalentTo(OnceUponATime());
     }
 }
 
@@ -31,18 +36,20 @@ public class StoryBoard
         asfsaf = what;
     }
 
-    public static StoryBoard Blank(int i)
+    public static StoryBoard Blank(int howMuchVignettes)
     {
         return new StoryBoard(null);
     }
-
-    public bool IsEmpty()
-    {
-        return asfsaf == null;
-    }
-
-    public StoryBoard TellAt(int when, Scene what)
+    
+    public StoryBoard TellAt(int vignette, Scene what)
     {
         return new StoryBoard(what);
+    }
+
+    public Story Tell()
+    {
+        if(asfsaf == null) return OnceUponATime();
+        
+        return OnceUponATime().Happened(asfsaf);
     }
 }

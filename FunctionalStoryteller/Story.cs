@@ -38,4 +38,5 @@ public class Story
     bool PartOfLoveStory(Character who) => scenes.Any(x => PartOfLoveStory(who, x));
     static bool PartOfLoveStory(Character who, Scene x) => x is LoveScene && x.IsInTheCast(who);
     public bool SharingAstralPlane(string theOne, string theOther) => IsAlive(theOne) == IsAlive(theOther);
+    public override bool Equals(object obj) => obj is Story story && scenes.SequenceEqual(story.scenes);
 }
