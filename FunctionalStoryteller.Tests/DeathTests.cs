@@ -50,4 +50,19 @@ public class DeathTests
             .Happened(Love().Between("Adan", "Eva"))
             .WhoLoves("Eva").IsNone.Should().BeFalse();
     }
+
+    [Test]
+    public void AreInSameAstralPlane()
+    {
+        OnceUponATime()
+            .Happened(Death().Buried("Adan"))
+            .SharingAstralPlane("Adan", "Eva").Should().BeFalse();
+        
+        OnceUponATime()
+            .Happened(Death().Buried("Adan"))
+            .Happened(Death().Buried("Eva"))
+            .SharingAstralPlane("Adan", "Eva").Should().BeTrue();
+        
+        OnceUponATime().SharingAstralPlane("Adan", "Eva").Should().BeTrue();
+    }
 }
