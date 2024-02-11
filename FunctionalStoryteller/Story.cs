@@ -11,21 +11,18 @@ public class Story
     public bool WasRejected(Character who) => FirstLoveOf(who) != WhoLoves(who);
 
     public Option<Character> WhoLoves(Character loved)
-        => this.All<LoveScene>(loved)
-            .Where(scene => FellInLove(loved, scene))
-            .Map(scene => scene.PotentialLoverOf(loved))
-            .FirstOrDefault()
-            .Match
-            (
-                lover => IsAlive(loved) == IsAlive(lover) ? lover : Option<Character>.None,
-                Option<Character>.None
-            );
+        => this
+            .All<LoveScene>(loved)
+            .Where(date => FellInLoveAt(loved, date))
+            .Bind(scene => scene.PotentialLoverOf(loved))
+            .FirstOrDefault(lover => SharingAstralPlane(loved, lover));
 
-    bool FellInLove(Character who, LoveScene when) => this.First<LoveScene>(of: when.LoverOf(who)).Equals(when);
+    bool FellInLoveAt(Character who, LoveScene date) => this.First<LoveScene>(of: date.LoverOf(who)).Equals(date);
+
     public Option<Character> FirstLoveOf(Character who)
         => this.First<LoveScene>(of: who).Bind(s => s.PotentialLoverOf(who));
 
-    public bool SharingAstralPlane(string theOne, string theOther) => IsAlive(theOne) == IsAlive(theOther);
+    public bool SharingAstralPlane(Character theOne, Character theOther) => IsAlive(theOne) == IsAlive(theOther);
 
     public bool IsHeartbroken(Character who)
         => FirstLoveOf(who)
