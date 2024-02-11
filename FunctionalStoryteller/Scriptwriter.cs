@@ -11,4 +11,9 @@ internal static class Scriptwriter
         => story.PartOfAny<T>(of)
             ? story.scenes.OfType<T>().First(x => x.IsInTheCast(of))
             : Option<T>.None;
+    
+    public static Seq<T> All<T>(this Story story, Character of) where T : Scene
+        => story.PartOfAny<T>(of)
+            ? story.scenes.OfType<T>().Where(x => x.IsInTheCast(of)).ToSeq()
+            : Seq<T>.Empty;
 }
