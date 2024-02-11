@@ -13,7 +13,7 @@ public class Chapter1Tests
         OnceUponATime()
             .Happened(Love().Between(Adam, NobodyElse))
             .Happened(Love().Between(Adam, Eva))
-            .Happened(Death().Buried(Adam))
+            .Happened(Death().Of(Adam))
             .WhoLoves(Adam).IsSome.Should().BeTrue("se entiende que Adán muere feliz si Eva lo ama");
     }
 
@@ -22,8 +22,18 @@ public class Chapter1Tests
     {
         OnceUponATime()
             .Happened(Love().Between(Adam, Eva))
-            .Happened(Death().Buried(Adam).Grieving(Eva))
-            .Happened(Death().Buried(Eva))
+            .Happened(Death().Of(Adam).WatchedBy(Eva))
+            .Happened(Death().Of(Eva))
             .IsHeartbroken(Eva).Should().BeTrue("muere desconsolada por saber la muerte de Adán");
+    }
+
+    [Test]
+    public void Level3()
+    {
+        OnceUponATime()
+            .Happened(Love().Between(Adam, Eva))
+            .Happened(Death().Of(Adam).WatchedBy(Eva))
+            .Happened(Love().Between(Adam, Eva))
+            .SharingAstralPlane(Adam, Eva).Should().BeFalse("falta decir que está asustada...");
     }
 }

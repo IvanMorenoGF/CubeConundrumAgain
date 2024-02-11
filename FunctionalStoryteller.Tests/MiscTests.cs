@@ -32,9 +32,9 @@ public class MiscTests
     {
         StoryBoard.Blank(2)
             .TellAt(1, Death())
-            .TellAt(2, Death().Buried("Adan"))
+            .TellAt(2, Death().Of("Adan"))
             .Tell()
-            .Should().BeEquivalentTo(OnceUponATime().Happened(Death()).Happened(Death().Buried("Adan")));
+            .Should().BeEquivalentTo(OnceUponATime().Happened(Death()).Happened(Death().Of("Adan")));
     }
 
     [Test]
@@ -42,10 +42,10 @@ public class MiscTests
     {
         StoryBoard.Blank(2)
             .TellAt(1, Death())
-            .TellAt(2, Death().Buried("Adan"))
+            .TellAt(2, Death().Of("Adan"))
             .Swap(1, 2)
             .Tell()
-            .Should().BeEquivalentTo(OnceUponATime().Happened(Death().Buried("Adan")).Happened(Death()));
+            .Should().BeEquivalentTo(OnceUponATime().Happened(Death().Of("Adan")).Happened(Death()));
     }
 
     [Test]
@@ -60,7 +60,7 @@ public class MiscTests
         StoryBoard.Blank(20)
             .TellAt(1, Love())
             .TellAt(6, Death())
-            .TellAt(17, Death().Buried("Adan"))
+            .TellAt(17, Death().Of("Adan"))
             .TellUntil(11)
             .Should().BeEquivalentTo(OnceUponATime().Happened(Love()).Happened(Death()));
     }

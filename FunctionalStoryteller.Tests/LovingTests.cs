@@ -73,7 +73,7 @@ public class LovingTests
     public void FallInLove_NotInTheFirstTime()
     {
         OnceUponATime()
-            .Happened(Death().Buried("Enriqueto"))
+            .Happened(Death().Of("Enriqueto"))
             .Happened(Love().Between("Adan", "Eva"))
             .WhoLoves("Adan")
             .Match(x => x.Should().Be("Eva"), Assert.Fail);

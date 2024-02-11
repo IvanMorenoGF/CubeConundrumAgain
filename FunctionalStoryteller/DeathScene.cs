@@ -18,8 +18,8 @@ public sealed record DeathScene : Scene
         this.grievingOne = grievingOne;
     }
 
-    public DeathScene Buried(Character who) => new(who, grievingOne);
-    public DeathScene Grieving(Character who) => new(buriedOne, who);
+    public DeathScene Of(Character who) => new(who, grievingOne);
+    public DeathScene WatchedBy(Character who) => new(buriedOne, who);
 
     public bool IsInTheTomb(Character who) => buriedOne == who;
 }
