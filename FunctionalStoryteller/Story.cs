@@ -2,14 +2,18 @@ using LanguageExt;
 
 namespace FunctionalStoryteller;
 
-public class Story
+public sealed class Alive
+{
+    public bool Is(Story story, Character who) => !story.scenes.OfType<DeathScene>().Any(x => x.IsInTheTomb(who));
+}
+public sealed class Story
 {
     internal readonly Seq<Scene> scenes;
     internal Story(Seq<Scene> scenes) => this.scenes = scenes;
 
     public bool Satisfies(params Spec[] spec) => new Composite(spec).SatisfiedBy(this);
-    
-    public bool IsAlive(Character who) => !scenes.OfType<DeathScene>().Any(x => x.IsInTheTomb(who));
+
+    public bool IsAlive(Character who) => new Alive().Is(this, who);
     public bool WasRejected(Character who) => FirstLoveOf(who) != WhoLoves(who);
 
     public Option<Character> WhoLoves(Character loved)

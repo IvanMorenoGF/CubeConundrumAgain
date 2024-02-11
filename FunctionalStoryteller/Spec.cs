@@ -5,7 +5,7 @@ public abstract class Spec
     public abstract bool SatisfiedBy(Story wherein);
 
     public static Spec Dead(Character who) => new OfSomeone(who, (s, c) => !s.IsAlive(c));
-    public static Spec Alive(Character who) => new OfSomeone(who, (s, c) => s.IsAlive(c));
+    public static Spec Alive(Character who) => new OfSomeone(who, new Alive().Is);
     public static Spec Loved(Character who) => new OfSomeone(who, (s, c) => s.WhoLoves(c).IsSome);
     public static Spec Heartbroken(Character who) => new OfSomeone(who, (s, c) => s.IsHeartbroken(c));
 }
