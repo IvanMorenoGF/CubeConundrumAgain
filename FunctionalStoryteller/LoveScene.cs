@@ -13,8 +13,11 @@ public sealed record LoveScene : Scene
 
     public LoveScene(Character left, Character right) => couple = (left, right);
 
-    public LoveScene With(Character atLeft = null, Character atRight = null)
-        => Between(atLeft ?? couple.left, atRight ?? couple.right);
     public LoveScene Between(Character one, Character other) => new(one, other);
-    public Character LoverOf(Character lover) => couple.left == lover ? couple.right : couple.left;
+    
+    public Character LoverOf(Character who) => couple.left == who ? couple.right : couple.left;
+    public Option<Character> PotentialLoverOf(Character who)
+        => !IsInTheCast(who)
+            ? Option<Character>.None
+            : couple.left == who ? couple.right : couple.left;
 }

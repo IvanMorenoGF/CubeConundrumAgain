@@ -10,12 +10,12 @@ public class LovingTests
     public void Nobody_LovesWithTheAir()
     {
         OnceUponATime()
-            .Happened(Love().With("AloneOne"))
+            .Happened(Love().Between("AloneOne", null))
             .WhomLoves("AloneOne")
             .IsNone.Should().BeTrue();
         
         OnceUponATime()
-            .Happened(Love().With("AloneOne"))
+            .Happened(Love().Between("AloneOne", null))
             .WhoLoves("AloneOne")
             .IsNone.Should().BeTrue();
     }

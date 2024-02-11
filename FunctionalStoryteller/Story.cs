@@ -6,11 +6,12 @@ public class Story
 {
     internal readonly Seq<Scene> scenes;
     internal Story(Seq<Scene> scenes) => this.scenes = scenes;
+    
     public bool IsAlive(Character who) => !scenes.OfType<DeathScene>().Any(x => x.IsInTheTomb(who));
     public bool WasRejected(Character who) => WhomLoves(who) != WhoLoves(who);
 
     public Option<Character> WhoLoves(Character loved)
-        => FirstLoveStoryOf(loved)
+        => this.First<LoveScene>(loved)
             .Match
             (
                 firstSceneWithLoved => WhomLoves(firstSceneWithLoved.LoverOf(loved))
@@ -23,21 +24,12 @@ public class Story
             );
 
     public Option<Character> WhomLoves(Character who)
-        => FirstLoveStoryOf(who).Match
-            (
-                scene => scene.LoverOf(who),
-                () => Option<Character>.None
-            );
+        => this.First<LoveScene>(of: who).Bind(s => s.PotentialLoverOf(who));
 
-    Option<LoveScene> FirstLoveStoryOf(Character who)
-        => PartOfAnyLoveStory(who)
-            ? scenes.First(x => PartOfLoveStory(who, x)) as LoveScene
-            : Option<LoveScene>.None;
-
-    bool PartOfAnyLoveStory(Character who) => scenes.Any(x => PartOfLoveStory(who, x));
-    static bool PartOfLoveStory(Character who, Scene x) => x is LoveScene && x.IsInTheCast(who);
     public bool SharingAstralPlane(string theOne, string theOther) => IsAlive(theOne) == IsAlive(theOther);
-    public override bool Equals(object obj) => obj is Story story && scenes.SequenceEqual(story.scenes);
-
-    public bool IsHeartbroken(Character who) => PartOfAnyLoveStory(who);
+    public bool IsHeartbroken(Character who) => this.PartOfAny<LoveScene>(who);
+    
+    public override bool Equals(object obj)
+        => obj is Story story &&
+           scenes.SequenceEqual(story.scenes);
 }
