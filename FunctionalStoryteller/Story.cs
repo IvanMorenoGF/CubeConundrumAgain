@@ -8,7 +8,6 @@ public class Story
     internal readonly Seq<Scene> scenes;
     internal Story(Seq<Scene> scenes) => this.scenes = scenes;
     public bool IsAlive(Character who) => !scenes.OfType<DeathScene>().Any(x => x.IsInTheTomb(who));
-    Option<LoveScene> FirstLoveScene() => scenes.First(x => x is LoveScene) as LoveScene;
     public bool IsHeartbroken(Character who) => WhomLoves(who) != WhoLoves(who);
 
     public Option<Character> WhoLoves(Character loved)
@@ -18,7 +17,7 @@ public class Story
                 firstSceneWithLoved => WhomLoves(firstSceneWithLoved.LoverOf(loved))
                     .Match
                     (
-                        x => x == loved ? firstSceneWithLoved.LoverOf(loved) : None,
+                        lover => lover == loved && (IsAlive(loved) == IsAlive(firstSceneWithLoved.LoverOf(loved))) ? firstSceneWithLoved.LoverOf(loved) : None,
                         None
                     ),
                 None

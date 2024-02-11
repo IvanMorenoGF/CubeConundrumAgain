@@ -27,7 +27,7 @@ public class DeathTests
             .IsAlive("Eva").Should().BeTrue();
     }
     
-    [Test, Ignore("este es el test rojo por el que seguir")]
+    [Test]
     public void CannotBeLoved_IfDead()
     {
         OnceUponATime()
@@ -39,5 +39,15 @@ public class DeathTests
             .Happened(Death().Buried("Adan"))
             .Happened(Love().Between("Adan", "Eva"))
             .WhoLoves("Eva").IsNone.Should().BeTrue();
+    }
+
+    [Test]
+    public void TwoGhosts_FallInLove()
+    {
+        OnceUponATime()
+            .Happened(Death().Buried("Adan"))
+            .Happened(Death().Buried("Eva"))
+            .Happened(Love().Between("Adan", "Eva"))
+            .WhoLoves("Eva").IsNone.Should().BeFalse();
     }
 }
