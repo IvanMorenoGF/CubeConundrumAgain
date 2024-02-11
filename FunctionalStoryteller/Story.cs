@@ -25,13 +25,11 @@ public class Story
             );
 
     public Option<Character> WhomLoves(Character who)
-        => PartOfLoveStory(who)
-            ? FirstLoveScene().Match
+        => FirstLoveStoryOf(who).Match
             (
                 scene => scene.LoverOf(who),
                 () => None
-            )
-            : None;
+            );
 
     Option<LoveScene> FirstLoveStoryOf(Character who)
         => scenes.Any(x => PartOfLoveStory(who, x))
