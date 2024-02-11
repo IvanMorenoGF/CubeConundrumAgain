@@ -47,8 +47,8 @@ public class LovingTests
     {
         OnceUponATime()
             .Happened(Love().Between("Adan", "Eva"))
-            .Happened(Love().Between("Adan", "Unrequited"))
-            .WhoLoves("Unrequited").IsNone.Should().BeTrue();
+            .Happened(Love().Between("Adan", "Rejected"))
+            .WhoLoves("Rejected").IsNone.Should().BeTrue();
         
         OnceUponATime()
             .Happened(Love().Between("Adan", "Eva"))
@@ -86,21 +86,27 @@ public class LovingTests
     }
     
     [Test]
-    public void OnlyUnrequitedIsHeartbroken()
+    public void RejectSomeone()
     {
         OnceUponATime()
             .Happened(Love().Between("Adan", "Eva"))
-            .Happened(Love().Between("Adan", "Unrequited"))
-            .IsHeartbroken("Adan").Should().BeFalse();
+            .Happened(Love().Between("Adan", "Rejected"))
+            .WasRejected("Adan").Should().BeFalse();
         
         OnceUponATime()
             .Happened(Love().Between("Adan", "Eva"))
-            .Happened(Love().Between("Adan", "Unrequited"))
-            .IsHeartbroken("Eva").Should().BeFalse();
+            .Happened(Love().Between("Adan", "Rejected"))
+            .WasRejected("Eva").Should().BeFalse();
         
         OnceUponATime()
             .Happened(Love().Between("Adan", "Eva"))
-            .Happened(Love().Between("Adan", "Unrequited"))
-            .IsHeartbroken("Unrequited").Should().BeTrue();
+            .Happened(Love().Between("Adan", "Rejected"))
+            .WasRejected("Rejected").Should().BeTrue();
+    }
+
+    [Test]
+    public void afsa()
+    {
+        
     }
 }

@@ -9,7 +9,7 @@ public class Story
     internal readonly Seq<Scene> scenes;
     internal Story(Seq<Scene> scenes) => this.scenes = scenes;
     public bool IsAlive(Character who) => !scenes.OfType<DeathScene>().Any(x => x.IsInTheTomb(who));
-    public bool IsHeartbroken(Character who) => WhomLoves(who) != WhoLoves(who);
+    public bool WasRejected(Character who) => WhomLoves(who) != WhoLoves(who);
 
     public Option<Character> WhoLoves(Character loved)
         => FirstLoveStoryOf(loved)
