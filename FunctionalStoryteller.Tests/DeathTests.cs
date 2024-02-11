@@ -67,15 +67,20 @@ public class DeathTests
     }
 
     [Test]
-    public void BecomeWidow()
+    public void KnowYouBecomeWidow_BreaksYourHeart()
     {
         OnceUponATime()
             .Happened(Love().Between("Adan", "Eva"))
             .Happened(Death().Buried("Adan").Grieving("Eva"))
-            .IsWidow("Eva").Should().BeTrue();
+            .IsHeartbroken("Eva").Should().BeTrue();
         
         OnceUponATime()
             .Happened(Death().Buried("Adan").Grieving("Eva"))
-            .IsWidow("Eva").Should().BeFalse();
+            .IsHeartbroken("Eva").Should().BeFalse(because: "she wasn't in love");
+        
+        OnceUponATime()
+            .Happened(Love().Between("Adan", "Eva"))
+            .Happened(Death().Buried("Adan"))
+            .IsHeartbroken("Eva").Should().BeFalse(because: "she doesn't know");
     }
 }
