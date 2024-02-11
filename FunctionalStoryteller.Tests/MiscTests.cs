@@ -48,6 +48,23 @@ public class MiscTests
             .Tell()
             .Should().BeEquivalentTo(OnceUponATime().Happened(Death().Buried("Adan")).Happened(Death()));
     }
+
+    [Test]
+    public void TellStoryUntil()
+    {
+        StoryBoard.Blank(2)
+            .TellAt(1, Love())
+            .TellAt(2, Death())
+            .TellUntil(1)
+            .Should().BeEquivalentTo(OnceUponATime().Happened(Love()));
+        
+        StoryBoard.Blank(20)
+            .TellAt(1, Love())
+            .TellAt(6, Death())
+            .TellAt(17, Death().Buried("Adan"))
+            .TellUntil(11)
+            .Should().BeEquivalentTo(OnceUponATime().Happened(Love()).Happened(Death()));
+    }
 }
 
 public class StoryBoard
@@ -85,4 +102,6 @@ public class StoryBoard
 
     public Story Tell()
         => scenes.Bind(x => x).Aggregate(OnceUponATime(), (current, scene) => current.Happened(scene));
+
+    public Story TellUntil(int vignette) => new StoryBoard(scenes.Take(vignette).ToArray()).Tell();
 }
