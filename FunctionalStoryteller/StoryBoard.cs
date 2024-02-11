@@ -12,11 +12,10 @@ public class StoryBoard
     }
 
     public StoryBoard(Option<Scene>[] scenes) => this.scenes = scenes;
+    public StoryBoard(IEnumerable<Scene> scenes) => this.scenes = scenes.Map(Option<Scene>.Some).ToArray();
 
-    public static StoryBoard Blank(int howMuchVignettes)
-    {
-        return new StoryBoard(howMuchVignettes);
-    }
+    public static StoryBoard Blank(int howMuchVignettes) => new(howMuchVignettes);
+    public static StoryBoard Of(Story story) => new(story.scenes);
 
     public StoryBoard TellAt(int vignette, Scene what)
     {
@@ -39,4 +38,5 @@ public class StoryBoard
         => scenes.Bind(x => x).Aggregate(Storyteller.OnceUponATime(), (current, scene) => current.Happened(scene));
 
     public Story TellUntil(int vignette) => new StoryBoard(scenes.Take(vignette).ToArray()).Tell();
+    public Story TellAllButLast() => TellUntil(scenes.Length - 1);
 }
