@@ -7,6 +7,8 @@ public class Story
     internal readonly Seq<Scene> scenes;
     internal Story(Seq<Scene> scenes) => this.scenes = scenes;
 
+    public bool Satisfies(params Spec[] spec) => new Composite(spec).SatisfiedBy(this);
+    
     public bool IsAlive(Character who) => !scenes.OfType<DeathScene>().Any(x => x.IsInTheTomb(who));
     public bool WasRejected(Character who) => FirstLoveOf(who) != WhoLoves(who);
 
