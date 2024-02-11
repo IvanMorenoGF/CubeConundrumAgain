@@ -1,6 +1,5 @@
 using FluentAssertions;
 using static FunctionalStoryteller.Scene;
-using static FunctionalStoryteller.Storyteller;
 
 namespace FunctionalStoryteller.Tests;
 
