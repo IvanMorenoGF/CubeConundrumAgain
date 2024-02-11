@@ -11,7 +11,7 @@ public class LovingTests
     {
         OnceUponATime()
             .Happened(Love().Between("AloneOne", null))
-            .WhomLoves("AloneOne")
+            .FirstLoveOf("AloneOne")
             .IsNone.Should().BeTrue();
         
         OnceUponATime()
@@ -24,7 +24,7 @@ public class LovingTests
     {
         OnceUponATime()
             .Happened(Love().Between("Adan", "Eva"))
-            .WhomLoves("Adan")
+            .FirstLoveOf("Adan")
             .Match(x => x.Should().Be("Eva"), Assert.Fail);
     }
 
@@ -66,7 +66,7 @@ public class LovingTests
         
         OnceUponATime()
             .Happened(Love().Between("Adan", "Eva"))
-            .WhomLoves("Other").IsNone.Should().BeTrue();
+            .FirstLoveOf("Other").IsNone.Should().BeTrue();
     }
 
     [Test]
@@ -110,14 +110,14 @@ public class LovingTests
         OnceUponATime()
             .Happened(Love().Between("Adan", "Eva"))
             .Happened(Love().Between("Adan", "Rejected"))
-            .WhomLoves("Rejected")
+            .FirstLoveOf("Rejected")
             .Match(x => x.Should().Be("Adan"), Assert.Fail);
         
         OnceUponATime()
             .Happened(Love().Between("Adan", "Eva"))
             .Happened(Love().Between("Adan", "Rejected"))
             .Happened(Love().Between("Segismundo", "Rejected"))
-            .WhomLoves("Rejected")
+            .WhoLoves("Rejected")
             .Match(x => x.Should().Be("Segismundo"), Assert.Fail);
     }
 }
