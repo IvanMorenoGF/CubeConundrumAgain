@@ -2,7 +2,7 @@ using LanguageExt;
 
 namespace FunctionalStoryteller;
 
-public abstract class Scene
+public abstract record Scene
 {
     public static DeathScene Death() => new();
     public static LoveScene Love() => new();

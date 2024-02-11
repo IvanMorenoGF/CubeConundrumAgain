@@ -3,7 +3,7 @@ using static LanguageExt.Seq<FunctionalStoryteller.Character>;
 
 namespace FunctionalStoryteller;
 
-public sealed class LoveScene : Scene
+public sealed record LoveScene : Scene
 {
     readonly (Character left, Character right) couple;
 

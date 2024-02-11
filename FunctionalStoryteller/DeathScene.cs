@@ -3,7 +3,7 @@ using static LanguageExt.Seq<FunctionalStoryteller.Character>;
 
 namespace FunctionalStoryteller;
 
-public sealed class DeathScene : Scene
+public sealed record  DeathScene : Scene
 {
     readonly Character buriedOne;
     readonly Character grievingOne;
