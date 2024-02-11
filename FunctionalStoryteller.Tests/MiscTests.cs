@@ -14,7 +14,7 @@ public class MiscTests
         Love().Between("Adan", "Eva").IsInTheCast("Eva").Should().BeTrue();
         Love().Between("Adan", "Eva").IsInTheCast("IsNot").Should().BeFalse();
     }
-    
+
     [Test]
     public void TellScene_AtVignette()
     {
@@ -22,14 +22,14 @@ public class MiscTests
     }
 
     [Test]
-    public void afsafas()
+    public void CreateAStory()
     {
         StoryBoard.Blank(1).TellAt(1, Death()).Tell().Should().NotBeEquivalentTo(OnceUponATime());
         StoryBoard.Blank(1).TellAt(1, Death()).Tell().Should().BeEquivalentTo(OnceUponATime().Happened(Death()));
     }
-    
-    [Test][Ignore("asfasf")]
-    public void fdfasfas()
+
+    [Test]
+    public void Compose_TwoScenes()
     {
         StoryBoard.Blank(2)
             .TellAt(1, Death())
@@ -41,32 +41,28 @@ public class MiscTests
 
 public class StoryBoard
 {
-    Scene[] scenes;
+    Option<Scene>[] scenes;
 
     StoryBoard(int howMuchVignettes)
     {
-        scenes = new Scene[howMuchVignettes];
+        scenes = new Option<Scene>[howMuchVignettes];
     }
 
-    public StoryBoard(Scene[] scenes) => this.scenes = scenes;
+    public StoryBoard(Option<Scene>[] scenes) => this.scenes = scenes;
 
     public static StoryBoard Blank(int howMuchVignettes)
     {
         return new StoryBoard(howMuchVignettes);
     }
-    
+
     public StoryBoard TellAt(int vignette, Scene what)
     {
-        var newScenes = new Scene[scenes.Length];
+        var newScenes = new Option<Scene>[scenes.Length];
         scenes.CopyTo(newScenes, 0);
         newScenes[vignette - 1] = what;
         return new StoryBoard(newScenes);
     }
 
     public Story Tell()
-    {
-        if(scenes.All(x => x == default)) return OnceUponATime();
-
-        return scenes.Aggregate(OnceUponATime(), (current, scene) => current.Happened(scene));
-    }
+        => scenes.Bind(x => x).Aggregate(OnceUponATime(), (current, scene) => current.Happened(scene));
 }
