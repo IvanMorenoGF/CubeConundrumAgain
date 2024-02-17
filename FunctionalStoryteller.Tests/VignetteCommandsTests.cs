@@ -6,7 +6,7 @@ using static FunctionalStoryteller.Commands;
 
 namespace FunctionalStoryteller.Tests;
 
-public class CommandsTests
+public class VignetteCommandsTests
 {
     [Test]
     public void DragSceneToVignette_Command()
