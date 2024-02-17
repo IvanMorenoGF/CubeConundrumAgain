@@ -19,30 +19,30 @@ public sealed class StoryBoard
 
     public StoryBoard PutIn(int vignette, Scene what)
     {
-        if(vignette < 1 || vignette > scenes.Length)
+        if (vignette < 1 || vignette > scenes.Length)
             throw new ArgumentOutOfRangeException(nameof(vignette));
-        
+
         var newScenes = new Option<Scene>[scenes.Length];
         scenes.CopyTo(newScenes, 0);
         newScenes[vignette - 1] = what;
         return new StoryBoard(newScenes);
     }
-    
+
     public StoryBoard Remove(int vignette)
     {
-        if(vignette < 1 || vignette > scenes.Length)
+        if (vignette < 1 || vignette > scenes.Length)
             throw new ArgumentOutOfRangeException(nameof(vignette));
-        
+
         var newScenes = new Option<Scene>[scenes.Length];
         scenes.CopyTo(newScenes, 0);
         newScenes[vignette - 1] = Option<Scene>.None;
         return new StoryBoard(newScenes);
     }
-    
+
     public StoryBoard In1(Scene what) => PutIn(1, what);
     public StoryBoard In2(Scene what) => PutIn(2, what);
     public StoryBoard In3(Scene what) => PutIn(3, what);
-    
+
     public StoryBoard Swap(int theOne, int theOther)
     {
         var newScenes = new Option<Scene>[scenes.Length];
@@ -57,7 +57,15 @@ public sealed class StoryBoard
 
     public Story TellUntil(int vignette) => new StoryBoard(scenes.Take(vignette).ToArray()).Tell();
     public Story TellAllButLast() => TellUntil(scenes.Length - 1);
-    
+
+    public Option<Scene> At(int vignette)
+    {
+        if (vignette < 1 || vignette > scenes.Length)
+            throw new ArgumentOutOfRangeException(nameof(vignette));
+
+        return scenes[vignette - 1];
+    }
+
     public override bool Equals(object obj)
         => obj is StoryBoard story &&
            scenes.SequenceEqual(story.scenes);
