@@ -8,4 +8,5 @@ public static class Commands
     
     public static DragCharacterToVignette DragTo(int vignette, Character who) => new(vignette, who);
     public static DragCharacterToScene DragTo(int vignette,int where, Character who) => new(vignette,where, who);
+    public static DragCharacterOutOfScene DragOut(int vignette,int where) => new(vignette,where);
 }

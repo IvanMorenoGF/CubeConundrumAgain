@@ -30,4 +30,12 @@ public class SceneCommandsTests
             .SketchIn(1.Vignettes().In1(Death()))
             .Tell().Should().Be(OnceUponATime().Happened(Death().Of(Adam)));
     }
+
+    [Test]
+    public void DragOut_Command()
+    {
+        DragOut(vignette: 1,where:1)
+            .SketchIn(1.Vignettes().In1(Solitude().Of(Adam)))
+            .Should().Be(Blank(1).In1(Solitude()));
+    }
 }
