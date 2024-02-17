@@ -23,16 +23,16 @@ public class MiscTests
     [Test]
     public void CreateAStory()
     {
-        StoryBoard.Blank(1).TellAt(1, Death()).Tell().Should().NotBeEquivalentTo(OnceUponATime());
-        StoryBoard.Blank(1).TellAt(1, Death()).Tell().Should().BeEquivalentTo(OnceUponATime().Happened(Death()));
+        StoryBoard.Blank(1).lkajsdlfkj(1, Death()).Tell().Should().NotBeEquivalentTo(OnceUponATime());
+        StoryBoard.Blank(1).lkajsdlfkj(1, Death()).Tell().Should().BeEquivalentTo(OnceUponATime().Happened(Death()));
     }
 
     [Test]
     public void Compose_TwoScenes()
     {
         StoryBoard.Blank(2)
-            .TellAt(1, Death())
-            .TellAt(2, Death().Of("Adan"))
+            .lkajsdlfkj(1, Death())
+            .lkajsdlfkj(2, Death().Of("Adan"))
             .Tell()
             .Should().BeEquivalentTo(OnceUponATime().Happened(Death()).Happened(Death().Of("Adan")));
     }
@@ -41,8 +41,8 @@ public class MiscTests
     public void SwapScenes()
     {
         StoryBoard.Blank(2)
-            .TellAt(1, Death())
-            .TellAt(2, Death().Of("Adan"))
+            .lkajsdlfkj(1, Death())
+            .lkajsdlfkj(2, Death().Of("Adan"))
             .Swap(1, 2)
             .Tell()
             .Should().BeEquivalentTo(OnceUponATime().Happened(Death().Of("Adan")).Happened(Death()));
@@ -52,15 +52,15 @@ public class MiscTests
     public void TellStoryUntil()
     {
         StoryBoard.Blank(2)
-            .TellAt(1, Love())
-            .TellAt(2, Death())
+            .lkajsdlfkj(1, Love())
+            .lkajsdlfkj(2, Death())
             .TellUntil(1)
             .Should().BeEquivalentTo(OnceUponATime().Happened(Love()));
         
         StoryBoard.Blank(20)
-            .TellAt(1, Love())
-            .TellAt(6, Death())
-            .TellAt(17, Death().Of("Adan"))
+            .lkajsdlfkj(1, Love())
+            .lkajsdlfkj(6, Death())
+            .lkajsdlfkj(17, Death().Of("Adan"))
             .TellUntil(11)
             .Should().BeEquivalentTo(OnceUponATime().Happened(Love()).Happened(Death()));
     }

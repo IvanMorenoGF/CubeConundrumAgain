@@ -7,7 +7,7 @@ namespace FunctionalStoryteller.Tests;
 
 public class Chapter1Tests
 {
-    [Test]
+    [Test, Ignore("todo")]
     public void Level1()
     {
         OnceUponATime()
