@@ -1,12 +1,12 @@
 namespace FunctionalStoryteller;
 
-public sealed class DragCharacterWithinScene : Command
+public sealed class ChangePositionOfCharacter : Command
 {
     readonly int vignette;
     readonly int from;
     readonly int to;
 
-    public DragCharacterWithinScene(int vignette, int from, int to)
+    public ChangePositionOfCharacter(int vignette, int from, int to)
     {
         this.vignette = vignette;
         this.from = from;
