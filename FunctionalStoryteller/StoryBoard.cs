@@ -2,9 +2,9 @@ using LanguageExt;
 
 namespace FunctionalStoryteller;
 
-public class StoryBoard
+public sealed class StoryBoard
 {
-    Option<Scene>[] scenes;
+    readonly Option<Scene>[] scenes;
 
     StoryBoard(int howMuchVignettes)
     {
@@ -42,4 +42,8 @@ public class StoryBoard
 
     public Story TellUntil(int vignette) => new StoryBoard(scenes.Take(vignette).ToArray()).Tell();
     public Story TellAllButLast() => TellUntil(scenes.Length - 1);
+    
+    public override bool Equals(object obj)
+        => obj is StoryBoard story &&
+           scenes.SequenceEqual(story.scenes);
 }

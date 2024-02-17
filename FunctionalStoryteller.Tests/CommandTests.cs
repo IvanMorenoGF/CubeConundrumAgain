@@ -23,4 +23,12 @@ public class CommandTests
             .SketchIn(InspireFrom(OnceUponATime().Happened(Death()))).Tell()
             .Should().Be(OnceUponATime().Happened(Love()));
     }
+
+    [Test]
+    public void DragSceneFromOtherVignette()
+    {
+        Drag(fromVignette: 1, toVignette: 2)
+            .SketchIn(Blank(vignettes: 2).PutIn(1, Death()))
+            .Should().BeEquivalentTo(Blank(2).PutIn(2, Death()));
+    }
 }
