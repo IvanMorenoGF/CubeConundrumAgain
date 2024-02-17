@@ -47,4 +47,16 @@ public class CommandsTests
             .SketchIn(1.Vignettes().In1(Death()))
             .Should().BeEquivalentTo(Blank(vignettes:1));
     }
+
+    [Test]
+    public void ComposeStory()
+    {
+        2.Vignettes().Compose
+        (
+            DragTo(vignette: 1, Death()),
+            DragTo(vignette: 2, Love()),
+            Drag(fromVignette: 1, toVignette: 2),
+            DragOut(vignette: 1)
+        ).Should().BeEquivalentTo(2.Vignettes().In2(Death()));
+    }
 }

@@ -18,4 +18,7 @@ public static class Scriptwriter
             : Seq<T>.Empty;
     
     public static StoryBoard Vignettes(this int howMany) => StoryBoard.Blank(howMany);
+
+    public static StoryBoard Compose(this StoryBoard from, params Command[] stream)
+        => stream.Aggregate(from, (storyboard, command) => command.SketchIn(storyboard));
 }
