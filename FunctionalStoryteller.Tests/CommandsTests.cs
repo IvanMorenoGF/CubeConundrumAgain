@@ -2,11 +2,11 @@ using FluentAssertions;
 using static FunctionalStoryteller.Scene;
 using static FunctionalStoryteller.StoryBoard;
 using static FunctionalStoryteller.Storyteller;
-using static FunctionalStoryteller.Command;
+using static FunctionalStoryteller.Commands;
 
 namespace FunctionalStoryteller.Tests;
 
-public class CommandTests
+public class CommandsTests
 {
     [Test]
     public void DragSceneToVignette_Command()

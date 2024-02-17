@@ -1,6 +1,6 @@
 namespace FunctionalStoryteller;
 
-public sealed class DragFromOtherVignette
+public sealed class DragFromOtherVignette : Command
 {
     readonly int fromVignette;
     readonly int toVignette;
@@ -11,7 +11,7 @@ public sealed class DragFromOtherVignette
         this.toVignette = toVignette;
     }
 
-    public StoryBoard SketchIn(StoryBoard subject)
+    public override StoryBoard SketchIn(StoryBoard subject)
     {
         return subject.Swap(fromVignette, toVignette);
     }

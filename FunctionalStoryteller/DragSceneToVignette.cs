@@ -1,6 +1,6 @@
 namespace FunctionalStoryteller;
 
-public sealed class DragSceneToVignette
+public sealed class DragSceneToVignette : Command
 {
     readonly int index;
     readonly Scene scene;
@@ -11,7 +11,7 @@ public sealed class DragSceneToVignette
         this.scene = scene;
     }
 
-    public StoryBoard SketchIn(StoryBoard subject)
+    public override StoryBoard SketchIn(StoryBoard subject)
     {
         return subject.PutIn(index, scene);
     }
