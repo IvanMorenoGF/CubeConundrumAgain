@@ -18,6 +18,6 @@ public sealed class Character
 
     public static implicit operator string(Character character) => character.name;
     public static implicit operator Character(string name) => new(name);
-
-    public override string ToString() => name;
+    
+    public override string ToString() => name;        
 }

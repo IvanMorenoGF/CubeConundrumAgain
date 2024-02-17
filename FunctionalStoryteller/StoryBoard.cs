@@ -69,4 +69,16 @@ public sealed class StoryBoard
     public override bool Equals(object obj)
         => obj is StoryBoard story &&
            scenes.SequenceEqual(story.scenes);
+
+    public override string ToString()
+        => scenes.Length switch
+        {
+            0 => "Empty StoryBoard",
+            1 => scenes[0].Match(s => $"Once upon a time, {s}", () => "Empty StoryBoard"),
+            _ => string.Join(',', scenes.Select
+            (
+                (s, i) => s.Match(s => $"In vignette {i + 1}, {s}",
+                    () => $"In vignette {i + 1}, nothing")
+            ))
+        };
 }

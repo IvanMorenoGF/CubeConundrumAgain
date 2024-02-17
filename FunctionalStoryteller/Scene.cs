@@ -13,4 +13,7 @@ public abstract record Scene
     protected abstract Seq<Character> Cast { get; }
     public abstract Scene PlaceAt(int where, Character who);
     public abstract Character CharacterAt(int from);
+    
+    [Obsolete("Es temporal hasta que existan slots")]
+    protected string NameOf(Character character) => character?.ToString() ?? "nobody";
 }

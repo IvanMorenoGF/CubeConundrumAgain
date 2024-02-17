@@ -50,8 +50,9 @@ public class SceneCommandsTests
     [Test]
     public void SwapCharacters()
     {
-        DragTo(vignette: 1, from: 1, to: 2)
-            .SketchIn(1.Vignettes().In1(Death().Of(Adam).WatchedBy(Eva)))
+        var storyBoard = DragTo(vignette: 1, from: 1, to: 2)
+            .SketchIn(1.Vignettes().In1(Death().Of(Adam).WatchedBy(Eva)));
+        storyBoard
             .Should().Be(1.Vignettes().In1(Death().Of(Eva).WatchedBy(Adam)));
     }
 }

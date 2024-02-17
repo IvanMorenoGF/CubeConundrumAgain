@@ -35,4 +35,6 @@ public sealed record LoveScene : Scene
             2 => Couple.right,
             _ => throw new ArgumentOutOfRangeException(nameof(from))
         };
+    
+    public override string ToString() => $"{NameOf(Couple.left)} ❤️ {NameOf(Couple.right)}";
 }

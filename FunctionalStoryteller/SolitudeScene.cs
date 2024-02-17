@@ -1,4 +1,5 @@
 using LanguageExt;
+using LanguageExt.UnsafeValueAccess;
 
 namespace FunctionalStoryteller;
 
@@ -23,4 +24,6 @@ public sealed record SolitudeScene : Scene
         
         return theOneAlone.Match(who => who, () => throw new InvalidOperationException());
     }
+    
+    public override string ToString() => $"1️⃣{NameOf(theOneAlone.ValueUnsafe())}";
 }
