@@ -5,9 +5,9 @@ namespace FunctionalStoryteller;
 
 public sealed record DeathScene : Scene
 {
-    readonly Character buriedOne;
     readonly Character grievingOne;
-    
+    readonly Character buriedOne;
+
     protected override Seq<Character> Cast => Empty.Add(buriedOne).Add(grievingOne);
 
     public DeathScene() { }
@@ -30,5 +30,13 @@ public sealed record DeathScene : Scene
             1 => WatchedBy(who),
             2 => Of(who),
             _ => throw new ArgumentOutOfRangeException(nameof(where))
+        };
+    
+    public override Character CharacterAt(int from)
+        => from switch
+        {
+            1 => grievingOne,
+            2 => buriedOne,
+            _ => throw new ArgumentOutOfRangeException(nameof(from))
         };
 }

@@ -58,7 +58,7 @@ public sealed class StoryBoard
     public Story TellUntil(int vignette) => new StoryBoard(scenes.Take(vignette).ToArray()).Tell();
     public Story TellAllButLast() => TellUntil(scenes.Length - 1);
 
-    public Option<Scene> At(int vignette)
+    public Option<Scene> SceneAt(int vignette)
     {
         if (vignette < 1 || vignette > scenes.Length)
             throw new ArgumentOutOfRangeException(nameof(vignette));

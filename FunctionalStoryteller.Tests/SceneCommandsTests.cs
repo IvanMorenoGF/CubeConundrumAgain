@@ -38,4 +38,13 @@ public class SceneCommandsTests
             .SketchIn(1.Vignettes().In1(Solitude().Of(Adam)))
             .Should().Be(Blank(1).In1(Solitude()));
     }
+
+    [Test]
+    public void DragCharacter_WithinSameScene()
+    {
+        DragTo(vignette: 1, from: 1, to: 2)
+            .SketchIn(1.Vignettes().In1(Death().WatchedBy(Eva)))
+            .Should().Be(1.Vignettes().In1(Death().Of(Eva)));
+
+    }
 }

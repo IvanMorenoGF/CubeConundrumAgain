@@ -13,7 +13,7 @@ public sealed class DragCharacterOutOfScene : Command
 
     public override StoryBoard SketchIn(StoryBoard subject)
     {
-        var newScene =  subject.At(vignette).Match(scene => scene.PlaceAt(where, null), () => throw new ArgumentOutOfRangeException(nameof(vignette)));
+        var newScene =  subject.SceneAt(vignette).Match(scene => scene.PlaceAt(where, null), () => throw new ArgumentOutOfRangeException(nameof(vignette)));
         return subject.PutIn(vignette, newScene);
     }
 }

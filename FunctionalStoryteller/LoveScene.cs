@@ -9,11 +9,9 @@ public sealed record LoveScene : Scene
 
     protected override Seq<Character> Cast => Empty.Add(couple.left).Add(couple.right);
 
-    public LoveScene()
-    {
-    }
+    public LoveScene() { }
 
-    public LoveScene(Character left, Character right) => couple = (left, right);
+    LoveScene(Character left, Character right) => couple = (left, right);
 
     public LoveScene Between(Character one, Character other) => new(one, other);
 
@@ -32,5 +30,13 @@ public sealed record LoveScene : Scene
             1 => Between(who, couple.right),
             2 => Between(couple.left, who),
             _ => throw new ArgumentOutOfRangeException(nameof(where))
+        };
+    
+    public override Character CharacterAt(int from)
+        => from switch
+        {
+            1 => couple.left,
+            2 => couple.right,
+            _ => throw new ArgumentOutOfRangeException(nameof(from))
         };
 }
