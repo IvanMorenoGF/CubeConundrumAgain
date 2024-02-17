@@ -19,7 +19,16 @@ public sealed record DeathScene : Scene
     }
 
     public DeathScene Of(Character who) => new(who, grievingOne);
+
     public DeathScene WatchedBy(Character who) => new(buriedOne, who);
 
     public bool IsInTheTomb(Character who) => buriedOne == who;
+
+    public override Scene PlaceAt(int where, Character who) 
+        => where switch
+        {
+            1 => WatchedBy(who),
+            2 => Of(who),
+            _ => throw new ArgumentOutOfRangeException(nameof(where))
+        };
 }

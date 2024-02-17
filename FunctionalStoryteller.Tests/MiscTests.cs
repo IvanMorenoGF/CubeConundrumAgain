@@ -69,6 +69,6 @@ public class MiscTests
     [Test]
     public void asdfasfas()
     {
-        Scene.Solitude().Esdfadfas(1, Adam).Should().Be(Solitude().Of(Adam));
+        Scene.Solitude().PlaceAt(1, Adam).Should().Be(Solitude().Of(Adam));
     }
 }
