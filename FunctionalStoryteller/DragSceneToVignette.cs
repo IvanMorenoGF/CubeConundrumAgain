@@ -13,6 +13,6 @@ public sealed class DragSceneToVignette
 
     public StoryBoard SketchIn(StoryBoard subject)
     {
-        return subject.lkajsdlfkj(index, scene);
+        return subject.PutIn(index, scene);
     }
 }

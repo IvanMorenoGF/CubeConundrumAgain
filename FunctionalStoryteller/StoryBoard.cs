@@ -15,9 +15,9 @@ public class StoryBoard
     public StoryBoard(IEnumerable<Scene> scenes) => this.scenes = scenes.Map(Option<Scene>.Some).ToArray();
 
     public static StoryBoard Blank(int vignettes) => new(vignettes);
-    public static StoryBoard Of(Story story) => new(story.scenes);
+    public static StoryBoard InspireFrom(Story story) => new(story.scenes);
 
-    public StoryBoard lkajsdlfkj(int vignette, Scene what)
+    public StoryBoard PutIn(int vignette, Scene what)
     {
         if(vignette < 1 || vignette > scenes.Length)
             throw new ArgumentOutOfRangeException(nameof(vignette));

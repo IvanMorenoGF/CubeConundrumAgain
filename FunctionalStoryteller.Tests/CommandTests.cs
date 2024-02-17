@@ -6,7 +6,7 @@ using static FunctionalStoryteller.Command;
 
 namespace FunctionalStoryteller.Tests;
 
-public class asldkfjaklsdfj
+public class CommandTests
 {
     [Test]
     public void DragSceneToVignette_Command()
@@ -14,5 +14,13 @@ public class asldkfjaklsdfj
         DragTo(vignette: 1, Death())
             .SketchIn(Blank(vignettes: 1)).Tell()
             .Should().Be(OnceUponATime().Happened(Death()));
+    }
+
+    [Test]
+    public void DragSceneToVignette_OverridesExistingScene()
+    {
+        DragTo(vignette: 1, Love())
+            .SketchIn(InspireFrom(OnceUponATime().Happened(Death()))).Tell()
+            .Should().Be(OnceUponATime().Happened(Love()));
     }
 }
