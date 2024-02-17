@@ -17,6 +17,8 @@ public class SceneCommandsTests
     [Test]
     public void DragCharacter_ToScene()
     {
-        DragTo(vignette: 1, Adam).SketchIn(1.Vignettes().In1(Solitude())).Should().NotBe(Blank(1).In1(Solitude()));
+        DragTo(vignette: 1, Adam)
+            .SketchIn(1.Vignettes().In1(Solitude()))
+            .Should().NotBe(Blank(1).In1(Solitude()));
     }
 }

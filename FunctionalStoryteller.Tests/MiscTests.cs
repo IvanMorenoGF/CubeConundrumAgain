@@ -1,6 +1,7 @@
 using FluentAssertions;
 using static FunctionalStoryteller.Scene;
 using static FunctionalStoryteller.Storyteller;
+using static FunctionalStoryteller.Tests.CharactersToTestsWith;
 
 namespace FunctionalStoryteller.Tests;
 
@@ -63,5 +64,11 @@ public class MiscTests
             .PutIn(17, Death().Of("Adan"))
             .TellUntil(11)
             .Should().BeEquivalentTo(OnceUponATime().Happened(Love()).Happened(Death()));
+    }
+
+    [Test]
+    public void asdfasfas()
+    {
+        Scene.Solitude().Esdfadfas(1, Adam).Should().Be(Solitude().Of(Adam));
     }
 }

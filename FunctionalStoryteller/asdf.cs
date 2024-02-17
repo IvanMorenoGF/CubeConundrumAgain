@@ -11,5 +11,8 @@ public sealed class asdf : Command
         this.who = who;
     }
     
-    public override StoryBoard SketchIn(StoryBoard subject) => subject;
+    public override StoryBoard SketchIn(StoryBoard subject)
+    {
+        return subject;
+    }
 }
