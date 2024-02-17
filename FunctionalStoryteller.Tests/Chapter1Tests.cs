@@ -11,7 +11,7 @@ public class Chapter1Tests
     public void Level1()
     {
         OnceUponATime()
-            .Happened(Love().Between(Adam, NobodyElse))
+            .Happened(Solitude().Of(Adam))
             .Happened(Love().Between(Adam, Eva))
             .Happened(Death().Of(Adam))
             .WhoLoves(Adam).IsSome.Should().BeTrue("se entiende que Adán muere feliz si Eva lo ama");
