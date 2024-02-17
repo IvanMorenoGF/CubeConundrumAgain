@@ -39,4 +39,12 @@ public class CommandsTests
             .SketchIn(2.Vignettes().In1(Death()).In2(Love()))
             .Should().BeEquivalentTo(2.Vignettes().In1(Love()).In2(Death()));
     }
+
+    [Test]
+    public void DragVignette_OutOfStoryboard()
+    {
+        DragOut(vignette:1)
+            .SketchIn(1.Vignettes().In1(Death()))
+            .Should().BeEquivalentTo(Blank(vignettes:1));
+    }
 }
