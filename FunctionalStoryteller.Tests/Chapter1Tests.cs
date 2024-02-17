@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using static FunctionalStoryteller.Scene;
-using static FunctionalStoryteller.Spec;
 using static FunctionalStoryteller.Storyteller;
 using static FunctionalStoryteller.Tests.CharactersToTestsWith;
 
@@ -15,7 +14,7 @@ public class Chapter1Tests
             .Happened(Love().Between(Adam, NobodyElse))
             .Happened(Love().Between(Adam, Eva))
             .Happened(Death().Of(Adam))
-            .Satisfies(Dead(Adam), Loved(Adam)).Should().BeTrue();
+            .WhoLoves(Adam).IsSome.Should().BeTrue("se entiende que Adán muere feliz si Eva lo ama");
     }
 
     [Test]
@@ -25,7 +24,7 @@ public class Chapter1Tests
             .Happened(Love().Between(Adam, Eva))
             .Happened(Death().Of(Adam).WatchedBy(Eva))
             .Happened(Death().Of(Eva))
-            .Satisfies(Heartbroken(Eva)).Should().BeTrue();
+            .IsHeartbroken(Eva).Should().BeTrue("muere desconsolada por saber la muerte de Adán");
     }
 
     [Test]
@@ -35,6 +34,6 @@ public class Chapter1Tests
             .Happened(Love().Between(Adam, Eva))
             .Happened(Death().Of(Adam).WatchedBy(Eva))
             .Happened(Love().Between(Adam, Eva))
-            .Satisfies(Dead(Adam), Alive(Eva), Heartbroken(Eva)).Should().BeTrue();
+            .SharingAstralPlane(Adam, Eva).Should().BeFalse("falta decir que está asustada...");
     }
 }
