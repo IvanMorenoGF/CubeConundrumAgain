@@ -28,15 +28,15 @@ public class CommandsTests
     public void DragSceneFromOtherVignette()
     {
         Drag(fromVignette: 1, toVignette: 2)
-            .SketchIn(Blank(vignettes: 2).PutIn(1, Death()))
-            .Should().BeEquivalentTo(Blank(2).PutIn(2, Death()));
+            .SketchIn(2.Vignettes().In1(Death()))
+            .Should().BeEquivalentTo(2.Vignettes().In2(Death()));
     }
 
     [Test]
     public void SwapScenes()
     {
         Drag(fromVignette: 1, toVignette: 2)
-            .SketchIn(Blank(vignettes: 2).PutIn(1, Death()).PutIn(2, Love()))
-            .Should().BeEquivalentTo(Blank(2).PutIn(1, Love()).PutIn(2, Death()));
+            .SketchIn(2.Vignettes().In1(Death()).In2(Love()))
+            .Should().BeEquivalentTo(2.Vignettes().In1(Love()).In2(Death()));
     }
 }

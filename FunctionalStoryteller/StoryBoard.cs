@@ -28,6 +28,10 @@ public sealed class StoryBoard
         return new StoryBoard(newScenes);
     }
     
+    public StoryBoard In1(Scene what) => PutIn(1, what);
+    public StoryBoard In2(Scene what) => PutIn(2, what);
+    public StoryBoard In3(Scene what) => PutIn(3, what);
+    
     public StoryBoard Swap(int theOne, int theOther)
     {
         var newScenes = new Option<Scene>[scenes.Length];

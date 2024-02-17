@@ -2,7 +2,7 @@
 
 namespace FunctionalStoryteller;
 
-internal static class Scriptwriter
+public static class Scriptwriter
 {
     public static bool PartOfAny<T>(this Story story, Character who) where T : Scene
         => story.scenes.OfType<T>().Any(x => x.IsInTheCast(who));
@@ -16,4 +16,6 @@ internal static class Scriptwriter
         => story.PartOfAny<T>(of)
             ? story.scenes.OfType<T>().Where(x => x.IsInTheCast(of)).ToSeq()
             : Seq<T>.Empty;
+    
+    public static StoryBoard Vignettes(this int howMany) => StoryBoard.Blank(howMany);
 }
