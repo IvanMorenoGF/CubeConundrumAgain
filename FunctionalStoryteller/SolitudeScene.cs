@@ -17,13 +17,5 @@ public sealed record SolitudeScene : Scene
         return Of(who);
     }
     
-    public override Character CharacterAt(int from)
-    {
-        if(from != 1)
-            throw new ArgumentOutOfRangeException(nameof(from));
-        
-        return theOneAlone.Match(who => who, () => throw new InvalidOperationException());
-    }
-    
     public override string ToString() => $"1️⃣{NameOf(theOneAlone.ValueUnsafe())}";
 }

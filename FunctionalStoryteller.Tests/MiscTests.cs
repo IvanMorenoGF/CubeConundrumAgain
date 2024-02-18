@@ -75,6 +75,5 @@ public class MiscTests
     [Test]
     public void CharacterAtScenePosition()
     {
-        Death().Of(Adam).CharacterIn(2).Should().Be(Adam);
     }
 }

@@ -8,10 +8,9 @@ public abstract record Scene
     public bool AreInTheCast(params Character[] who) => who.All(IsInTheCast);
     protected abstract Seq<Character> Cast { get; }
     public abstract Scene PlaceAt(int where, Character who);
-    public abstract Character CharacterAt(int from);
     
+    public Character CharacterAt(int index) => Cast[index - 1];
+
     [Obsolete("Es temporal hasta que existan slots")]
     protected string NameOf(Character character) => character?.ToString() ?? "nobody";
-
-    public Character CharacterIn(int index) => Cast.ToArray()[index - 1];
 }

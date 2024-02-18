@@ -28,13 +28,5 @@ public sealed record LoveScene : Scene
             _ => throw new ArgumentOutOfRangeException(nameof(where))
         };
     
-    public override Character CharacterAt(int from)
-        => from switch
-        {
-            1 => Couple.left,
-            2 => Couple.right,
-            _ => throw new ArgumentOutOfRangeException(nameof(from))
-        };
-    
     public override string ToString() => $"{NameOf(Couple.left)} ❤️ {NameOf(Couple.right)}";
 }

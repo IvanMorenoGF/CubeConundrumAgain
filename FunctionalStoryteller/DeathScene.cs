@@ -39,13 +39,5 @@ public sealed record DeathScene : Scene
             _ => throw new ArgumentOutOfRangeException(nameof(where))
         };
 
-    public override Character CharacterAt(int from)
-        => from switch
-        {
-            1 => grievingOne,
-            2 => buriedOne,
-            _ => throw new ArgumentOutOfRangeException(nameof(from))
-        };
-
     public override string ToString() => $"👁️{NameOf(grievingOne)} ☠️{NameOf(buriedOne)}";
 }
