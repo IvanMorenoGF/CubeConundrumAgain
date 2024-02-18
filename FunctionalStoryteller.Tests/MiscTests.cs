@@ -67,7 +67,7 @@ public class MiscTests
     }
 
     [Test]
-    public void asdfasfas()
+    public void PlaceCharacter_AtScenePosition()
     {
         Scene.Solitude().PlaceAt(1, Adam).Should().Be(Solitude().Of(Adam));
     }
