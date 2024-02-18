@@ -85,5 +85,10 @@ public class DeathTests
             .Happened(Death().Of(Adam))
             .IsHeartbroken(Eva).Should().BeFalse(because: "she doesn't know");
     }
-    
+
+    [Test]
+    public void CannotGrieve_Yourself()
+    {
+        Death().Of(Adam).PlaceAt(1, Adam).Should().Be(Death().Of(NobodyElse).WatchedBy(Adam));
+    }
 }

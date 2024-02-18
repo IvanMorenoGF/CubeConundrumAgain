@@ -11,6 +11,8 @@ public sealed class Character
 
     public override bool Equals(object other)
     {
+        if (other == null) return false;
+        
         return other is Character otherCharacter
             ? name == otherCharacter.name
             : other is string otherName && name == otherName;

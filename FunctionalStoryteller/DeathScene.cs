@@ -10,7 +10,9 @@ public sealed record DeathScene : Scene
 
     protected override Seq<Character> Cast => Empty.Add(buriedOne).Add(grievingOne);
 
-    public DeathScene() { }
+    public DeathScene()
+    {
+    }
 
     public DeathScene(Character buriedOne, Character grievingOne)
     {
@@ -20,18 +22,23 @@ public sealed record DeathScene : Scene
 
     public DeathScene Of(Character who) => new(who, grievingOne);
 
-    public DeathScene WatchedBy(Character who) => new(buriedOne, who);
+    public DeathScene WatchedBy(Character who)
+    {
+        if (who is null) return new DeathScene(buriedOne, null);
+
+        return new DeathScene(who.Equals(buriedOne) ? null : buriedOne, who);
+    }
 
     public bool IsInTheTomb(Character who) => buriedOne == who;
 
-    public override Scene PlaceAt(int where, Character who) 
+    public override Scene PlaceAt(int where, Character who)
         => where switch
         {
             1 => WatchedBy(who),
             2 => Of(who),
             _ => throw new ArgumentOutOfRangeException(nameof(where))
         };
-    
+
     public override Character CharacterAt(int from)
         => from switch
         {
@@ -39,7 +46,6 @@ public sealed record DeathScene : Scene
             2 => buriedOne,
             _ => throw new ArgumentOutOfRangeException(nameof(from))
         };
-    
+
     public override string ToString() => $"👁️{NameOf(grievingOne)} ☠️{NameOf(buriedOne)}";
-    
 }
