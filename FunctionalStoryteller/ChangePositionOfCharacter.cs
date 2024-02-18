@@ -19,7 +19,7 @@ public sealed class ChangePositionOfCharacter : Command
             scene => subject.Compose
             (
                 Commands.DragTo(vignette, to, scene.CharacterAt(from)),
-                Commands.DragOut(vignette, from)
+                Commands.DragTo(vignette, from, scene.CharacterAt(to))
             ), () => throw new ArgumentOutOfRangeException(nameof(vignette))
         );
 }
