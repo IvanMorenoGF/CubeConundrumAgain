@@ -8,7 +8,7 @@ public sealed record DeathScene : Scene
     readonly Character grievingOne;
     readonly Character buriedOne;
 
-    protected override Seq<Character> Cast => Empty.Add(buriedOne).Add(grievingOne);
+    protected override Seq<Character> Cast => Empty.Add(grievingOne).Add(buriedOne);
 
     public DeathScene()
     {

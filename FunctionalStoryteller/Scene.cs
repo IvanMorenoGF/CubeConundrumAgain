@@ -12,4 +12,6 @@ public abstract record Scene
     
     [Obsolete("Es temporal hasta que existan slots")]
     protected string NameOf(Character character) => character?.ToString() ?? "nobody";
+
+    public Character CharacterIn(int index) => Cast.ToArray()[index - 1];
 }
