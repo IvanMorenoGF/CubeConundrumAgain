@@ -21,4 +21,6 @@ public static class Scriptwriter
 
     public static StoryBoard Compose(this StoryBoard from, params Command[] stream)
         => stream.Aggregate(from, (storyboard, command) => command.SketchIn(storyboard));
+
+    public static string Name(this Character character) => character?.ToString() ?? "nobody";
 }

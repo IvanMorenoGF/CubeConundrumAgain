@@ -39,5 +39,5 @@ public sealed record DeathScene : Scene
             _ => throw new ArgumentOutOfRangeException(nameof(where))
         };
 
-    public override string ToString() => $"👁️{NameOf(grievingOne)} ☠️{NameOf(buriedOne)}";
+    public override string ToString() => $"👁️{grievingOne.Name()} ☠️{buriedOne.Name()}";
 }

@@ -17,5 +17,5 @@ public sealed record SolitudeScene : Scene
         return Of(who);
     }
     
-    public override string ToString() => $"1️⃣{NameOf(theOneAlone.ValueUnsafe())}";
+    public override string ToString() => $"1️⃣{theOneAlone.ValueUnsafe().Name()}";
 }
