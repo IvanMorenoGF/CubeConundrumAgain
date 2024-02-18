@@ -1,6 +1,4 @@
 ﻿using FluentAssertions;
-using NUnit.Framework.Internal;
-using static FunctionalStoryteller.Scene;
 using static FunctionalStoryteller.Storyteller;
 using static FunctionalStoryteller.Tests.CharactersToTestsWith;
 
@@ -18,14 +16,14 @@ public class DeathTests
     [Test]
     public void BuryAdan_DoesNotKillEva()
     {
-        Death().Of(Adam).IsInTheTomb(Adam).Should().BeTrue();
+        Scenes.Death().Of(Adam).IsInTheTomb(Adam).Should().BeTrue();
 
         OnceUponATime()
-            .Happened(Death().Of(Adam))
+            .Happened(Scenes.Death().Of(Adam))
             .IsAlive(Adam).Should().BeFalse();
 
         OnceUponATime()
-            .Happened(Death().Of(Adam).WatchedBy(Eva))
+            .Happened(Scenes.Death().Of(Adam).WatchedBy(Eva))
             .IsAlive(Eva).Should().BeTrue();
     }
     
@@ -33,13 +31,13 @@ public class DeathTests
     public void CannotBeLoved_IfDead()
     {
         OnceUponATime()
-            .Happened(Death().Of(Adam))
-            .Happened(Love().Between(Adam, Eva))
+            .Happened(Scenes.Death().Of(Adam))
+            .Happened(Scenes.Love().Between(Adam, Eva))
             .WhoLoves(Adam).IsNone.Should().BeTrue();
         
         OnceUponATime()
-            .Happened(Death().Of(Adam))
-            .Happened(Love().Between(Adam, Eva))
+            .Happened(Scenes.Death().Of(Adam))
+            .Happened(Scenes.Love().Between(Adam, Eva))
             .WhoLoves(Eva).IsNone.Should().BeTrue();
     }
 
@@ -47,9 +45,9 @@ public class DeathTests
     public void TwoGhosts_FallInLove()
     {
         OnceUponATime()
-            .Happened(Death().Of(Adam))
-            .Happened(Death().Of(Eva))
-            .Happened(Love().Between(Adam, Eva))
+            .Happened(Scenes.Death().Of(Adam))
+            .Happened(Scenes.Death().Of(Eva))
+            .Happened(Scenes.Love().Between(Adam, Eva))
             .WhoLoves(Eva).IsNone.Should().BeFalse();
     }
 
@@ -57,12 +55,12 @@ public class DeathTests
     public void AreInSameAstralPlane()
     {
         OnceUponATime()
-            .Happened(Death().Of(Adam))
+            .Happened(Scenes.Death().Of(Adam))
             .SharingAstralPlane(Adam, Eva).Should().BeFalse();
         
         OnceUponATime()
-            .Happened(Death().Of(Adam))
-            .Happened(Death().Of(Eva))
+            .Happened(Scenes.Death().Of(Adam))
+            .Happened(Scenes.Death().Of(Eva))
             .SharingAstralPlane(Adam, Eva).Should().BeTrue();
         
         OnceUponATime().SharingAstralPlane(Adam, Eva).Should().BeTrue();
@@ -72,23 +70,23 @@ public class DeathTests
     public void KnowYouBecomeWidow_BreaksYourHeart()
     {
         OnceUponATime()
-            .Happened(Love().Between(Adam, Eva))
-            .Happened(Death().Of(Adam).WatchedBy(Eva))
+            .Happened(Scenes.Love().Between(Adam, Eva))
+            .Happened(Scenes.Death().Of(Adam).WatchedBy(Eva))
             .IsHeartbroken(Eva).Should().BeTrue();
         
         OnceUponATime()
-            .Happened(Death().Of(Adam).WatchedBy(Eva))
+            .Happened(Scenes.Death().Of(Adam).WatchedBy(Eva))
             .IsHeartbroken(Eva).Should().BeFalse(because: "she wasn't in love");
         
         OnceUponATime()
-            .Happened(Love().Between(Adam, Eva))
-            .Happened(Death().Of(Adam))
+            .Happened(Scenes.Love().Between(Adam, Eva))
+            .Happened(Scenes.Death().Of(Adam))
             .IsHeartbroken(Eva).Should().BeFalse(because: "she doesn't know");
     }
 
     [Test]
     public void CannotGrieve_Yourself()
     {
-        Death().Of(Adam).PlaceAt(1, Adam).Should().Be(Death().Of(NobodyElse).WatchedBy(Adam));
+        Scenes.Death().Of(Adam).PlaceAt(1, Adam).Should().Be(Scenes.Death().Of(NobodyElse).WatchedBy(Adam));
     }
 }

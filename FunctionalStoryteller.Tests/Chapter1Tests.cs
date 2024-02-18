@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using static FunctionalStoryteller.Scene;
+using static FunctionalStoryteller.Scenes;
 using static FunctionalStoryteller.Storyteller;
 using static FunctionalStoryteller.Tests.CharactersToTestsWith;
 

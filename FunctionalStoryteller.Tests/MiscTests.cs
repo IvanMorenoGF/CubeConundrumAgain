@@ -1,5 +1,5 @@
 using FluentAssertions;
-using static FunctionalStoryteller.Scene;
+using static FunctionalStoryteller.Scenes;
 using static FunctionalStoryteller.Storyteller;
 using static FunctionalStoryteller.Tests.CharactersToTestsWith;
 
@@ -69,6 +69,6 @@ public class MiscTests
     [Test]
     public void PlaceCharacter_AtScenePosition()
     {
-        Scene.Solitude().PlaceAt(1, Adam).Should().Be(Solitude().Of(Adam));
+        Solitude().PlaceAt(1, Adam).Should().Be(Solitude().Of(Adam));
     }
 }

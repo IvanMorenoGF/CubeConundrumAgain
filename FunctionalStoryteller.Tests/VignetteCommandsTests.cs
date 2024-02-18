@@ -1,8 +1,8 @@
 using FluentAssertions;
-using static FunctionalStoryteller.Scene;
 using static FunctionalStoryteller.StoryBoard;
 using static FunctionalStoryteller.Storyteller;
 using static FunctionalStoryteller.Commands;
+using static FunctionalStoryteller.Scenes;
 
 namespace FunctionalStoryteller.Tests;
 
