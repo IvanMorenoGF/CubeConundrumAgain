@@ -71,9 +71,4 @@ public class MiscTests
     {
         Solitude().PlaceAt(1, Adam).Should().Be(Solitude().Of(Adam));
     }
-    
-    [Test]
-    public void CharacterAtScenePosition()
-    {
-    }
 }
