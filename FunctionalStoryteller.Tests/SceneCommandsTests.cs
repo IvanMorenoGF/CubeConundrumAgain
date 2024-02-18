@@ -61,5 +61,13 @@ public class SceneCommandsTests
         DragTo(fromVignette: 1, toVignette: 2, fromPosition: 1, toPosition: 2)
             .SketchIn(2.Vignettes().In1(Death().WatchedBy(Adam)).In2(Love()))
             .Should().Be(2.Vignettes().In1(Death()).In2(Love().Between(NobodyElse, Adam)));
+
+        DragTo(fromVignette: 1, toVignette: 2, fromPosition: 1, toPosition: 2)
+            .SketchIn(2.Vignettes().In1(Death().WatchedBy(Adam)).In2(Love().Between(NobodyElse, Eva)))
+            .Should().Be(2.Vignettes().In1(Death()).In2(Love().Between(NobodyElse, Adam)));
+        
+        DragTo(fromVignette: 1, toVignette: 2, fromPosition: 1, toPosition: 2)
+            .SketchIn(2.Vignettes().In1(Death().WatchedBy(Adam)).In2(Love().Between(Adam, NobodyElse)))
+            .Should().Be(2.Vignettes().In1(Death()).In2(Love().Between(NobodyElse, Adam)));
     }
 }

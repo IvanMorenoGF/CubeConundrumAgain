@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using NUnit.Framework.Internal;
 using static FunctionalStoryteller.Scene;
 using static FunctionalStoryteller.Storyteller;
 using static FunctionalStoryteller.Tests.CharactersToTestsWith;
@@ -84,4 +85,5 @@ public class DeathTests
             .Happened(Death().Of(Adam))
             .IsHeartbroken(Eva).Should().BeFalse(because: "she doesn't know");
     }
+    
 }

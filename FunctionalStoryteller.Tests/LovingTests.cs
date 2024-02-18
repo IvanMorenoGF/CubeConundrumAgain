@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using static FunctionalStoryteller.Scene;
 using static FunctionalStoryteller.Storyteller;
+using static FunctionalStoryteller.Tests.CharactersToTestsWith;
 
 namespace FunctionalStoryteller.Tests;
 
@@ -119,5 +120,11 @@ public class LovingTests
             .Happened(Love().Between("Segismundo", "Rejected"))
             .WhoLoves("Rejected")
             .Match(x => x.Should().Be("Segismundo"), Assert.Fail);
+    }
+
+    [Test]
+    public void CannotLove_Yourself()
+    {
+        Love().Between(Adam, NobodyElse).PlaceAt(2, Adam).Should().Be(Love().Between(NobodyElse, Adam));
     }
 }

@@ -23,8 +23,8 @@ public sealed record LoveScene : Scene
     public override Scene PlaceAt(int where, Character who)
         => where switch
         {
-            1 => Between(who, Couple.right),
-            2 => Between(Couple.left, who),
+            1 => Between(who, IsInTheCast(who) ? null : Couple.right),
+            2 => Between(IsInTheCast(who) ? null : Couple.left, who),
             _ => throw new ArgumentOutOfRangeException(nameof(where))
         };
     
