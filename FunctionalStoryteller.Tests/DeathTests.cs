@@ -114,4 +114,12 @@ public class SpecsTests
     {
         OnceUponATime().Is(Alive(Adam)).Should().BeFalse();
     }
+
+    [Test]
+    public void FirstLoveOf()
+    {
+        OnceUponATime()
+            .Happened(Love().Between(Adam, Eva))
+            .Is(InLoveWith(Adam, Eva)).Should().BeTrue();
+    }
 }

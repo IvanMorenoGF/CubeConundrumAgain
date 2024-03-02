@@ -1,5 +1,20 @@
 namespace FunctionalStoryteller;
 
+public class IsInLoveWith : Spec
+{
+    readonly Character who;
+    readonly Character whom;
+
+    public IsInLoveWith(Character who, Character whom)
+    {
+        this.who = who;
+        this.whom = whom;
+    }
+
+    public override bool IsSatisfiedBy(Story story)
+        => true;
+}
+
 public class IsAlive : Spec
 {
     readonly Character who;
