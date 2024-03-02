@@ -16,4 +16,9 @@ public static class Events
     {
         return new ScenesSwapped(fromVignette, toVignette);
     }
+
+    public static Event CharacterDraggedToScene(int vignette, string adam)
+    {
+        return new CharacterDraggedToScene(vignette, adam);
+    }
 }
