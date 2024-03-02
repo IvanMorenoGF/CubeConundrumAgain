@@ -105,4 +105,12 @@ public class SpecsTests
         
         OnceUponATime().Is(InTheCast(Adam)).Should().BeFalse();
     }
+
+    [Test]
+    public void IsAlive()
+    {
+        OnceUponATime()
+            .Happened(Solitude().Of(Adam))
+            .Is(Alive(Adam)).Should().BeTrue();
+    }
 }
