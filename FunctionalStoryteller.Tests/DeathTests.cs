@@ -96,11 +96,13 @@ public class DeathTests
 public class SpecsTests
 {
     [Test]
-    public void PeopleIsAlive()
+    public void IsInTheCast()
     {
         OnceUponATime()
             .Happened(Solitude().Of(Adam))
             .Happened(Solitude().Of(Eva))
-            .Is(Alive(Adam)).Should().BeTrue();
+            .Is(InTheCast(Adam)).Should().BeTrue();
+        
+        OnceUponATime().Is(InTheCast(Adam)).Should().BeFalse();
     }
 }
