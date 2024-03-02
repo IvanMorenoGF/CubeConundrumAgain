@@ -19,4 +19,9 @@ public sealed class DragCharacterToScene : Command
         var newScene =  subject.SceneAt(vignette).Match(scene => scene.PlaceAt(where, who), () => throw new ArgumentOutOfRangeException(nameof(vignette)));
         return subject.PutIn(vignette, newScene);
     }
+
+    public override Event sdfsafas()
+    {
+        throw new NotImplementedException();
+    }
 }

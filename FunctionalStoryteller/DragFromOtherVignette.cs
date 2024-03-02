@@ -15,4 +15,9 @@ public sealed class DragFromOtherVignette : Command
     {
         return subject.Swap(fromVignette, toVignette);
     }
+
+    public override Event sdfsafas()
+    {
+        throw new NotImplementedException();
+    }
 }

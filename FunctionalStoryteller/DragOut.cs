@@ -13,4 +13,9 @@ public sealed class DragOut : Command
     {
         return subject.Remove(vignette);
     }
+
+    public override Event sdfsafas()
+    {
+        throw new NotImplementedException();
+    }
 }

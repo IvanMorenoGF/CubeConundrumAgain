@@ -25,4 +25,9 @@ public sealed class ChangePositionOfCharacter : Command
                 Commands.DragTo(vignette, where: from, who: scene.CharacterAt(to))
             ), () => throw new ArgumentOutOfRangeException(nameof(vignette))
         );
+
+    public override Event sdfsafas()
+    {
+        throw new NotImplementedException();
+    }
 }

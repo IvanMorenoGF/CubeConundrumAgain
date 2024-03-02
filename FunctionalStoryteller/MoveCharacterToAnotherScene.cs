@@ -27,4 +27,9 @@ public sealed class MoveCharacterToAnotherScene : Command
                 Commands.DragOut(fromVignette, fromPosition)
             ), () => throw new ArgumentOutOfRangeException(nameof(fromVignette))
         );
+
+    public override Event sdfsafas()
+    {
+        throw new NotImplementedException();
+    }
 }
