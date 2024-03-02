@@ -6,7 +6,7 @@ public class IsKnowableOfLove : Spec
     public IsKnowableOfLove(Character who) => this.who = who;
 
     public override bool IsSatisfiedBy(Story story)
-        => story.All<LoveScene>(of: who).Any(WasInLoveWithSomeone);
+        => story.asfsafasf().Any(substory => substory.All<LoveScene>(of: who).Any(WasInLoveWithSomeone));
 
     bool WasInLoveWithSomeone(LoveScene scene) => scene.PotentialLoverOf(who).IsSome;
 }

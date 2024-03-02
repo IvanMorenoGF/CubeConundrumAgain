@@ -149,7 +149,7 @@ public class SpecsTests
             .Is(KnowableOfLove(Adam)).Should().BeTrue();
     }
 
-    [Test, Ignore("Necesitamos tener primero la historia a partir de subhistorias")]
+    [Test]
     public void CannotMeetLoveWithGhost()
     {
         OnceUponATime()
@@ -211,6 +211,6 @@ public class SpecsTests
                     .Happened(Love().Between(Adam, Eva))
                     .Happened(Death().WatchedBy(Adam))
                     .asfsafasf(4)
-                );
+            );
     }
 }
