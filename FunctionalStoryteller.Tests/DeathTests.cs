@@ -118,11 +118,9 @@ public class SpecsTests
             .Is(Alive(Adam)).Should().BeFalse();
     }
 
-    [Test, Ignore("")]
+    [Test]
     public void CannotBeAlive_IfNotPresent_InCast()
     {
-        OnceUponATime()
-            .Happened(Solitude().Of(Adam))
-            .Is(Alive(Adam)).Should().BeTrue();
+        OnceUponATime().Is(Alive(Adam)).Should().BeFalse();
     }
 }
