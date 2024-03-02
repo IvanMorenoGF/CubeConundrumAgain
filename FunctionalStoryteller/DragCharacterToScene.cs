@@ -24,6 +24,6 @@ public sealed class DragCharacterToScene : Command
 
     public override Option<Event> sdfsafas()
     {
-        throw new NotImplementedException();
+        return Events.CharacterPlacedInScene(vignette, where, who);
     }
 }

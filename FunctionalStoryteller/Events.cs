@@ -17,8 +17,8 @@ public static class Events
         return new ScenesSwapped(fromVignette, toVignette);
     }
 
-    public static Event CharacterDraggedToScene(int vignette, string adam)
+    public static Event CharacterPlacedInScene(int vignette, int where, string adam)
     {
-        return new CharacterDraggedToScene(vignette, adam);
+        return new CharacterDraggedToScene(vignette,where, adam);
     }
 }
