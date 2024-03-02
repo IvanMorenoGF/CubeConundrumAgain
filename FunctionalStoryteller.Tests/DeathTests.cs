@@ -121,5 +121,9 @@ public class SpecsTests
         OnceUponATime()
             .Happened(Love().Between(Adam, Eva))
             .Is(InLoveWith(Adam, Eva)).Should().BeTrue();
+        
+        OnceUponATime()
+            .Happened(Love().Between(Adam, NobodyElse))
+            .Is(InLoveWith(Adam, Eva)).Should().BeFalse();
     }
 }
