@@ -7,7 +7,6 @@ public class Story
     internal readonly Seq<Scene> scenes;
     internal Story(Seq<Scene> scenes) => this.scenes = scenes;
 
-    public bool IsAlive(Character who) => !scenes.OfType<DeathScene>().Any(x => x.IsInTheTomb(who));
     public bool WasRejected(Character who) => FirstLoveOf(who) != WhoLoves(who);
 
     public Option<Character> WhoLoves(Character loved)
@@ -22,7 +21,7 @@ public class Story
     public Option<Character> FirstLoveOf(Character who)
         => this.First<LoveScene>(of: who).Bind(s => s.PotentialLoverOf(who));
 
-    public bool SharingAstralPlane(Character theOne, Character theOther) => IsAlive(theOne) == IsAlive(theOther);
+    public bool SharingAstralPlane(Character theOne, Character theOther) => Is(Specs.Alive(theOne)) == Is(Specs.Alive(theOther));
 
     public bool IsHeartbroken(Character who)
         => FirstLoveOf(who)

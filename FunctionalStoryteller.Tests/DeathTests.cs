@@ -9,24 +9,15 @@ namespace FunctionalStoryteller.Tests;
 public class DeathTests
 {
     [Test]
-    public void PeopleIsAlive()
-    {
-        OnceUponATime().IsAlive(Adam).Should().BeTrue();
-        OnceUponATime().IsAlive(Eva).Should().BeTrue();
-    }
-
-    [Test]
     public void BuryAdan_DoesNotKillEva()
     {
         Death().Of(Adam).IsInTheTomb(Adam).Should().BeTrue();
 
         OnceUponATime()
-            .Happened(Death().Of(Adam))
-            .IsAlive(Adam).Should().BeFalse();
+            .Happened(Death().Of(Adam)).Is(Specs.Alive(Adam)).Should().BeFalse();
 
         OnceUponATime()
-            .Happened(Death().Of(Adam).WatchedBy(Eva))
-            .IsAlive(Eva).Should().BeTrue();
+            .Happened(Death().Of(Adam).WatchedBy(Eva)).Is(Specs.Alive(Eva)).Should().BeTrue();
     }
     
     [Test]
@@ -57,7 +48,7 @@ public class DeathTests
     public void AreInSameAstralPlane()
     {
         OnceUponATime()
-            .Happened(Death().Of(Adam))
+            .Happened(Death().Of(Adam).WatchedBy(Eva))
             .SharingAstralPlane(Adam, Eva).Should().BeFalse();
         
         OnceUponATime()
