@@ -19,4 +19,11 @@ public class EventTests
         DragTo(vignette:3, Love())
             .sdfsafas().Should().Be(SceneAttachedToVignette(vignette:3, Love()));
     }
+    
+    [Test]
+    public void Generate_SceneDetachedFromVignetteEvent()
+    {
+        DragOut(vignette:1).sdfsafas().Should().Be(SceneDetachedFromVignette(vignette:1));
+        DragOut(vignette:3).sdfsafas().Should().Be(SceneDetachedFromVignette(vignette:3));
+    }
 }

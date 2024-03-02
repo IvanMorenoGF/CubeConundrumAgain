@@ -6,4 +6,9 @@ public static class Events
     {
         return new SceneAttachedToVignette(vignette, where);
     }
+
+    public static Event SceneDetachedFromVignette(int vignette)
+    {
+        return new SceneDetachedFromVignette(vignette);
+    }
 }

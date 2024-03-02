@@ -16,6 +16,6 @@ public sealed class DragOut : Command
 
     public override Event sdfsafas()
     {
-        throw new NotImplementedException();
+        return Events.SceneDetachedFromVignette(vignette);
     }
 }
