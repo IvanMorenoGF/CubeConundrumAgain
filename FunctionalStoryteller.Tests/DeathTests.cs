@@ -126,4 +126,12 @@ public class SpecsTests
             .Happened(Love().Between(Adam, NobodyElse))
             .Is(InLoveWith(Adam, Eva)).Should().BeFalse();
     }
+
+    [Test]
+    public void IsKnowableOfLove()
+    {
+        OnceUponATime()
+            .Happened(Love().Between(Adam, NobodyElse))
+            .Is(KnowableOfLove(Adam)).Should().BeTrue();
+    }
 }
