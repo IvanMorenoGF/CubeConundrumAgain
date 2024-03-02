@@ -187,6 +187,30 @@ public class SpecsTests
             .Happened(Death().Of(Adam))
             .asfsafasf(until: 2)[1]
             .Is(Alive(Adam)).Should().BeFalse();
+    }
 
+    [Test]
+    public void sdfasfafs()
+    {
+        OnceUponATime()
+            .Happened(Death().Of(Adam))
+            .asfsafasf()
+            .Should().HaveCount(1);
+        
+        OnceUponATime()
+            .Happened(Death().Of(Adam))
+            .Happened(Death().Of(Eva))
+            .Happened(Love().Between(Adam, Eva))
+            .Happened(Death().WatchedBy(Adam))
+            .asfsafasf()
+            .Should().BeEquivalentTo
+            (
+                OnceUponATime()
+                    .Happened(Death().Of(Adam))
+                    .Happened(Death().Of(Eva))
+                    .Happened(Love().Between(Adam, Eva))
+                    .Happened(Death().WatchedBy(Adam))
+                    .asfsafasf(4)
+                );
     }
 }

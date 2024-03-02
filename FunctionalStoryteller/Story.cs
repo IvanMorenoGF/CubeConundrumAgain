@@ -46,4 +46,9 @@ public class Story
         }
         return result.ToSeq();
     }
+
+    public Seq<Story> asfsafasf()
+    {
+        return asfsafasf(scenes.Length);
+    }
 }
