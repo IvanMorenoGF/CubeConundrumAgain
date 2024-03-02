@@ -1,6 +1,4 @@
 namespace FunctionalStoryteller;
 
-public record Event
-{
-    
-}
+public abstract record Event;
+public record SceneAttachedToVignette(int Vignette, Scene Scene) : Event;

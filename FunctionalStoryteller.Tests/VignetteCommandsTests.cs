@@ -60,13 +60,3 @@ public class VignetteCommandsTests
         ).Should().BeEquivalentTo(2.Vignettes().In2(Death()));
     }
 }
-
-public class asfasfsaf
-{
-    [Test]
-    public void Generate_SceneAttachedToVignetteEvent()
-    {
-        DragTo(vignette:1, Death())
-            .sdfsafas().Should().Be(Events.SceneAttachedToVignette(vignette:1, Death()));
-    }
-}

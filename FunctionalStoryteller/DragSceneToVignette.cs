@@ -16,8 +16,5 @@ public sealed class DragSceneToVignette : Command
         return subject.PutIn(index, scene);
     }
 
-    public override Event sdfsafas()
-    {
-        return new();
-    }
+    public override Event sdfsafas() => Events.SceneAttachedToVignette(index, scene);
 }

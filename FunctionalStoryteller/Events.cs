@@ -2,8 +2,8 @@ namespace FunctionalStoryteller;
 
 public static class Events
 {
-    public static Event SceneAttachedToVignette(int vignette, DeathScene death)
+    public static Event SceneAttachedToVignette(int vignette, Scene where)
     {
-        return new();
+        return new SceneAttachedToVignette(vignette, where);
     }
 }
