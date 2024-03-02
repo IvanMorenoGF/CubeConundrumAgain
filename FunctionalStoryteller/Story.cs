@@ -36,4 +36,14 @@ public class Story
            scenes.SequenceEqual(story.scenes);
 
     public bool Is(params Spec[] allSpecs) => allSpecs.All(spec => spec.IsSatisfiedBy(this));
+
+    public Seq<Story> asfsafasf(int until)
+    {
+        var result = new List<Story>();
+        for (var i = 1; i <= until; i++)
+        {
+            result.Add(new Story(scenes.Take(i).ToSeq()));
+        }
+        return result.ToSeq();
+    }
 }

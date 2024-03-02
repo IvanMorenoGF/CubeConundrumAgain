@@ -142,14 +142,51 @@ public class SpecsTests
             .Happened(Love().Between(Adam, Eva))
             .Happened(Death().Of(Adam))
             .Is(KnowableOfLove(Adam)).Should().BeTrue();
-    }
-
-    [Test]
-    public void sdfafsafsas()
-    {
+        
         OnceUponATime()
             .Happened(Love().Between(Adam, NobodyElse))
             .Happened(Love().Between(Adam, Eva))
             .Is(KnowableOfLove(Adam)).Should().BeTrue();
+    }
+
+    [Test, Ignore("Necesitamos tener primero la historia a partir de subhistorias")]
+    public void CannotMeetLoveWithGhost()
+    {
+        OnceUponATime()
+            .Happened(Death().Of(Eva))
+            .Happened(Love().Between(Adam, Eva))
+            .Is(KnowableOfLove(Adam)).Should().BeFalse();
+    }
+
+    [Test]
+    public void afsafas()
+    {
+        OnceUponATime()
+            .Happened(Death().Of(Eva))
+            .asfsafasf(until: 1).Should().HaveCount(1);
+        
+        OnceUponATime()
+            .Happened(Death().Of(Eva))
+            .Happened(Death().Of(Adam))
+            .asfsafasf(until: 2).Should().HaveCount(2);
+
+        OnceUponATime()
+            .Happened(Solitude().Of(Adam))
+            .Happened(Death().Of(Adam))
+            .asfsafasf(until: 1).Single()
+            .Is(Alive(Adam)).Should().BeTrue();
+        
+        OnceUponATime()
+            .Happened(Solitude().Of(Adam))
+            .Happened(Death().Of(Adam))
+            .asfsafasf(until: 2)[0]
+            .Is(Alive(Adam)).Should().BeTrue();
+        
+        OnceUponATime()
+            .Happened(Solitude().Of(Adam))
+            .Happened(Death().Of(Adam))
+            .asfsafasf(until: 2)[1]
+            .Is(Alive(Adam)).Should().BeFalse();
+
     }
 }
