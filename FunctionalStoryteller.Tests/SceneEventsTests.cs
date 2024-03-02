@@ -1,13 +1,14 @@
 using FluentAssertions;
+using static FunctionalStoryteller.Commands;
+using static FunctionalStoryteller.Tests.CharactersToTestsWith;
 
 namespace FunctionalStoryteller.Tests;
 
 public class SceneEventsTests
 {
     [Test]
-    public void DragCharacterToSceneEvent()
+    public void DragCharacterToVignette_DoesNotGenerateEvent()
     {
-        Commands.DragTo(vignette: 1, CharactersToTestsWith.Adam).sdfsafas().Should().Be(Events.CharacterDraggedToScene(vignette: 1, CharactersToTestsWith.Adam));
-        Commands.DragTo(vignette: 2, CharactersToTestsWith.Eva).sdfsafas().Should().NotBe(Events.CharacterDraggedToScene(vignette: 1, CharactersToTestsWith.Adam));
+        DragTo(vignette: 1, Adam).sdfsafas().IsNone.Should().BeTrue();
     }
 }

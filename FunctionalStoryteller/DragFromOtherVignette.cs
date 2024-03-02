@@ -1,3 +1,5 @@
+using LanguageExt;
+
 namespace FunctionalStoryteller;
 
 public sealed class DragFromOtherVignette : Command
@@ -16,5 +18,5 @@ public sealed class DragFromOtherVignette : Command
         return subject.Swap(fromVignette, toVignette);
     }
 
-    public override Event sdfsafas() => Events.ScenesSwapped(fromVignette, toVignette);
+    public override Option<Event> sdfsafas() => Events.ScenesSwapped(fromVignette, toVignette);
 }

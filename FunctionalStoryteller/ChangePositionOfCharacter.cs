@@ -1,3 +1,5 @@
+using LanguageExt;
+
 namespace FunctionalStoryteller;
 
 public sealed class ChangePositionOfCharacter : Command
@@ -26,7 +28,7 @@ public sealed class ChangePositionOfCharacter : Command
             ), () => throw new ArgumentOutOfRangeException(nameof(vignette))
         );
 
-    public override Event sdfsafas()
+    public override Option<Event> sdfsafas()
     {
         throw new NotImplementedException();
     }

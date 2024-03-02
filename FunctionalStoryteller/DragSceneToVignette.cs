@@ -1,3 +1,5 @@
+using LanguageExt;
+
 namespace FunctionalStoryteller;
 
 public sealed class DragSceneToVignette : Command
@@ -16,5 +18,5 @@ public sealed class DragSceneToVignette : Command
         return subject.PutIn(index, scene);
     }
 
-    public override Event sdfsafas() => Events.SceneAttachedToVignette(index, scene);
+    public override Option<Event> sdfsafas() => Events.SceneAttachedToVignette(index, scene);
 }

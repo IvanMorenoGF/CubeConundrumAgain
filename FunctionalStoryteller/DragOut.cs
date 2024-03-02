@@ -1,3 +1,5 @@
+using LanguageExt;
+
 namespace FunctionalStoryteller;
 
 public sealed class DragOut : Command
@@ -14,7 +16,7 @@ public sealed class DragOut : Command
         return subject.Remove(vignette);
     }
 
-    public override Event sdfsafas()
+    public override Option<Event> sdfsafas()
     {
         return Events.SceneDetachedFromVignette(vignette);
     }

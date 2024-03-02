@@ -1,3 +1,5 @@
+using LanguageExt;
+
 namespace FunctionalStoryteller;
 
 public sealed class MoveCharacterToAnotherScene : Command
@@ -28,7 +30,7 @@ public sealed class MoveCharacterToAnotherScene : Command
             ), () => throw new ArgumentOutOfRangeException(nameof(fromVignette))
         );
 
-    public override Event sdfsafas()
+    public override Option<Event> sdfsafas()
     {
         throw new NotImplementedException();
     }

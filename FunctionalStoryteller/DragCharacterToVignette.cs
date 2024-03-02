@@ -1,3 +1,5 @@
+using LanguageExt;
+
 namespace FunctionalStoryteller;
 
 public sealed class DragCharacterToVignette : Command
@@ -12,5 +14,5 @@ public sealed class DragCharacterToVignette : Command
     }
     
     public override StoryBoard SketchIn(StoryBoard subject) => subject;
-    public override Event sdfsafas() => Events.CharacterDraggedToScene(vignette, who);
+    public override Option<Event> sdfsafas() => Option<Event>.None;
 }

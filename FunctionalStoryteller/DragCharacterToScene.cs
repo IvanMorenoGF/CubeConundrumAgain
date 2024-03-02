@@ -1,3 +1,5 @@
+using LanguageExt;
+
 namespace FunctionalStoryteller;
 
 public sealed class DragCharacterToScene : Command
@@ -20,7 +22,7 @@ public sealed class DragCharacterToScene : Command
         return subject.PutIn(vignette, newScene);
     }
 
-    public override Event sdfsafas()
+    public override Option<Event> sdfsafas()
     {
         throw new NotImplementedException();
     }
