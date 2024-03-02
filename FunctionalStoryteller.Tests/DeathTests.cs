@@ -132,6 +132,11 @@ public class SpecsTests
     {
         OnceUponATime()
             .Happened(Love().Between(Adam, NobodyElse))
+            .Is(KnowableOfLove(Adam)).Should().BeFalse();
+        
+        OnceUponATime()
+            .Happened(Love().Between(Adam, Eva))
+            .Happened(Death().Of(Adam))
             .Is(KnowableOfLove(Adam)).Should().BeTrue();
     }
 }
