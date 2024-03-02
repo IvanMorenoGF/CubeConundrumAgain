@@ -35,4 +35,6 @@ public class Story
     public override bool Equals(object obj)
         => obj is Story story &&
            scenes.SequenceEqual(story.scenes);
+
+    public bool Is(params Spec[] allSpecs) => allSpecs.All(spec => spec.IsSatisfiedBy(this));
 }
