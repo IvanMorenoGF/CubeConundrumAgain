@@ -136,7 +136,20 @@ public class SpecsTests
         
         OnceUponATime()
             .Happened(Love().Between(Adam, Eva))
+            .Is(KnowableOfLove(Adam)).Should().BeTrue();
+        
+        OnceUponATime()
+            .Happened(Love().Between(Adam, Eva))
             .Happened(Death().Of(Adam))
+            .Is(KnowableOfLove(Adam)).Should().BeTrue();
+    }
+
+    [Test]
+    public void sdfafsafsas()
+    {
+        OnceUponATime()
+            .Happened(Love().Between(Adam, NobodyElse))
+            .Happened(Love().Between(Adam, Eva))
             .Is(KnowableOfLove(Adam)).Should().BeTrue();
     }
 }

@@ -10,9 +10,7 @@ public class IsKnowableOfLove : Spec
     }
 
     public override bool IsSatisfiedBy(Story story)
-        => story.First<LoveScene>(of: who).Match
-           (
-               Some: scene => scene.PotentialLoverOf(who).IsSome,
-               None: () => false
-           );
+        => story.All<LoveScene>(of: who).Any(WasInLoveWithSomeone);
+
+    bool WasInLoveWithSomeone(LoveScene scene) => scene.PotentialLoverOf(who).IsSome;
 }
