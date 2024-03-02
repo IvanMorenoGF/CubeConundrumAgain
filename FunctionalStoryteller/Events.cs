@@ -11,4 +11,9 @@ public static class Events
     {
         return new SceneDetachedFromVignette(vignette);
     }
+
+    public static Event ScenesSwapped(int fromVignette, int toVignette)
+    {
+        return new ScenesSwapped(fromVignette, toVignette);
+    }
 }

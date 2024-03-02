@@ -26,4 +26,11 @@ public class EventTests
         DragOut(vignette:1).sdfsafas().Should().Be(SceneDetachedFromVignette(vignette:1));
         DragOut(vignette:3).sdfsafas().Should().Be(SceneDetachedFromVignette(vignette:3));
     }
+
+    [Test]
+    public void ScenesSwappedEvent()
+    {
+        Drag(fromVignette: 1, toVignette: 2).sdfsafas().Should().Be(ScenesSwapped(fromVignette: 1, toVignette: 2));
+        Drag(fromVignette: 1, toVignette: 3).sdfsafas().Should().Be(ScenesSwapped(fromVignette: 1, toVignette: 3));
+    }
 }
