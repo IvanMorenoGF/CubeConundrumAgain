@@ -112,5 +112,17 @@ public class SpecsTests
         OnceUponATime()
             .Happened(Solitude().Of(Adam))
             .Is(Alive(Adam)).Should().BeTrue();
+        
+        OnceUponATime()
+            .Happened(Death().Of(Adam))
+            .Is(Alive(Adam)).Should().BeFalse();
+    }
+
+    [Test, Ignore("")]
+    public void CannotBeAlive_IfNotPresent_InCast()
+    {
+        OnceUponATime()
+            .Happened(Solitude().Of(Adam))
+            .Is(Alive(Adam)).Should().BeTrue();
     }
 }
