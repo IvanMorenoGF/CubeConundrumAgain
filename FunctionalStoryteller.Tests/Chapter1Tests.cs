@@ -8,14 +8,15 @@ namespace FunctionalStoryteller.Tests;
 
 public class Chapter1Tests
 {
-    [Test, Ignore("todo")]
+    [Test]
     public void Level1()
     {
         OnceUponATime()
             .Happened(Solitude().Of(Adam))
             .Happened(Love().Between(Adam, Eva))
             .Happened(Death().Of(Adam))
-            .Is(InLoveWith(Adam, Eva)).Should().BeTrue("se entiende que Adán muere feliz si Eva lo ama");
+            .Is(InLoveWith(Adam, Eva), Not(Alive(Adam)))
+            .Should().BeTrue("se entiende que Adán muere feliz si Eva lo ama");
     }
 
     [Test]
