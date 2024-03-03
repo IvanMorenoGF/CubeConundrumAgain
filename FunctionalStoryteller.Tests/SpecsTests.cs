@@ -45,13 +45,16 @@ public class SpecsTests
     }
 
     [Test]
-    public void SawAGhost()
+    public void BecameScared()
     {
         OnceUponATime()
             .Happened(Death().Of(Adam))
             .Happened(Love().Between(Adam, Eva))
             .Is(Scared(Eva)).Should().BeTrue();
         
+        OnceUponATime()
+            .Happened(Death().Of(Adam))
+            .Is(Scared(Eva)).Should().BeFalse();
     }
 
     [Test]

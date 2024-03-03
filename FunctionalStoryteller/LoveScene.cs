@@ -7,7 +7,7 @@ public sealed record LoveScene : Scene
 {
     (Character left, Character right) Couple { get; init; }
 
-    protected override Seq<Character> Cast => Empty.Add(Couple.left).Add(Couple.right);
+    public override Seq<Character> Cast => Empty.Add(Couple.left).Add(Couple.right);
 
     public LoveScene Between(Character one, Character other) => new() { Couple = (one, other) };
 

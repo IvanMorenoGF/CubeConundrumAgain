@@ -12,6 +12,6 @@ public abstract record Scene
         return Cast[index - 1];
     }
 
-    protected abstract Seq<Character> Cast { get; }
+    public abstract Seq<Character> Cast { get; }
     public abstract Scene PlaceAt(int where, Character who);
 }
