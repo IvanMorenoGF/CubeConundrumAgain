@@ -39,4 +39,16 @@ public class Chapter1Tests
             .Is(InLoveWith(Eva, Adam), Scared(Eva))
             .Should().BeTrue("Eva está asustada por ver el fantasma de un amante");
     }
+
+    [Test, Ignore("Necesitamos terminar el revive y el was")]
+    public void Level4()
+    {
+        OnceUponATime()
+            .Happened(Love().Between(Adam, Eva))
+            .Happened(Death().Of(Adam).WatchedBy(Eva))
+            .Happened(Revive().Of(Adam))
+            .Happened(Love().Between(Adam, Eva))
+            .Is(Was(Heartbroken(Eva)),Not(Heartbroken(Eva)))
+            .Should().BeTrue("Eva se consuela al ver a su amante revivido");
+    }
 }

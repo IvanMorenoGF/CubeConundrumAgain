@@ -3,9 +3,9 @@ using LanguageExt.UnsafeValueAccess;
 
 namespace FunctionalStoryteller;
 
-public sealed record SolitudeScene : Scene
+public record SolitudeScene : Scene
 {
-    Option<Character> theOneAlone;
+    protected Option<Character> theOneAlone;
     public SolitudeScene Of(Character who) => new() { theOneAlone = who };
     public override Seq<Character> Cast => theOneAlone.Match(Some: who => Seq<Character>.Empty.Add(who), None: Seq<Character>.Empty);
 

@@ -9,4 +9,5 @@ public static class Specs
     public static Spec Heartbroken(Character who) => new IsHeartbroken(who);
     public static Spec Scared(Character who) => new IsScared(who);
     public static Spec Not(Spec spec) => new NotSpec(spec);
+    public static Spec Was(Spec spec) => new WasSpec(spec);
 }
