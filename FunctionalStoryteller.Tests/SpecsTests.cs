@@ -98,6 +98,11 @@ public class SpecsTests
         OnceUponATime()
             .Happened(Love().Between(Adam, Eva))
             .Is(Heartbroken(Eva)).Should().BeFalse();
+        
+        OnceUponATime()
+            .Happened(Love().Between(Adam, Eva))
+            .Happened(Death().Of(Adam))
+            .Is(Heartbroken(Eva)).Should().BeFalse();
     }
 
     [Test]
