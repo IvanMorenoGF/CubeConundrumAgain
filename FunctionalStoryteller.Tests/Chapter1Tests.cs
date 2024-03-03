@@ -26,7 +26,7 @@ public class Chapter1Tests
             .Happened(Love().Between(Adam, Eva))
             .Happened(Death().Of(Adam).WatchedBy(Eva))
             .Happened(Death().Of(Eva))
-            .IsHeartbroken(Eva).Should().BeTrue("muere desconsolada por saber la muerte de Adán");
+            .Is(Heartbroken(Eva)).Should().BeTrue("muere desconsolada por saber la muerte de Adán");
     }
 
     [Test]

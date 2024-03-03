@@ -7,5 +7,6 @@ public static class Specs
     public static Spec InLoveWith(Character who, Character whom) => new IsInLoveWith(who, whom);
     public static Spec KnowableOfLove(Character who) => new IsKnowledgestOfLove(who);
     public static Spec Heartbroken(Character who) => new IsHeartbroken(who);
+    public static Spec Scared(Character who) => new IsScared(who);
     public static Spec Not(Spec spec) => new NotSpec(spec);
 }
