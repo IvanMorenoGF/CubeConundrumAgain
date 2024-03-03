@@ -98,6 +98,13 @@ public class SpecsTests
     }
 
     [Test]
+    public void NegateASpec()
+    {
+        OnceUponATime().Is(Not(InTheCast(Adam)))
+            .Should().NotBe(OnceUponATime().Is(InTheCast(Adam)));
+    }
+
+    [Test]
     public void IsAlive()
     {
         OnceUponATime()
@@ -159,7 +166,7 @@ public class SpecsTests
     }
 
     [Test]
-    public void afsafas()
+    public void Generate_Substories_UntilCertainPoint()
     {
         OnceUponATime()
             .Happened(Death().Of(Eva))
@@ -190,7 +197,7 @@ public class SpecsTests
     }
 
     [Test]
-    public void sdfasfafs()
+    public void GenerateAllSubStories()
     {
         OnceUponATime()
             .Happened(Death().Of(Adam))

@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using static FunctionalStoryteller.Scenes;
+using static FunctionalStoryteller.Specs;
 using static FunctionalStoryteller.Storyteller;
 using static FunctionalStoryteller.Tests.CharactersToTestsWith;
 
@@ -14,7 +15,7 @@ public class Chapter1Tests
             .Happened(Solitude().Of(Adam))
             .Happened(Love().Between(Adam, Eva))
             .Happened(Death().Of(Adam))
-            .WhoLoves(Adam).IsSome.Should().BeTrue("se entiende que Adán muere feliz si Eva lo ama");
+            .Is(InLoveWith(Adam, Eva)).Should().BeTrue("se entiende que Adán muere feliz si Eva lo ama");
     }
 
     [Test]
