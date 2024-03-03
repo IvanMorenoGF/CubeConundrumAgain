@@ -88,6 +88,15 @@ public class SpecsTests
     }
 
     [Test]
+    public void BeHeartbroken()
+    {
+        OnceUponATime()
+            .Happened(Love().Between(Adam, Eva))
+            .Happened(Death().Of(Adam).WatchedBy(Eva))
+            .Is(Heartbroken(Eva)).Should().BeTrue();
+    }
+
+    [Test]
     public void Generate_Substories_UntilCertainPoint()
     {
         OnceUponATime()
