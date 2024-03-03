@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using static FunctionalStoryteller.Scenes;
+using static FunctionalStoryteller.Specs;
 using static FunctionalStoryteller.Storyteller;
 using static FunctionalStoryteller.Tests.CharactersToTestsWith;
 
@@ -13,10 +14,10 @@ public class DeathTests
         Death().Of(Adam).IsInTheTomb(Adam).Should().BeTrue();
 
         OnceUponATime()
-            .Happened(Death().Of(Adam)).Is(Specs.Alive(Adam)).Should().BeFalse();
+            .Happened(Death().Of(Adam)).Is(Alive(Adam)).Should().BeFalse();
 
         OnceUponATime()
-            .Happened(Death().Of(Adam).WatchedBy(Eva)).Is(Specs.Alive(Eva)).Should().BeTrue();
+            .Happened(Death().Of(Adam).WatchedBy(Eva)).Is(Alive(Eva)).Should().BeTrue();
     }
     
     [Test]
@@ -80,5 +81,23 @@ public class DeathTests
     public void CannotGrieve_Yourself()
     {
         Death().Of(Adam).PlaceAt(1, Adam).Should().Be(Death().Of(NobodyElse).WatchedBy(Adam));
+    }
+    
+    [Test]
+    public void ReviveSomeone()
+    {
+        OnceUponATime()
+            .Happened(Death().Of(Adam))
+            .Happened(Revive().Of(Adam))
+            .Is(Alive(Adam)).Should().BeTrue();
+    }
+    
+    [Test, Ignore("Sólo los personajes muertos pueden ser revividos")]
+    public void ReviveSomeone_CanOnlyReviveDead()
+    {
+        OnceUponATime()
+            .Happened(Revive().Of(Adam))
+            .Happened(Death().Of(Adam))
+            .Is(Alive(Adam)).Should().BeFalse();
     }
 }

@@ -3,7 +3,7 @@ using LanguageExt.UnsafeValueAccess;
 
 namespace FunctionalStoryteller;
 
-public record SolitudeScene : Scene
+public sealed record SolitudeScene : Scene
 {
     Option<Character> theOneAlone;
     public SolitudeScene Of(Character who) => new() { theOneAlone = who };

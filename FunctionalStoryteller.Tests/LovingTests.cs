@@ -9,15 +9,6 @@ namespace FunctionalStoryteller.Tests;
 public class LovingTests
 {
     [Test]
-    public void Revivasdfasfs()
-    {
-        OnceUponATime()
-            .Happened(Death().Of(Adam))
-            .Happened(Revive().Of(Adam))
-            .Is(Alive(Adam)).Should().BeTrue();
-    }
-    
-    [Test]
     public void Nobody_LovesWithTheAir()
     {
         OnceUponATime()
