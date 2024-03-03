@@ -5,7 +5,7 @@ namespace FunctionalStoryteller;
 
 public record SolitudeScene : Scene
 {
-    protected Option<Character> theOneAlone;
+    Option<Character> theOneAlone;
     public SolitudeScene Of(Character who) => new() { theOneAlone = who };
     public override Seq<Character> Cast => theOneAlone.Match(Some: who => Seq<Character>.Empty.Add(who), None: Seq<Character>.Empty);
 
