@@ -105,6 +105,25 @@ public class SpecsTests
             .Is(Heartbroken(Eva)).Should().BeFalse();
     }
 
+    [Test, Ignore("Necesitamos comprobar el plano astral en esta spec")]
+    public void CannotBeHeartbroken_IfLoverDiedBeforeLove()
+    {
+        OnceUponATime()
+            .Happened(Death().Of(Adam).WatchedBy(Eva))
+            .Happened(Love().Between(Adam, Eva))
+            .Is(Heartbroken(Eva)).Should().BeFalse();
+    }
+
+    [Test, Ignore("Sólo comprobamos la primera historia de amor")]
+    public void FallInLoveAgain()
+    {
+        OnceUponATime()
+            .Happened(Love().Between(Adam, Eva))
+            .Happened(Death().Of(Adam).WatchedBy(Eva))
+            .Happened(Love().Between(AnybodyElse, Eva))
+            .Is(Heartbroken(Eva)).Should().BeFalse();
+    }
+
     [Test]
     public void Generate_Substories_UntilCertainPoint()
     {
