@@ -36,6 +36,7 @@ public class Chapter1Tests
             .Happened(Love().Between(Adam, Eva))
             .Happened(Death().Of(Adam).WatchedBy(Eva))
             .Happened(Love().Between(Adam, Eva))
-            .SharingAstralPlane(Adam, Eva).Should().BeFalse("falta decir que está asustada...");
+            .Is(InLoveWith(Eva, Adam), Scared(Eva))
+            .Should().BeTrue("Eva está asustada por ver el fantasma de un amante");
     }
 }

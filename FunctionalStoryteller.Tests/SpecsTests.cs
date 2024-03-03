@@ -57,6 +57,15 @@ public class SpecsTests
             .Is(Scared(Eva)).Should().BeFalse();
     }
 
+    [Test, Ignore("Necesitamos temporalidad para esta spec")]
+    public void DidNot_BecameScared_IfSharedCast_WithCharacterAboutToDie()
+    {
+        OnceUponATime()
+            .Happened(Love().Between(Adam, Eva))
+            .Happened(Death().Of(Adam))
+            .Is(Scared(Eva)).Should().BeFalse();
+    }
+
     [Test]
     public void FirstLoveOf()
     {
