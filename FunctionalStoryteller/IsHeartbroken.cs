@@ -6,5 +6,5 @@ public class IsHeartbroken : Spec
     public IsHeartbroken(Character who) => this.who = who;
 
     public override bool IsSatisfiedBy(Story story)
-        => true;
+        => story.IsHeartbroken(who);
 }

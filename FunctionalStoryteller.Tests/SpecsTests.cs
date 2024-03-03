@@ -94,6 +94,10 @@ public class SpecsTests
             .Happened(Love().Between(Adam, Eva))
             .Happened(Death().Of(Adam).WatchedBy(Eva))
             .Is(Heartbroken(Eva)).Should().BeTrue();
+        
+        OnceUponATime()
+            .Happened(Love().Between(Adam, Eva))
+            .Is(Heartbroken(Eva)).Should().BeFalse();
     }
 
     [Test]
