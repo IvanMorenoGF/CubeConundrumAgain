@@ -102,7 +102,7 @@ public class DeathTests
     }
 
     [Test]
-    public void fasfsafs()
+    public void LaterScene_BetweenTwo_InAStory()
     {
         OnceUponATime()
             .Happened(Revive())
@@ -115,5 +115,17 @@ public class DeathTests
             .Happened(Revive())
             .TheLater(Revive(), Death())
             .Should().Be(Revive());
+        
+        OnceUponATime()
+            .Happened(Death())
+            .Happened(Revive())
+            .TheLater(null, Death())
+            .Should().Be(Death());
+        
+        OnceUponATime()
+            .Happened(Death())
+            .Happened(Revive())
+            .TheLater(null, null)
+            .Should().Be(null);
     }
 }
