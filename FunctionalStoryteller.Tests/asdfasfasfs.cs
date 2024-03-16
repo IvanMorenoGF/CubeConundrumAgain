@@ -53,7 +53,7 @@ public class asdfasfasfs
     }
 
     [Test]
-    public void asfdsafs()
+    public void TheLatestDeath()
     {
         OnceUponATime()
             .Happened(Death().Of(Adam))
@@ -64,5 +64,15 @@ public class asdfasfasfs
         OnceUponATime()
             .TheLater<DeathScene>(wherein: x => x.IsInTheTomb(Adam))
             .IsNone.Should().BeTrue();
+    }
+
+    [Test]
+    public void AreInOrder()
+    {
+        OnceUponATime()
+            .Happened(Death())
+            .Happened(Revive())
+            .AreInOrder(Death(), Revive())
+            .Should().BeTrue();
     }
 }

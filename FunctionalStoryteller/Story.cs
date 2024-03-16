@@ -62,4 +62,9 @@ public class Story
 
     public Option<Scene> TheLater<T>(Func<T, bool> wherein) where T : Scene
         => scenes.OfType<T>().LastOrDefault(wherein);
+
+    public bool AreInOrder(Option<Scene> death, Option<Scene> revive)
+    {
+        return true;
+    }
 }

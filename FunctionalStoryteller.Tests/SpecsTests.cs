@@ -203,7 +203,7 @@ public class SpecsTests
     }
 
     [Test]
-    public void Wasasdfas()
+    public void Was_ASpecSatisfied()
     {
         OnceUponATime()
             .Happened(Death().Of(Adam))
