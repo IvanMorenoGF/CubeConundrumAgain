@@ -10,6 +10,6 @@ public class IsKnowledgestOfLove : Spec
 
     bool WasInLoveWithSomeone(LoveScene scene, Story substory)
     {
-        return scene.PotentialLoverOf(who).IsSome && substory.Is(Specs.Alive(scene.LoverOf(who)));
+        return scene.PotentialLoverOf(who).IsSome && substory.Then(Specs.Alive(scene.LoverOf(who)));
     }
 }

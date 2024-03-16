@@ -23,7 +23,7 @@ public class Story
         => this.First<LoveScene>(of: who).Bind(s => s.PotentialLoverOf(who));
 
     public bool SharingAstralPlane(Character theOne, Character theOther) =>
-        Is(Specs.Alive(theOne)) == Is(Specs.Alive(theOther));
+        Then(Specs.Alive(theOne)) == Then(Specs.Alive(theOther));
 
     public bool IsHeartbroken(Character who)
         => FirstLoveOf(who)
@@ -37,7 +37,7 @@ public class Story
         => obj is Story story &&
            scenes.SequenceEqual(story.scenes);
 
-    public bool Is(params Spec[] allSpecs) => allSpecs.All(spec => spec.IsSatisfiedBy(this));
+    public bool Then(params Spec[] allSpecs) => allSpecs.All(spec => spec.IsSatisfiedBy(this));
 
     public Seq<Story> asfsafasf(int until)
     {

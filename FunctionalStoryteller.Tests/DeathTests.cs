@@ -14,10 +14,10 @@ public class DeathTests
         Death().Of(Adam).IsInTheTomb(Adam).Should().BeTrue();
 
         OnceUponATime()
-            .Happened(Death().Of(Adam)).Is(Alive(Adam)).Should().BeFalse();
+            .Happened(Death().Of(Adam)).Then(Alive(Adam)).Should().BeFalse();
 
         OnceUponATime()
-            .Happened(Death().Of(Adam).WatchedBy(Eva)).Is(Alive(Eva)).Should().BeTrue();
+            .Happened(Death().Of(Adam).WatchedBy(Eva)).Then(Alive(Eva)).Should().BeTrue();
     }
     
     [Test]
@@ -89,7 +89,7 @@ public class DeathTests
         OnceUponATime()
             .Happened(Death().Of(Adam))
             .Happened(Revive().Of(Adam))
-            .Is(Alive(Adam)).Should().BeTrue();
+            .Then(Alive(Adam)).Should().BeTrue();
     }
     
     [Test]
@@ -98,7 +98,7 @@ public class DeathTests
         OnceUponATime()
             .Happened(Revive().Of(Adam))
             .Happened(Death().Of(Adam))
-            .Is(Alive(Adam)).Should().BeFalse();
+            .Then(Alive(Adam)).Should().BeFalse();
     }
 
     [Test]
@@ -108,6 +108,6 @@ public class DeathTests
             .Happened(Death().Of(Adam))
             .Happened(Revive().Of(Adam))
             .Happened(Death().Of(Adam))
-            .Is(Alive(Adam)).Should().BeFalse();
+            .Then(Alive(Adam)).Should().BeFalse();
     }
 }
