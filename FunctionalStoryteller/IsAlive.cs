@@ -11,7 +11,7 @@ public class IsAlive : Spec
         => new IsInTheCast(who).IsSatisfiedBy(story) &&
            story.AreInOrder
            (
-               story.TheLater<DeathScene>(wherein: x => x.IsInTheTomb(who)),
+               story.TheLater<DeathScene>(wherein: who.IsInTheTomb()),
                story.TheLater<ReviveScene>(wherein: x => x.IsInTheCast(who))
            );
 }
