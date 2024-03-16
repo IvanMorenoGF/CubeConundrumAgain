@@ -11,7 +11,7 @@ public class IsAlive : Spec
         
         var revive = story.scenes.OfType<ReviveScene>().LastOrDefault(x => x.IsInTheCast(who));
         var death = story.scenes.OfType<DeathScene>().LastOrDefault(x => x.IsInTheTomb(who));
-        var theLater =  story.TheLater(revive, death);
+        var theLater = story.TheLater(revive, death);
 
         return theLater == null || theLater == revive;
     }

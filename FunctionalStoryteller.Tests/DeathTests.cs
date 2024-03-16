@@ -101,6 +101,16 @@ public class DeathTests
             .Is(Alive(Adam)).Should().BeFalse();
     }
 
+    [Test, Ignore("asfas")]
+    public void Die_Revive_Die()
+    {
+        OnceUponATime()
+            .Happened(Death().Of(Adam))
+            .Happened(Revive().Of(Adam))
+            .Happened(Death().Of(Adam))
+            .Is(Alive(Adam)).Should().BeFalse();
+    }
+
     [Test]
     public void LaterScene_BetweenTwo_InAStory()
     {
@@ -127,5 +137,16 @@ public class DeathTests
             .Happened(Revive())
             .TheLater(null, null)
             .Should().Be(null);
+    }
+
+    [Test]
+    public void asfsafs()
+    {
+        OnceUponATime()
+            .Happened(Death())
+            .Happened(Revive())
+            .Happened(Death())
+            .TheLater(Death(), Revive())
+            .Should().Be(Death());
     }
 }
