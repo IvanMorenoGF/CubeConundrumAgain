@@ -101,7 +101,7 @@ public class DeathTests
             .Is(Alive(Adam)).Should().BeFalse();
     }
 
-    [Test, Ignore("asfas")]
+    [Test]
     public void Die_Revive_Die()
     {
         OnceUponATime()
@@ -140,7 +140,7 @@ public class DeathTests
     }
 
     [Test]
-    public void asfsafs()
+    public void LaterScene_BetweenThree()
     {
         OnceUponATime()
             .Happened(Death())
