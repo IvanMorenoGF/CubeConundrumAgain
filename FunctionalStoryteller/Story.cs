@@ -54,4 +54,7 @@ public class Story
 
     public Scene TheLater(Scene theOne, Scene theOther) 
         => scenes.ToList().LastIndexOf(theOne) > scenes.ToList().LastIndexOf(theOther) ? theOne : theOther;
+
+    public Option<Scene> TheLater<T>(Func<T, bool> wherein) where T : Scene 
+        => scenes.OfType<T>().LastOrDefault(wherein);
 }

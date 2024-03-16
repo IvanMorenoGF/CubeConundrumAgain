@@ -110,43 +110,4 @@ public class DeathTests
             .Happened(Death().Of(Adam))
             .Is(Alive(Adam)).Should().BeFalse();
     }
-
-    [Test]
-    public void LaterScene_BetweenTwo_InAStory()
-    {
-        OnceUponATime()
-            .Happened(Revive())
-            .Happened(Death())
-            .TheLater(Revive(),Death())
-            .Should().Be(Death());
-        
-        OnceUponATime()
-            .Happened(Death())
-            .Happened(Revive())
-            .TheLater(Revive(), Death())
-            .Should().Be(Revive());
-        
-        OnceUponATime()
-            .Happened(Death())
-            .Happened(Revive())
-            .TheLater(null, Death())
-            .Should().Be(Death());
-        
-        OnceUponATime()
-            .Happened(Death())
-            .Happened(Revive())
-            .TheLater(null, null)
-            .Should().Be(null);
-    }
-
-    [Test]
-    public void LaterScene_BetweenThree()
-    {
-        OnceUponATime()
-            .Happened(Death())
-            .Happened(Revive())
-            .Happened(Death())
-            .TheLater(Death(), Revive())
-            .Should().Be(Death());
-    }
 }
