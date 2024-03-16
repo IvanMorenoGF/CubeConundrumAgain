@@ -11,7 +11,7 @@ public class IsHeartbroken : Spec
     public override bool IsSatisfiedBy(Story story) 
         => story.AreInOrder
         (
-            story.scenes.LastOrDefault(x => x.IsInTheCast(who) && x.IsInTheCast(story.FirstLoveOf(who).ValueUnsafe())),
+            story.scenes.LastOrDefault(x => x.IsInTheCast(who) && x.IsInTheCast(story.FirstLoveOf(who))),
             story.scenes.OfType<DeathScene>().LastOrDefault(x => x.IsInTheTomb(story.FirstLoveOf(who).ValueUnsafe()) && x.IsInTheCast(who))
         );
 }
