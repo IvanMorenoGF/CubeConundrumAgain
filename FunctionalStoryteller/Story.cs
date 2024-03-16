@@ -51,4 +51,7 @@ public class Story
     {
         return asfsafasf(scenes.Length);
     }
+
+    public Scene TheLater(ReviveScene theOne, DeathScene theOther) 
+        => scenes.ToList().IndexOf(theOne) > scenes.ToList().IndexOf(theOther) ? theOne : theOther;
 }

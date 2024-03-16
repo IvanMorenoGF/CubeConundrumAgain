@@ -100,4 +100,20 @@ public class DeathTests
             .Happened(Death().Of(Adam))
             .Is(Alive(Adam)).Should().BeFalse();
     }
+
+    [Test]
+    public void fasfsafs()
+    {
+        OnceUponATime()
+            .Happened(Revive())
+            .Happened(Death())
+            .TheLater(Revive(),Death())
+            .Should().Be(Death());
+        
+        OnceUponATime()
+            .Happened(Death())
+            .Happened(Revive())
+            .TheLater(Revive(), Death())
+            .Should().Be(Revive());
+    }
 }
