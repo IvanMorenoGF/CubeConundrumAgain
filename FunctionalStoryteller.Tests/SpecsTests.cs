@@ -202,9 +202,14 @@ public class SpecsTests
             );
     }
 
-    [Test, Ignore("adsfafasfs")]
+    [Test]
     public void Wasasdfas()
     {
+        OnceUponATime()
+            .Happened(Death().Of(Adam))
+            .Then(Was(Alive(Adam)))
+            .Should().BeFalse();
+        
         OnceUponATime()
             .Happened(Death().Of(Adam))
             .Happened(Death().Of(Eva))
@@ -213,6 +218,13 @@ public class SpecsTests
         
         OnceUponATime()
             .Happened(Death().WatchedBy(Adam))
+            .Happened(Death().Of(Adam))
+            .Then(Was(Alive(Adam)))
+            .Should().BeTrue();
+        
+        OnceUponATime()
+            .Happened(Death().WatchedBy(Adam))
+            .Happened(Death().Of(Adam))
             .Happened(Death().Of(Adam))
             .Then(Was(Alive(Adam)))
             .Should().BeTrue();
