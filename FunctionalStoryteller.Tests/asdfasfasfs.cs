@@ -74,5 +74,11 @@ public class asdfasfasfs
             .Happened(Revive())
             .AreInOrder(Death(), Revive())
             .Should().BeTrue();
+        
+        OnceUponATime()
+            .Happened(Death())
+            .Happened(Revive())
+            .AreInOrder(Revive(), Death())
+            .Should().BeFalse();
     }
 }
