@@ -1,4 +1,5 @@
 using LanguageExt;
+using LanguageExt.SomeHelp;
 
 namespace FunctionalStoryteller;
 
@@ -53,9 +54,6 @@ public class Story
     {
         return asfsafasf(scenes.Length);
     }
-
-    public Scene TheLater(Scene theOne, Scene theOther)
-        => scenes.ToList().LastIndexOf(theOne) > scenes.ToList().LastIndexOf(theOther) ? theOne : theOther;
 
     public Option<Scene> TheLater(Option<Scene> theOne, Option<Scene> theOther)
         => theOne.Map(scenes.ToList().LastIndexOf) > theOther.Map(scenes.ToList().LastIndexOf)

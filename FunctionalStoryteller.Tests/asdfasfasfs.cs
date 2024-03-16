@@ -1,4 +1,5 @@
 using FluentAssertions;
+using LanguageExt.UnsafeValueAccess;
 using static FunctionalStoryteller.Scenes;
 using static FunctionalStoryteller.Storyteller;
 using static FunctionalStoryteller.Tests.CharactersToTestsWith;
@@ -14,24 +15,28 @@ public class asdfasfasfs
             .Happened(Revive())
             .Happened(Death())
             .TheLater(Revive(),Death())
+            .ValueUnsafe()
             .Should().Be(Death());
         
         OnceUponATime()
             .Happened(Death())
             .Happened(Revive())
             .TheLater(Revive(), Death())
+            .ValueUnsafe()
             .Should().Be(Revive());
         
         OnceUponATime()
             .Happened(Death())
             .Happened(Revive())
             .TheLater(null, Death())
+            .ValueUnsafe()
             .Should().Be(Death());
         
         OnceUponATime()
             .Happened(Death())
             .Happened(Revive())
             .TheLater(null, null)
+            .ValueUnsafe()
             .Should().Be(null);
     }
 
@@ -43,6 +48,7 @@ public class asdfasfasfs
             .Happened(Revive())
             .Happened(Death())
             .TheLater(Death(), Revive())
+            .ValueUnsafe()
             .Should().Be(Death());
     }
 
