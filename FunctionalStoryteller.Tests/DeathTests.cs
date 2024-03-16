@@ -110,4 +110,11 @@ public class DeathTests
             .Happened(Death().Of(Adam))
             .Then(Alive(Adam)).Should().BeFalse();
     }
+
+    [Test]
+    public void IsNotInTheTomb()
+    {
+        Death().WatchedBy(Adam)
+            .IsInTheTomb(Adam).Should().BeFalse();
+    }
 }
