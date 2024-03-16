@@ -25,14 +25,6 @@ public class Story
     public bool SharingAstralPlane(Character theOne, Character theOther) =>
         Then(Specs.Alive(theOne)) == Then(Specs.Alive(theOther));
 
-    public bool IsHeartbroken(Character who)
-        => FirstLoveOf(who)
-            .Match
-            (
-                x => scenes.OfType<DeathScene>().Any(s => s.AreInTheCast(who, x)),
-                false
-            );
-
     public override bool Equals(object obj)
         => obj is Story story &&
            scenes.SequenceEqual(story.scenes);

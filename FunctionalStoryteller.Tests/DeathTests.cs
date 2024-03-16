@@ -65,16 +65,16 @@ public class DeathTests
         OnceUponATime()
             .Happened(Love().Between(Adam, Eve))
             .Happened(Death().Of(Adam).WatchedBy(Eve))
-            .IsHeartbroken(Eve).Should().BeTrue();
-        
-        OnceUponATime()
-            .Happened(Death().Of(Adam).WatchedBy(Eve))
-            .IsHeartbroken(Eve).Should().BeFalse(because: "she wasn't in love");
+            .Then(Heartbroken(Eve)).Should().BeTrue();
         
         OnceUponATime()
             .Happened(Love().Between(Adam, Eve))
             .Happened(Death().Of(Adam))
-            .IsHeartbroken(Eve).Should().BeFalse(because: "she doesn't know");
+            .Then(Heartbroken(Eve)).Should().BeFalse(because: "she doesn't know");
+        
+        OnceUponATime()
+            .Happened(Death().Of(Adam).WatchedBy(Eve))
+            .Then(Heartbroken(Eve)).Should().BeFalse(because: "she wasn't in love");
     }
 
     [Test]
