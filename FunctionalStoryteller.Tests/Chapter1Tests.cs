@@ -41,7 +41,7 @@ public class Chapter1Tests
             .Should().BeTrue("Eva está asustada por ver el fantasma de un amante");
     }
 
-    [Test, Ignore("Tenemos que consolar a Eva y hacer que el was funcione")]
+    [Test, Ignore("Tiene que dejar de estar heartbroken al reencontrarse")]
     public void Level4()
     {
         OnceUponATime()
