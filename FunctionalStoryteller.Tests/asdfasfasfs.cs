@@ -54,5 +54,9 @@ public class asdfasfasfs
             .Happened(Revive())
             .TheLater<DeathScene>(wherein: x => x.IsInTheTomb(Adam))
             .IsSome.Should().BeTrue();
+        
+        OnceUponATime()
+            .TheLater<DeathScene>(wherein: x => x.IsInTheTomb(Adam))
+            .IsNone.Should().BeTrue();
     }
 }

@@ -21,7 +21,8 @@ public class Story
     public Option<Character> FirstLoveOf(Character who)
         => this.First<LoveScene>(of: who).Bind(s => s.PotentialLoverOf(who));
 
-    public bool SharingAstralPlane(Character theOne, Character theOther) => Is(Specs.Alive(theOne)) == Is(Specs.Alive(theOther));
+    public bool SharingAstralPlane(Character theOne, Character theOther) =>
+        Is(Specs.Alive(theOne)) == Is(Specs.Alive(theOther));
 
     public bool IsHeartbroken(Character who)
         => FirstLoveOf(who)
@@ -44,6 +45,7 @@ public class Story
         {
             result.Add(new Story(scenes.Take(i).ToSeq()));
         }
+
         return result.ToSeq();
     }
 
@@ -52,9 +54,14 @@ public class Story
         return asfsafasf(scenes.Length);
     }
 
-    public Scene TheLater(Scene theOne, Scene theOther) 
+    public Scene TheLater(Scene theOne, Scene theOther)
         => scenes.ToList().LastIndexOf(theOne) > scenes.ToList().LastIndexOf(theOther) ? theOne : theOther;
 
-    public Option<Scene> TheLater<T>(Func<T, bool> wherein) where T : Scene 
+    public Option<Scene> TheLater(Option<Scene> theOne, Option<Scene> theOther)
+        => theOne.Map(scenes.ToList().LastIndexOf) > theOther.Map(scenes.ToList().LastIndexOf)
+            ? theOne
+            : theOther;
+
+    public Option<Scene> TheLater<T>(Func<T, bool> wherein) where T : Scene
         => scenes.OfType<T>().LastOrDefault(wherein);
 }
