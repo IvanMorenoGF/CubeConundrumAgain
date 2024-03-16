@@ -17,7 +17,7 @@ public class DeathTests
             .Happened(Death().Of(Adam)).Then(Alive(Adam)).Should().BeFalse();
 
         OnceUponATime()
-            .Happened(Death().Of(Adam).WatchedBy(Eva)).Then(Alive(Eva)).Should().BeTrue();
+            .Happened(Death().Of(Adam).WatchedBy(Eve)).Then(Alive(Eve)).Should().BeTrue();
     }
     
     [Test]
@@ -25,13 +25,13 @@ public class DeathTests
     {
         OnceUponATime()
             .Happened(Death().Of(Adam))
-            .Happened(Love().Between(Adam, Eva))
+            .Happened(Love().Between(Adam, Eve))
             .WhoLoves(Adam).IsNone.Should().BeTrue();
         
         OnceUponATime()
             .Happened(Death().Of(Adam))
-            .Happened(Love().Between(Adam, Eva))
-            .WhoLoves(Eva).IsNone.Should().BeTrue();
+            .Happened(Love().Between(Adam, Eve))
+            .WhoLoves(Eve).IsNone.Should().BeTrue();
     }
 
     [Test]
@@ -39,42 +39,42 @@ public class DeathTests
     {
         OnceUponATime()
             .Happened(Death().Of(Adam))
-            .Happened(Death().Of(Eva))
-            .Happened(Love().Between(Adam, Eva))
-            .WhoLoves(Eva).IsNone.Should().BeFalse();
+            .Happened(Death().Of(Eve))
+            .Happened(Love().Between(Adam, Eve))
+            .WhoLoves(Eve).IsNone.Should().BeFalse();
     }
 
     [Test]
     public void AreInSameAstralPlane()
     {
         OnceUponATime()
-            .Happened(Death().Of(Adam).WatchedBy(Eva))
-            .SharingAstralPlane(Adam, Eva).Should().BeFalse();
+            .Happened(Death().Of(Adam).WatchedBy(Eve))
+            .SharingAstralPlane(Adam, Eve).Should().BeFalse();
         
         OnceUponATime()
             .Happened(Death().Of(Adam))
-            .Happened(Death().Of(Eva))
-            .SharingAstralPlane(Adam, Eva).Should().BeTrue();
+            .Happened(Death().Of(Eve))
+            .SharingAstralPlane(Adam, Eve).Should().BeTrue();
         
-        OnceUponATime().SharingAstralPlane(Adam, Eva).Should().BeTrue();
+        OnceUponATime().SharingAstralPlane(Adam, Eve).Should().BeTrue();
     }
 
     [Test]
     public void KnowYouBecomeWidow_BreaksYourHeart()
     {
         OnceUponATime()
-            .Happened(Love().Between(Adam, Eva))
-            .Happened(Death().Of(Adam).WatchedBy(Eva))
-            .IsHeartbroken(Eva).Should().BeTrue();
+            .Happened(Love().Between(Adam, Eve))
+            .Happened(Death().Of(Adam).WatchedBy(Eve))
+            .IsHeartbroken(Eve).Should().BeTrue();
         
         OnceUponATime()
-            .Happened(Death().Of(Adam).WatchedBy(Eva))
-            .IsHeartbroken(Eva).Should().BeFalse(because: "she wasn't in love");
+            .Happened(Death().Of(Adam).WatchedBy(Eve))
+            .IsHeartbroken(Eve).Should().BeFalse(because: "she wasn't in love");
         
         OnceUponATime()
-            .Happened(Love().Between(Adam, Eva))
+            .Happened(Love().Between(Adam, Eve))
             .Happened(Death().Of(Adam))
-            .IsHeartbroken(Eva).Should().BeFalse(because: "she doesn't know");
+            .IsHeartbroken(Eve).Should().BeFalse(because: "she doesn't know");
     }
 
     [Test]

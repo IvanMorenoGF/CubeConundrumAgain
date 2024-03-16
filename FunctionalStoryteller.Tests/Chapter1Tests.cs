@@ -13,9 +13,9 @@ public class Chapter1Tests
     {
         OnceUponATime()
             .Happened(Solitude().Of(Adam))
-            .Happened(Love().Between(Adam, Eva))
+            .Happened(Love().Between(Adam, Eve))
             .Happened(Death().Of(Adam))
-            .Then(InLoveWith(Adam, Eva), Not(Alive(Adam)))
+            .Then(InLoveWith(Adam, Eve), Not(Alive(Adam)))
             .Should().BeTrue("se entiende que Adán muere feliz si Eva lo ama");
     }
 
@@ -23,10 +23,10 @@ public class Chapter1Tests
     public void Level2()
     {
         OnceUponATime()
-            .Happened(Love().Between(Adam, Eva))
-            .Happened(Death().Of(Adam).WatchedBy(Eva))
-            .Happened(Death().Of(Eva))
-            .Then(Heartbroken(Eva), Not(Alive(Eva)))
+            .Happened(Love().Between(Adam, Eve))
+            .Happened(Death().Of(Adam).WatchedBy(Eve))
+            .Happened(Death().Of(Eve))
+            .Then(Heartbroken(Eve), Not(Alive(Eve)))
             .Should().BeTrue("muere desconsolada por saber la muerte de Adán");
     }
 
@@ -34,10 +34,10 @@ public class Chapter1Tests
     public void Level3()
     {
         OnceUponATime()
-            .Happened(Love().Between(Adam, Eva))
-            .Happened(Death().Of(Adam).WatchedBy(Eva))
-            .Happened(Love().Between(Adam, Eva))
-            .Then(InLoveWith(Eva, Adam), Scared(Eva))
+            .Happened(Love().Between(Adam, Eve))
+            .Happened(Death().Of(Adam).WatchedBy(Eve))
+            .Happened(Love().Between(Adam, Eve))
+            .Then(InLoveWith(Eve, Adam), Scared(Eve))
             .Should().BeTrue("Eva está asustada por ver el fantasma de un amante");
     }
 
@@ -45,11 +45,11 @@ public class Chapter1Tests
     public void Level4()
     {
         OnceUponATime()
-            .Happened(Love().Between(Adam, Eva))
-            .Happened(Death().Of(Adam).WatchedBy(Eva))
+            .Happened(Love().Between(Adam, Eve))
+            .Happened(Death().Of(Adam).WatchedBy(Eve))
             .Happened(Revive().Of(Adam))
-            .Happened(Love().Between(Adam, Eva))
-            .Then(Was(Heartbroken(Eva)),Not(Heartbroken(Eva)))
+            .Happened(Love().Between(Adam, Eve))
+            .Then(Was(Heartbroken(Eve)),Not(Heartbroken(Eve)))
             .Should().BeTrue("Eva se consuela al ver a su amante revivido");
     }
 }

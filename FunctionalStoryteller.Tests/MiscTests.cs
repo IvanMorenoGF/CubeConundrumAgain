@@ -10,9 +10,9 @@ public class MiscTests
     [Test]
     public void IsInTheCast()
     {
-        Love().Between(Adam, Eva).IsInTheCast(Adam).Should().BeTrue();
-        Love().Between(Adam, Eva).IsInTheCast(Eva).Should().BeTrue();
-        Love().Between(Adam, Eva).IsInTheCast(AnybodyElse).Should().BeFalse();
+        Love().Between(Adam, Eve).IsInTheCast(Adam).Should().BeTrue();
+        Love().Between(Adam, Eve).IsInTheCast(Eve).Should().BeTrue();
+        Love().Between(Adam, Eve).IsInTheCast(AnybodyElse).Should().BeFalse();
     }
 
     [Test]

@@ -13,7 +13,7 @@ public class SpecsTests
     {
         OnceUponATime()
             .Happened(Solitude().Of(Adam))
-            .Happened(Solitude().Of(Eva))
+            .Happened(Solitude().Of(Eve))
             .Then(InTheCast(Adam)).Should().BeTrue();
         
         OnceUponATime().Then(InTheCast(Adam)).Should().BeFalse();
@@ -49,33 +49,33 @@ public class SpecsTests
     {
         OnceUponATime()
             .Happened(Death().Of(Adam))
-            .Happened(Love().Between(Adam, Eva))
-            .Then(Scared(Eva)).Should().BeTrue();
+            .Happened(Love().Between(Adam, Eve))
+            .Then(Scared(Eve)).Should().BeTrue();
         
         OnceUponATime()
             .Happened(Death().Of(Adam))
-            .Then(Scared(Eva)).Should().BeFalse();
+            .Then(Scared(Eve)).Should().BeFalse();
     }
 
     [Test, Ignore("Necesitamos temporalidad para esta spec")]
     public void DidNot_BecameScared_IfSharedCast_WithCharacterAboutToDie()
     {
         OnceUponATime()
-            .Happened(Love().Between(Adam, Eva))
+            .Happened(Love().Between(Adam, Eve))
             .Happened(Death().Of(Adam))
-            .Then(Scared(Eva)).Should().BeFalse();
+            .Then(Scared(Eve)).Should().BeFalse();
     }
 
     [Test]
     public void FirstLoveOf()
     {
         OnceUponATime()
-            .Happened(Love().Between(Adam, Eva))
-            .Then(InLoveWith(Adam, Eva)).Should().BeTrue();
+            .Happened(Love().Between(Adam, Eve))
+            .Then(InLoveWith(Adam, Eve)).Should().BeTrue();
         
         OnceUponATime()
             .Happened(Love().Between(Adam, NobodyElse))
-            .Then(InLoveWith(Adam, Eva)).Should().BeFalse();
+            .Then(InLoveWith(Adam, Eve)).Should().BeFalse();
     }
 
     [Test]
@@ -86,17 +86,17 @@ public class SpecsTests
             .Then(KnowableOfLove(Adam)).Should().BeFalse();
         
         OnceUponATime()
-            .Happened(Love().Between(Adam, Eva))
+            .Happened(Love().Between(Adam, Eve))
             .Then(KnowableOfLove(Adam)).Should().BeTrue();
         
         OnceUponATime()
-            .Happened(Love().Between(Adam, Eva))
+            .Happened(Love().Between(Adam, Eve))
             .Happened(Death().Of(Adam))
             .Then(KnowableOfLove(Adam)).Should().BeTrue();
         
         OnceUponATime()
             .Happened(Love().Between(Adam, NobodyElse))
-            .Happened(Love().Between(Adam, Eva))
+            .Happened(Love().Between(Adam, Eve))
             .Then(KnowableOfLove(Adam)).Should().BeTrue();
     }
 
@@ -104,8 +104,8 @@ public class SpecsTests
     public void CannotMeetLoveWithGhost()
     {
         OnceUponATime()
-            .Happened(Death().Of(Eva))
-            .Happened(Love().Between(Adam, Eva))
+            .Happened(Death().Of(Eve))
+            .Happened(Love().Between(Adam, Eve))
             .Then(KnowableOfLove(Adam)).Should().BeFalse();
     }
 
@@ -113,48 +113,48 @@ public class SpecsTests
     public void BeHeartbroken()
     {
         OnceUponATime()
-            .Happened(Love().Between(Adam, Eva))
-            .Happened(Death().Of(Adam).WatchedBy(Eva))
-            .Then(Heartbroken(Eva)).Should().BeTrue();
+            .Happened(Love().Between(Adam, Eve))
+            .Happened(Death().Of(Adam).WatchedBy(Eve))
+            .Then(Heartbroken(Eve)).Should().BeTrue();
         
         OnceUponATime()
-            .Happened(Love().Between(Adam, Eva))
-            .Then(Heartbroken(Eva)).Should().BeFalse();
+            .Happened(Love().Between(Adam, Eve))
+            .Then(Heartbroken(Eve)).Should().BeFalse();
         
         OnceUponATime()
-            .Happened(Love().Between(Adam, Eva))
+            .Happened(Love().Between(Adam, Eve))
             .Happened(Death().Of(Adam))
-            .Then(Heartbroken(Eva)).Should().BeFalse();
+            .Then(Heartbroken(Eve)).Should().BeFalse();
     }
 
     [Test, Ignore("Necesitamos comprobar el plano astral en esta spec")]
     public void CannotBeHeartbroken_IfLoverDiedBeforeLove()
     {
         OnceUponATime()
-            .Happened(Death().Of(Adam).WatchedBy(Eva))
-            .Happened(Love().Between(Adam, Eva))
-            .Then(Heartbroken(Eva)).Should().BeFalse();
+            .Happened(Death().Of(Adam).WatchedBy(Eve))
+            .Happened(Love().Between(Adam, Eve))
+            .Then(Heartbroken(Eve)).Should().BeFalse();
     }
 
     [Test, Ignore("Sólo comprobamos la primera historia de amor")]
     public void FallInLoveAgain()
     {
         OnceUponATime()
-            .Happened(Love().Between(Adam, Eva))
-            .Happened(Death().Of(Adam).WatchedBy(Eva))
-            .Happened(Love().Between(AnybodyElse, Eva))
-            .Then(Heartbroken(Eva)).Should().BeFalse();
+            .Happened(Love().Between(Adam, Eve))
+            .Happened(Death().Of(Adam).WatchedBy(Eve))
+            .Happened(Love().Between(AnybodyElse, Eve))
+            .Then(Heartbroken(Eve)).Should().BeFalse();
     }
 
     [Test]
     public void Generate_Substories_UntilCertainPoint()
     {
         OnceUponATime()
-            .Happened(Death().Of(Eva))
+            .Happened(Death().Of(Eve))
             .asfsafasf(until: 1).Should().HaveCount(1);
         
         OnceUponATime()
-            .Happened(Death().Of(Eva))
+            .Happened(Death().Of(Eve))
             .Happened(Death().Of(Adam))
             .asfsafasf(until: 2).Should().HaveCount(2);
 
@@ -187,16 +187,16 @@ public class SpecsTests
         
         OnceUponATime()
             .Happened(Death().Of(Adam))
-            .Happened(Death().Of(Eva))
-            .Happened(Love().Between(Adam, Eva))
+            .Happened(Death().Of(Eve))
+            .Happened(Love().Between(Adam, Eve))
             .Happened(Death().WatchedBy(Adam))
             .asfsafasf()
             .Should().BeEquivalentTo
             (
                 OnceUponATime()
                     .Happened(Death().Of(Adam))
-                    .Happened(Death().Of(Eva))
-                    .Happened(Love().Between(Adam, Eva))
+                    .Happened(Death().Of(Eve))
+                    .Happened(Love().Between(Adam, Eve))
                     .Happened(Death().WatchedBy(Adam))
                     .asfsafasf(4)
             );
@@ -212,7 +212,7 @@ public class SpecsTests
         
         OnceUponATime()
             .Happened(Death().Of(Adam))
-            .Happened(Death().Of(Eva))
+            .Happened(Death().Of(Eve))
             .Then(Was(Alive(Adam)))
             .Should().BeFalse();
         

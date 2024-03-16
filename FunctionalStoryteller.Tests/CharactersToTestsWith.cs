@@ -6,5 +6,5 @@ public static class CharactersToTestsWith
     public static readonly Character AnybodyElse = "AnybodyElse";
     
     public static readonly Character Adam = "Adan";
-    public static readonly Character Eva = "Eva";
+    public static readonly Character Eve = "Eva";
 }

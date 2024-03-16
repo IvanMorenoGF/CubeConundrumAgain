@@ -43,16 +43,16 @@ public class SceneCommandsTests
     public void DragCharacter_WithinSameScene()
     {
         DragTo(vignette: 1, from: 1, to: 2)
-            .SketchIn(1.Vignettes().In1(Death().WatchedBy(Eva)))
-            .Should().Be(1.Vignettes().In1(Death().Of(Eva)));
+            .SketchIn(1.Vignettes().In1(Death().WatchedBy(Eve)))
+            .Should().Be(1.Vignettes().In1(Death().Of(Eve)));
     }
 
     [Test]
     public void SwapCharacters()
     {
         DragTo(vignette: 1, from: 1, to: 2)
-            .SketchIn(1.Vignettes().In1(Death().Of(Adam).WatchedBy(Eva)))
-            .Should().Be(1.Vignettes().In1(Death().Of(Eva).WatchedBy(Adam)));
+            .SketchIn(1.Vignettes().In1(Death().Of(Adam).WatchedBy(Eve)))
+            .Should().Be(1.Vignettes().In1(Death().Of(Eve).WatchedBy(Adam)));
     }
 
     [Test]
@@ -63,7 +63,7 @@ public class SceneCommandsTests
             .Should().Be(2.Vignettes().In1(Death()).In2(Love().Between(NobodyElse, Adam)));
 
         DragTo(fromVignette: 1, toVignette: 2, fromPosition: 1, toPosition: 2)
-            .SketchIn(2.Vignettes().In1(Death().WatchedBy(Adam)).In2(Love().Between(NobodyElse, Eva)))
+            .SketchIn(2.Vignettes().In1(Death().WatchedBy(Adam)).In2(Love().Between(NobodyElse, Eve)))
             .Should().Be(2.Vignettes().In1(Death()).In2(Love().Between(NobodyElse, Adam)));
         
         DragTo(fromVignette: 1, toVignette: 2, fromPosition: 1, toPosition: 2)
