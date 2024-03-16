@@ -3,11 +3,6 @@ using static LanguageExt.Seq<FunctionalStoryteller.Character>;
 
 namespace FunctionalStoryteller;
 
-public static class safasfasfa
-{
-    public static Func<DeathScene, bool> IsInTheTomb(this Character who) => scene => scene.IsInTheTomb(who);
-}
-
 public sealed record DeathScene : Scene
 {
     readonly Character grievingOne;

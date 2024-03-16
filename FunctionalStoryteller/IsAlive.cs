@@ -12,6 +12,6 @@ public class IsAlive : Spec
            story.AreInOrder
            (
                story.TheLater(wherein: who.IsInTheTomb()),
-               story.TheLater<ReviveScene>(wherein: x => x.IsInTheCast(who))
+               story.TheLater<ReviveScene>(wherein: who.IsInTheCast())
            );
 }
