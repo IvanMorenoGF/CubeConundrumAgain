@@ -6,7 +6,7 @@ using static FunctionalStoryteller.Tests.CharactersToTestsWith;
 
 namespace FunctionalStoryteller.Tests;
 
-public class asdfasfasfs
+public class SceneOrderTests
 {
     [Test]
     public void LaterScene_BetweenTwo_InAStory()
