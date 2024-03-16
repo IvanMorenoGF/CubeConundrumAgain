@@ -92,7 +92,7 @@ public class DeathTests
             .Is(Alive(Adam)).Should().BeTrue();
     }
     
-    [Test, Ignore("Sólo los personajes muertos pueden ser revividos")]
+    [Test]
     public void ReviveSomeone_CanOnlyReviveDead()
     {
         OnceUponATime()
