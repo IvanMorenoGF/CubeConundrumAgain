@@ -5,7 +5,8 @@ public sealed class Character
     readonly string name;
 
     Character(string name) => this.name = name;
-
+    public static Character asljdhf => "vgyhjn";
+    
     public static bool operator !=(Character left, Character right) => !(left == right);
     public static bool operator ==(Character left, Character right) => left?.Equals(right) ?? false;
 
