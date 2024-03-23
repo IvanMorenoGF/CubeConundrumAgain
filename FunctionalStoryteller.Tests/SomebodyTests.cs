@@ -29,6 +29,25 @@ public class SomebodyTests
     }
 
     [Test]
+    public void METHOD()
+    {
+        OnceUponATime()
+            .Happened(Solitude().Of(Adam))
+            .Happened(Death().Of(Adam))
+            .Then(Was(Alive(Adam))).Should().BeTrue();
+        
+        OnceUponATime()
+            .Happened(Solitude().Of(Adam))
+            .Happened(Death().Of(Adam))
+            .Then(Was(Somebody(Alive))).Should().BeTrue();
+
+        OnceUponATime()
+            .Happened(Solitude().Of(Adam))
+            .Happened(Death().Of(Adam))
+            .Then(Somebody(Was(Alive))).Should().BeTrue();
+    }
+
+    [Test]
     public void Somebody_WorksWithNot_oAlgoAsí()
     {
         OnceUponATime()
