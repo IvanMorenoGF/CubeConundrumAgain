@@ -29,7 +29,7 @@ public class Story
         => obj is Story story &&
            scenes.SequenceEqual(story.scenes);
 
-    public bool Then(params Spec[] allSpecs) => allSpecs.All(spec => spec.IsSatisfiedBy(this));
+    public bool Then(params Spec[] allSpecs) => new AndSpec(allSpecs).IsSatisfiedBy(this);
 
     public Seq<Story> asfsafasf(int until)
     {
