@@ -63,4 +63,9 @@ public class Story
     {
         return asfsafasf(scenes.ToList().IndexOf(of) + 1).Last;
     }
+
+    public Seq<Scene> ScenesOf(Character who)
+    {
+        return scenes.Where(x => x.IsInTheCast(who));
+    }
 }
