@@ -49,7 +49,15 @@ public class Chapter1Tests
             .Happened(Death().Of(Adam).WatchedBy(Eve))
             .Happened(Revive().Of(Adam))
             .Happened(Love().Between(Adam, Eve))
-            .Then(Was(Heartbroken(Eve)),Not(Heartbroken(Eve)))
+            .Then(Somebody(Was(Heartbroken),Not(Heartbroken)))
             .Should().BeTrue("Eva se consuela al ver a su amante revivido");
+        
+        OnceUponATime()
+            .Happened(Love().Between(Adam, Eve))
+            .Happened(Death().Of(Eve).WatchedBy(Adam))
+            .Happened(Revive().Of(Eve))
+            .Happened(Love().Between(Adam, Eve))
+            .Then(Somebody(Not(Heartbroken),Was(Heartbroken)))
+            .Should().BeTrue("Adán se consuela al ver a su amante revivido");
     }
 }

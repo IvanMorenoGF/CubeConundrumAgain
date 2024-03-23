@@ -66,5 +66,9 @@ public class SomebodyTests
             .Happened(Solitude().Of(Adam))
             .Happened(Death().Of(Eve))
             .Then(Somebody(InTheCast,Alive)).Should().BeTrue();
+       OnceUponATime()
+            .Happened(Solitude().Of(Adam))
+            .Happened(Death().Of(Adam))
+            .Then(Somebody(InTheCast,Alive)).Should().BeFalse();
     }
 }
