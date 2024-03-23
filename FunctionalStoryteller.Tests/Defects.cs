@@ -6,7 +6,7 @@ using static FunctionalStoryteller.Tests.CharactersToTestsWith;
 
 namespace FunctionalStoryteller.Tests;
 
-[Ignore("sadfasfasfasdf")]
+[Ignore("")]
 public class Defects
 {
     [Test, Description("Necesitamos temporalidad para esta spec")]

@@ -12,8 +12,8 @@ public class VignetteCommandsTests
     public void DragSceneToVignette_Command()
     {
         DragTo(vignette: 1, Death())
-            .SketchIn(Blank(vignettes: 1)).Tell()
-            .Should().Be(OnceUponATime().Happened(Death()));
+            .SketchIn(Blank(vignettes: 1))
+            .Tell().Should().Be(OnceUponATime().Happened(Death()));
     }
 
     [Test]
