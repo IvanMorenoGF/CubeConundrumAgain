@@ -12,5 +12,5 @@ public static class Specs
     public static Func<Character,Spec> Not(Func<Character, Spec> x) => c => Not(x(c));
     public static Func<Character,Spec> Was(Func<Character, Spec> alive) => c => Was(alive(c));
     public static Spec Was(Spec spec) => new WasSpec(spec);
-    public static Spec Somebody(Func<Character, Spec> x) => new SomebodySpec(x);
+    public static Spec Somebody(params Func<Character, Spec>[] x) => new SomebodySpec(x);
 }

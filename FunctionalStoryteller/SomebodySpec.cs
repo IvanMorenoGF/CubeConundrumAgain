@@ -2,15 +2,16 @@ namespace FunctionalStoryteller;
 
 internal class SomebodySpec : Spec
 {
-    readonly Func<Character, Spec> command;
+    readonly Func<Character, Spec>[] command;
 
-    public SomebodySpec(Func<Character,Spec> command)
+    public SomebodySpec(params Func<Character, Spec>[] command)
     {
         this.command = command;
     }
 
     public override bool IsSatisfiedBy(Story story)
-    {
-        return story.Casting.Any(c => command(c).IsSatisfiedBy(story));
-    }
+        => story.Casting
+            .Map(c => command.Map(x => x(c))) // ESTO ES UN BINDEO
+            .Map(e => new AndSpec(e.ToArray()))
+            .Any(s => s.IsSatisfiedBy(story));
 }

@@ -59,5 +59,12 @@ public class SomebodyTests
             .Then(Somebody(Alive)).Should().BeTrue();
     }
 
-    
+    [Test]
+    public void Somebody_IsDeadAndInLove()
+    {
+        OnceUponATime()
+            .Happened(Solitude().Of(Adam))
+            .Happened(Death().Of(Eve))
+            .Then(Somebody(InTheCast,Alive)).Should().BeTrue();
+    }
 }
