@@ -11,6 +11,6 @@ internal class SomebodySpec : Spec
 
     public override bool IsSatisfiedBy(Story story)
     {
-        return story.Casting.All(c => command(c).IsSatisfiedBy(story));
+        return story.Casting.Any(c => command(c).IsSatisfiedBy(story));
     }
 }

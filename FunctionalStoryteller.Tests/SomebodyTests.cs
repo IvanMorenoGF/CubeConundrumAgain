@@ -13,10 +13,10 @@ public class SomebodyTests
     {
         OnceUponATime()
             .Happened(Death().Of(Adam))
-            .Then(Not(Somebody(Alive))).Should().BeTrue();
+            .Then(Somebody(Not(Alive))).Should().BeTrue();
 
         OnceUponATime()
-            .Then(Not(Somebody(Alive)))
+            .Then(Somebody(Not(Alive)))
             .Should().BeFalse();
     }
 
@@ -25,7 +25,7 @@ public class SomebodyTests
     {
         OnceUponATime()
             .Happened(Death().Of(Adam).WatchedBy(Eve))
-            .Then(Not(Somebody(Alive))).Should().BeTrue();
+            .Then(Somebody(Not(Alive))).Should().BeTrue();
     }
 
     [Test]
@@ -33,11 +33,12 @@ public class SomebodyTests
     {
         OnceUponATime()
             .Happened(Love().Between(Adam, Eve))
-            .Then(Not(Somebody(Alive))).Should().BeFalse();
+            .Then(Somebody(Not(Alive))).Should().BeFalse();
         
         OnceUponATime()
             .Happened(Love().Between(Adam, Eve))
             .Then(Somebody(Alive)).Should().BeTrue();
-
     }
+
+    
 }
