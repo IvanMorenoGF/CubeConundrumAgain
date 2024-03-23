@@ -6,7 +6,7 @@ public class Story
 {
     internal readonly Seq<Scene> scenes;
     internal Story(Seq<Scene> scenes) => this.scenes = scenes;
-    public Seq<Character> Casting => scenes.SelectMany(s => s.Cast).Distinct().ToSeq();
+    public Seq<Character> Casting => scenes.Bind(s => s.Cast).Distinct().ToSeq();
 
     public bool WasRejected(Character who) => FirstLoveOf(who) != WhoLoves(who);
 
