@@ -15,7 +15,7 @@ public class SpecsTests
             .Happened(Solitude().Of(Adam))
             .Happened(Solitude().Of(Eve))
             .Then(InTheCast(Adam)).Should().BeTrue();
-        
+
         OnceUponATime().Then(InTheCast(Adam)).Should().BeFalse();
     }
 
@@ -32,7 +32,7 @@ public class SpecsTests
         OnceUponATime()
             .Happened(Solitude().Of(Adam))
             .Then(Alive(Adam)).Should().BeTrue();
-        
+
         OnceUponATime()
             .Happened(Death().Of(Adam))
             .Then(Alive(Adam)).Should().BeFalse();
@@ -51,7 +51,7 @@ public class SpecsTests
             .Happened(Death().Of(Adam))
             .Happened(Love().Between(Adam, Eve))
             .Then(Scared(Eve)).Should().BeTrue();
-        
+
         OnceUponATime()
             .Happened(Death().Of(Adam))
             .Then(Scared(Eve)).Should().BeFalse();
@@ -67,12 +67,34 @@ public class SpecsTests
     }
 
     [Test]
+    public void CutStory_UntilCertainScene()
+    {
+        OnceUponATime()
+            .Happened(Solitude().Of(Adam))
+            .CutUntil(Solitude().Of(Adam))
+            .Should().Be
+            (
+                OnceUponATime().Happened(Solitude().Of(Adam))
+            );
+        
+        OnceUponATime()
+            .Happened(Solitude().Of(Adam))
+            .Happened(Death().Of(Adam))
+            .Happened(Love().Between(Adam, Eve))
+            .CutUntil(Death().Of(Adam))
+            .Should().Be
+            (
+                OnceUponATime().Happened(Solitude().Of(Adam)).Happened(Death().Of(Adam))
+            );
+    }
+
+    [Test]
     public void FirstLoveOf()
     {
         OnceUponATime()
             .Happened(Love().Between(Adam, Eve))
             .Then(InLoveWith(Adam, Eve)).Should().BeTrue();
-        
+
         OnceUponATime()
             .Happened(Love().Between(Adam, NobodyElse))
             .Then(InLoveWith(Adam, Eve)).Should().BeFalse();
@@ -84,16 +106,16 @@ public class SpecsTests
         OnceUponATime()
             .Happened(Love().Between(Adam, NobodyElse))
             .Then(KnowableOfLove(Adam)).Should().BeFalse();
-        
+
         OnceUponATime()
             .Happened(Love().Between(Adam, Eve))
             .Then(KnowableOfLove(Adam)).Should().BeTrue();
-        
+
         OnceUponATime()
             .Happened(Love().Between(Adam, Eve))
             .Happened(Death().Of(Adam))
             .Then(KnowableOfLove(Adam)).Should().BeTrue();
-        
+
         OnceUponATime()
             .Happened(Love().Between(Adam, NobodyElse))
             .Happened(Love().Between(Adam, Eve))
@@ -116,11 +138,11 @@ public class SpecsTests
             .Happened(Love().Between(Adam, Eve))
             .Happened(Death().Of(Adam).WatchedBy(Eve))
             .Then(Heartbroken(Eve)).Should().BeTrue();
-        
+
         OnceUponATime()
             .Happened(Love().Between(Adam, Eve))
             .Then(Heartbroken(Eve)).Should().BeFalse();
-        
+
         OnceUponATime()
             .Happened(Love().Between(Adam, Eve))
             .Happened(Death().Of(Adam))
@@ -152,7 +174,15 @@ public class SpecsTests
         OnceUponATime()
             .Happened(Death().Of(Eve))
             .asfsafasf(until: 1).Should().HaveCount(1);
-        
+
+        OnceUponATime()
+            .Happened(Death().Of(Eve))
+            .asfsafasf(until: 1).Single()
+            .Should().Be
+            (
+                OnceUponATime().Happened(Death().Of(Eve))
+            );
+
         OnceUponATime()
             .Happened(Death().Of(Eve))
             .Happened(Death().Of(Adam))
@@ -163,13 +193,13 @@ public class SpecsTests
             .Happened(Death().Of(Adam))
             .asfsafasf(until: 1).Single()
             .Then(Alive(Adam)).Should().BeTrue();
-        
+
         OnceUponATime()
             .Happened(Solitude().Of(Adam))
             .Happened(Death().Of(Adam))
             .asfsafasf(until: 2)[0]
             .Then(Alive(Adam)).Should().BeTrue();
-        
+
         OnceUponATime()
             .Happened(Solitude().Of(Adam))
             .Happened(Death().Of(Adam))
@@ -184,7 +214,7 @@ public class SpecsTests
             .Happened(Death().Of(Adam))
             .asfsafasf()
             .Should().HaveCount(1);
-        
+
         OnceUponATime()
             .Happened(Death().Of(Adam))
             .Happened(Death().Of(Eve))
@@ -209,19 +239,19 @@ public class SpecsTests
             .Happened(Death().Of(Adam))
             .Then(Was(Alive(Adam)))
             .Should().BeFalse();
-        
+
         OnceUponATime()
             .Happened(Death().Of(Adam))
             .Happened(Death().Of(Eve))
             .Then(Was(Alive(Adam)))
             .Should().BeFalse();
-        
+
         OnceUponATime()
             .Happened(Death().WatchedBy(Adam))
             .Happened(Death().Of(Adam))
             .Then(Was(Alive(Adam)))
             .Should().BeTrue();
-        
+
         OnceUponATime()
             .Happened(Death().WatchedBy(Adam))
             .Happened(Death().Of(Adam))

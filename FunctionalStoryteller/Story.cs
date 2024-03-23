@@ -1,5 +1,4 @@
 using LanguageExt;
-using LanguageExt.SomeHelp;
 
 namespace FunctionalStoryteller;
 
@@ -58,5 +57,10 @@ public class Story
     public bool AreInOrder(Option<Scene> theFirst, Option<Scene> theLast)
     {
         return TheLater(theFirst, theLast) == theLast;
+    }
+
+    public Story CutUntil(Scene of)
+    {
+        return asfsafasf(scenes.ToList().IndexOf(of) + 1).Last;
     }
 }
