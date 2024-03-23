@@ -10,4 +10,5 @@ public static class Specs
     public static Spec Scared(Character who) => new IsScared(who);
     public static Spec Not(Spec spec) => new NotSpec(spec);
     public static Spec Was(Spec spec) => new WasSpec(spec);
+    public static Spec Somebody(Func<Character, Spec> x) => new SomebodySpec(x);
 }
