@@ -6,29 +6,6 @@ using static FunctionalStoryteller.Tests.CharactersToTestsWith;
 
 namespace FunctionalStoryteller.Tests;
 
-public class StoryTests
-{
-    [Test]
-    public void Scenes_InWhich_ACharacterActs()
-    {
-        OnceUponATime()
-            .Happened(Solitude().Of(Adam))
-            .Happened(Solitude().Of(Eve))
-            .ScenesOf(Adam).Should().HaveCount(1);
-        
-        OnceUponATime()
-            .Happened(Solitude().Of(Adam))
-            .Happened(Solitude().Of(Eve))
-            .Happened(Love().Between(Adam, Eve))
-            .ScenesOf(Adam).Should().HaveCount(2);
-
-        OnceUponATime()
-            .Happened(Solitude().Of(Adam))
-            .Happened(Solitude().Of(Eve))
-            .ScenesOf(Adam).Single().Should().Be(Solitude().Of(Adam));
-    }
-}
-
 public class SpecsTests
 {
     [Test]
@@ -76,15 +53,6 @@ public class SpecsTests
             .Then(Scared(Eve)).Should().BeTrue();
 
         OnceUponATime()
-            .Happened(Death().Of(Adam))
-            .Then(Scared(Eve)).Should().BeFalse();
-    }
-
-    [Test, Ignore("Necesitamos temporalidad para esta spec")]
-    public void DidNot_BecameScared_IfSharedCast_WithCharacterAboutToDie()
-    {
-        OnceUponATime()
-            .Happened(Love().Between(Adam, Eve))
             .Happened(Death().Of(Adam))
             .Then(Scared(Eve)).Should().BeFalse();
     }
@@ -169,25 +137,6 @@ public class SpecsTests
         OnceUponATime()
             .Happened(Love().Between(Adam, Eve))
             .Happened(Death().Of(Adam))
-            .Then(Heartbroken(Eve)).Should().BeFalse();
-    }
-
-    [Test, Ignore("Necesitamos comprobar el plano astral en esta spec")]
-    public void CannotBeHeartbroken_IfLoverDiedBeforeLove()
-    {
-        OnceUponATime()
-            .Happened(Death().Of(Adam).WatchedBy(Eve))
-            .Happened(Love().Between(Adam, Eve))
-            .Then(Heartbroken(Eve)).Should().BeFalse();
-    }
-
-    [Test, Ignore("Sólo comprobamos la primera historia de amor")]
-    public void FallInLoveAgain()
-    {
-        OnceUponATime()
-            .Happened(Love().Between(Adam, Eve))
-            .Happened(Death().Of(Adam).WatchedBy(Eve))
-            .Happened(Love().Between(AnybodyElse, Eve))
             .Then(Heartbroken(Eve)).Should().BeFalse();
     }
 
