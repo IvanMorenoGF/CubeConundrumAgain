@@ -6,6 +6,7 @@ public class Story
 {
     internal readonly Seq<Scene> scenes;
     internal Story(Seq<Scene> scenes) => this.scenes = scenes;
+    public Seq<Character> Cast { get; set; }
 
     public bool WasRejected(Character who) => FirstLoveOf(who) != WhoLoves(who);
 

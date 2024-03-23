@@ -23,4 +23,10 @@ public class StoryTests
             .Happened(Scenes.Solitude().Of(CharactersToTestsWith.Eve))
             .ScenesOf(CharactersToTestsWith.Adam).Single().Should().Be(Scenes.Solitude().Of(CharactersToTestsWith.Adam));
     }
+
+    [Test]
+    public void CastOfStory()
+    {
+        Storyteller.OnceUponATime().Cast.Should().BeEmpty();
+    }
 }

@@ -9,7 +9,6 @@ namespace FunctionalStoryteller.Tests;
 [Ignore("sadfasfasfasdf")]
 public class Defects
 {
-    
     [Test, Description("Necesitamos temporalidad para esta spec")]
     public void YouCanBeScared_BeforeSeeingAGhost()
     {
