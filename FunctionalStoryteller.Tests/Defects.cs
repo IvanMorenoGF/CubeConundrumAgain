@@ -6,10 +6,11 @@ using static FunctionalStoryteller.Tests.CharactersToTestsWith;
 
 namespace FunctionalStoryteller.Tests;
 
+[Ignore("sadfasfasfasdf")]
 public class Defects
 {
     
-    [Test, Ignore("Necesitamos temporalidad para esta spec")]
+    [Test, Description("Necesitamos temporalidad para esta spec")]
     public void YouCanBeScared_BeforeSeeingAGhost()
     {
         OnceUponATime()
@@ -19,16 +20,7 @@ public class Defects
             .Should().BeFalse("No deberías poder predecir la muerte de alguien");
     }
     
-    [Test, Ignore("Necesitamos comprobar el plano astral en esta spec")]
-    public void YouBecomeHeartbroken_BeforeFallingInLove()
-    {
-        OnceUponATime()
-            .Happened(Death().Of(Adam).WatchedBy(Eve))
-            .Happened(Love().Between(Adam, Eve))
-            .Then(Heartbroken(Eve)).Should().BeFalse();
-    }
-
-    [Test, Ignore("Sólo comprobamos la primera historia de amor")]
+    [Test, Description("Sólo comprobamos la primera historia de amor")]
     public void YouCannot_FallInLoveAgain()
     {
         OnceUponATime()
@@ -38,9 +30,9 @@ public class Defects
             .Then(Heartbroken(Eve)).Should().BeFalse();
     }
     
-    [Test, Ignore("Nos hemos dado cuenta de que los comandos necesitan estado para la generación del evento")]
+    [Test, Description("Nos hemos dado cuenta de que los comandos necesitan estado para la generación del evento")]
     public void SwapCharactersEvent()
     {
-        
+        Assert.Fail();
     }
 }

@@ -70,6 +70,16 @@ public class LovingTests
             .Happened(Love().Between("Adan", "Eva"))
             .FirstLoveOf("Other").IsNone.Should().BeTrue();
     }
+    
+    [Test, Description("Necesitamos comprobar el plano astral en esta spec")]
+    public void OnlyBecomeHeartbroken_AfterFallingInLove()
+    {
+        OnceUponATime()
+            .Happened(Death().Of(Adam).WatchedBy(Eve))
+            .Happened(Love().Between(Adam, Eve))
+            .Then(Heartbroken(Eve)).Should().BeFalse();
+    }
+
 
     [Test]
     public void FallInLove_NotInTheFirstTime()
