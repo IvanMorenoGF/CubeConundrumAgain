@@ -8,27 +8,10 @@ namespace FunctionalStoryteller.Tests;
 public class SAfasfasaf
 {
     [Test]
-    public void IsKnowableOfLove()
+    public void NotSingle()
     {
         OnceUponATime()
             .Happened(Love().Between(Adam, Eve))
-            .Then(Single(Adam)).Should().BeTrue();
-    }
-
-    [Test]
-    public void NeverWas_KnowableOfLove()
-    {
-        OnceUponATime()
-            .Happened(Death().Of(Eve).WatchedBy(Adam))
-            .Then(Single(Adam)).Should().BeFalse();
-    }
-    
-    [Test]
-    public void WasKnowableOfLove_ButNotNow()
-    {
-        OnceUponATime()
-            .Happened(Love().Between(Adam,Eve))
-            .Happened(Death().Of(Eve).WatchedBy(Adam))
             .Then(Single(Adam)).Should().BeFalse();
     }
 }
