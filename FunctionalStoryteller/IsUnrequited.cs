@@ -6,10 +6,10 @@ public class IsUnrequited : Spec
     public IsUnrequited(Character who) => this.who = who;
 
     public override bool IsSatisfiedBy(Story story) 
-        => story.FirstLoveOf(who)
+        => story.First<LoveScene>(of:who)
             .Match
             (
-                x => story.scenes.OfType<LoveScene>().Any(s => s.AreInTheCast(who, x)),
+                scene => !scene.LoverOf(who).Loves(who).IsSatisfiedBy(story),
                 false
             );
 }
