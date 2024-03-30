@@ -12,7 +12,7 @@ public class IsInLoveWith : Spec
     }
 
     public override bool IsSatisfiedBy(Story story)
-        => story.First<LoveScene>(of: who).Match
+        => story.Last<LoveScene>(of: who).Match
            (
                Some: scene => scene.PotentialLoverOf(who) == whom,
                None: () => false

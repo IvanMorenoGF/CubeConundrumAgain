@@ -20,7 +20,7 @@ public class Defects
     }
     
     [Test, Description("Sólo comprobamos la primera historia de amor")]
-    public void YouCannot_FallInLoveAgain()
+    public void YouKeepHeartbroken_ByAFormerLove()
     {
         OnceUponATime()
             .Happened(Love().Between(Adam, Eve))

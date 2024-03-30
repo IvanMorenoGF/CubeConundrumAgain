@@ -12,6 +12,11 @@ public static class Scriptwriter
             ? story.scenes.OfType<T>().First(x => x.IsInTheCast(of))
             : Option<T>.None;
     
+    public static Option<T> Last<T>(this Story story, Character of) where T : Scene
+        => story.PartOfAny<T>(of)
+            ? story.scenes.OfType<T>().Last(x => x.IsInTheCast(of))
+            : Option<T>.None;
+    
     public static Seq<T> All<T>(this Story story, Character of) where T : Scene
         => story.PartOfAny<T>(of)
             ? story.scenes.OfType<T>().Where(x => x.IsInTheCast(of)).ToSeq()

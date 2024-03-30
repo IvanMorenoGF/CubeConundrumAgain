@@ -21,10 +21,12 @@ public class Chapter2Tests
         // Se da el amor entre Adam y Enriqueto
         // Se da el amor entre Enriqueto y otra persona (que no sea Adam ni Eve)
 
+        // Para programar la amnesia, simplemente poder saber si en un punto alguien está soltero
+        
         OnceUponATime()
             .Happened(Love().Between(Adam, Eve))
             .Happened(Death().Of(Adam).WatchedBy(Eve))
             .Happened(Love().Between(Eve, AnybodyElse))
-            .Then(Eve.Loves(AnybodyElse)).Should().BeTrue();
+            .Then(Was(Heartbroken(Eve)), Eve.Loves(AnybodyElse)).Should().BeTrue();
     }
 }
