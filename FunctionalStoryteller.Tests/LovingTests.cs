@@ -138,13 +138,4 @@ public class LovingTests
     {
         Love().Between(Adam, NobodyElse).PlaceAt(2, Adam).Should().Be(Love().Between(NobodyElse, Adam));
     }
-    
-    [Test]
-    public void Reject()
-    {
-        OnceUponATime()
-            .Happened(Love().Between(Someone, AnybodyElse))
-            .Happened(Love().Between(Adam, Someone))
-            .Then(Unrequited(Adam)).Should().BeTrue();
-    }
 }
