@@ -1,0 +1,30 @@
+@startuml
+skin rose
+
+class Snapshot
+class Lore
+class Stat
+class Looking
+class Character
+class Role
+class Effect
+class Scene
+class Requirement
+class Memento
+Snapshot *-- Memento
+Memento *-- Lore
+Memento *-- Stat
+Memento *-- Looking
+Memento -r-> Character
+
+Effect --> Lore #blue : affects
+Effect --> Stat #blue : affects
+
+Role --> Effect : makes
+Role -r-> Requirement
+
+Scene *-- Role
+Role o-- Character
+
+Scene --> Snapshot : mutates
+@enduml
