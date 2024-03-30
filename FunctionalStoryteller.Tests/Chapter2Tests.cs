@@ -25,6 +25,6 @@ public class Chapter2Tests
             .Happened(Love().Between(Adam, Eve))
             .Happened(Death().Of(Adam).WatchedBy(Eve))
             .Happened(Love().Between(Eve, AnybodyElse))
-            .Then(InLoveWith(Eve, AnybodyElse)).Should().BeTrue();
+            .Then(Eve.Loves(AnybodyElse)).Should().BeTrue();
     }
 }

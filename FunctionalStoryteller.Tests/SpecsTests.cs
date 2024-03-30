@@ -84,11 +84,11 @@ public class SpecsTests
     {
         OnceUponATime()
             .Happened(Love().Between(Adam, Eve))
-            .Then(InLoveWith(Adam, Eve)).Should().BeTrue();
+            .Then(Adam.Loves(Eve)).Should().BeTrue();
 
         OnceUponATime()
             .Happened(Love().Between(Adam, NobodyElse))
-            .Then(InLoveWith(Adam, Eve)).Should().BeFalse();
+            .Then(Adam.Loves(Eve)).Should().BeFalse();
     }
 
     [Test]

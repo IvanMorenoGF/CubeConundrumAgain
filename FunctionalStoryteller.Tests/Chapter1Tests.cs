@@ -15,7 +15,7 @@ public class Chapter1Tests
             .Happened(Solitude().Of(Adam))
             .Happened(Love().Between(Adam, Eve))
             .Happened(Death().Of(Adam))
-            .Then(InLoveWith(Adam, Eve), Not(Alive(Adam)))
+            .Then(Adam.Loves(Eve), Not(Alive(Adam)))
             .Should().BeTrue("se entiende que Adán muere feliz si Eva lo ama");
     }
 
@@ -37,7 +37,7 @@ public class Chapter1Tests
             .Happened(Love().Between(Adam, Eve))
             .Happened(Death().Of(Adam).WatchedBy(Eve))
             .Happened(Love().Between(Adam, Eve))
-            .Then(InLoveWith(Eve, Adam), Scared(Eve))
+            .Then(Eve.Loves(Adam), Scared(Eve))
             .Should().BeTrue("Eva está asustada por ver el fantasma de un amante");
     }
 
