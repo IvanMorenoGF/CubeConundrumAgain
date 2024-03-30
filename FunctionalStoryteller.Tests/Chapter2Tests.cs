@@ -29,4 +29,14 @@ public class Chapter2Tests
             .Happened(Love().Between(Eve, AnybodyElse))
             .Then(Was(Heartbroken(Eve)), Eve.Loves(AnybodyElse)).Should().BeTrue();
     }
+
+    [Test, Ignore("Todo")]
+    public void sadfasf()
+    {
+        OnceUponATime()
+            .Happened(Love().Between(Someone, AnybodyElse))
+            .Happened(Love().Between(Adam, Someone))
+            .Happened(Love().Between(Adam, Eve))
+            .Then(Was(Heartbroken(Adam)), Adam.Loves(Eve)).Should().BeTrue();
+    }
 }
