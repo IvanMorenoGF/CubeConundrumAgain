@@ -21,9 +21,9 @@ public class Tests
     [Test]
     public void MoveNothing()
     {
-        Game2048.From("0 0 0").SwipeToRight().At(2,0).Should().Be(0);
-        Game2048.From("0 0 2").SwipeToRight().At(2,0).Should().Be(2);
-        Game2048.From("0 2 0").SwipeToRight().At(2,0).Should().Be(2);
-        Game2048.From("2 0 0").SwipeToRight().At(2,0).Should().Be(2);
+        Game2048.From("0 0 0").SwipeToRight().Should().Be(Game2048.From("0 0 0"));
+        Game2048.From("0 0 2").SwipeToRight().Should().Be(Game2048.From("0 0 2"));
+        Game2048.From("0 4 0").SwipeToRight().Should().Be(Game2048.From("0 0 4"));
+        Game2048.From("2 0 4").SwipeToRight().Should().Be(Game2048.From("0 2 4"));
     }
 }

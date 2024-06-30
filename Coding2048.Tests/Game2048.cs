@@ -33,16 +33,26 @@ return new(allLines.Select(SwipeLineToRight).ToList());
 
     int[] SwipeLineToRight(int[] arg)
     {
+        var withoutZeroes = arg.Where(x => x != 0).ToArray();
+        var zeroes = arg.Length - withoutZeroes.Length;
         var result = new int[arg.Length];
-        var index = arg.Length - 1;
-        foreach (var number in arg)
+        for (int i = 0; i < withoutZeroes.Length; i++)
         {
-            if (number != 0)
-            {
-                result[index] = number;
-                index--;
-            }
+            result[zeroes + i] = withoutZeroes[i];
         }
         return result;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is not Game2048 other)
+            return false;
+        
+        return ToString() == other.ToString();
+    }
+
+    public override string ToString()
+    {
+        return string.Join("\n", allLines.Select(x => string.Join(" ", x)));
     }
 }
