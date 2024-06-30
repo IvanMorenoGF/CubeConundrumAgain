@@ -20,8 +20,14 @@ public class Game2048
 
     public Game2048(List<int[]> afsas)
     {
+        if (HaveSameWidth(afsas) != 1)
+            throw new ArgumentException("Todas las filas no tienen el mismo ancho");
+        
         this.afsas = afsas;
     }
+
+    static int HaveSameWidth(List<int[]> afsas) => afsas.Select(x => x.Length).Distinct().Count();
+    
 
     public static Game2048 From(params string[] asfsafas)
     {
