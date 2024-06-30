@@ -122,9 +122,9 @@ public class Game2048
         return new Game2048(newAllLines);
     }
 
-    public Game2048 ASfasfsa(Direction whereToMove)
+    public Game2048 PassTurn(Direction movingTo)
     {
-        return Swipe(whereToMove).Spawn();
+        return Swipe(movingTo).Spawn();
     }
 
     Game2048 Swipe(Direction whereToMove)
@@ -132,6 +132,9 @@ public class Game2048
         return whereToMove switch
         {
             Direction.Left => SwipeToLeft(),
+            Direction.Up => SwipeUp(),
+            Direction.Down => SwipeDown(),
+            Direction.Right => SwipeToRight(),
             _ => throw new ArgumentOutOfRangeException(nameof(whereToMove), whereToMove, null)
         };
     }
@@ -139,5 +142,8 @@ public class Game2048
     
 public enum Direction
 {
-    Left
+    Left,
+    Up,
+    Down,
+    Right
 }

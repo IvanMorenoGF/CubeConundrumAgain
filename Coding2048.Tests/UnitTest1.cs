@@ -145,7 +145,10 @@ public class Tests
     [Test]
     public void SpawnAfterSwipe()
     {
-        Game2048.From("0 0 2").ASfasfsa(Direction.Left).CountsOf(2).Should().Be(2);
-        Game2048.From("0 0 2").ASfasfsa(Direction.Left).At(0,0).Should().Be(2);
+        Game2048.From("0 0 2").PassTurn(Direction.Left).CountsOf(2).Should().Be(2);
+        Game2048.From("0 0 2").PassTurn(Direction.Right).CountsOf(2).Should().Be(2);
+        Game2048.From("0 0 2").PassTurn(Direction.Down).CountsOf(2).Should().Be(2);
+        Game2048.From("0 0 2").PassTurn(Direction.Up).CountsOf(2).Should().Be(2);
+        Game2048.From("0 0 2").PassTurn(Direction.Left).At(0,0).Should().Be(2);
     }
 }
