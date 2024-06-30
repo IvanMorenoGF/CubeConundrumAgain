@@ -37,6 +37,13 @@ public class Game2048
         var withoutZeroes = arg.Where(x => x != 0).ToArray();
         var zeroes = arg.Length - withoutZeroes.Length;
         var result = new int[arg.Length];
+        Merge(withoutZeroes, result, zeroes);
+
+        return result;
+    }
+
+    static void Merge(int[] withoutZeroes, int[] result, int zeroes)
+    {
         for (int i = 0; i < withoutZeroes.Length; i++)
         {
             if (i + 1 < withoutZeroes.Length && withoutZeroes[i] == withoutZeroes[i + 1])
@@ -47,8 +54,6 @@ public class Game2048
             else
                 result[zeroes + i] = withoutZeroes[i];
         }
-
-        return result;
     }
 
     public override bool Equals(object? obj)
