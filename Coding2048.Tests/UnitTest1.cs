@@ -34,5 +34,16 @@ public class Tests
         Game2048.From("2 2 2").SwipeToRight().Should().Be(Game2048.From("0 2 4"));
         Game2048.From("2 2 2 2").SwipeToRight().Should().Be(Game2048.From("0 0 4 4"));
         Game2048.From("0 4 4 2").SwipeToRight().Should().Be(Game2048.From("0 0 8 2"));
+        Game2048.From("4 0 4 2").SwipeToRight().Should().Be(Game2048.From("0 0 8 2"));
+        Game2048.From("4 8 4 2").SwipeToRight().Should().Be(Game2048.From("4 8 4 2"));
+    }
+
+    [Test]
+    public void MergeTwoLines_ToTheRight()
+    {
+        Game2048.From("0 2 2", 
+                      "0 2 2").SwipeToRight().Should().Be(Game2048.From("0 0 4", 
+                                                                        "0 0 4"));
+        
     }
 }
