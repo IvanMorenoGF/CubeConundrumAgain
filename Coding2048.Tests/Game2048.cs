@@ -122,14 +122,11 @@ public class Game2048
         return new Game2048(newAllLines);
     }
 
-    public Game2048 PassTurn(Direction movingTo)
-    {
-        return Swipe(movingTo).Spawn();
-    }
+    public Game2048 PassTurn(Direction movingTo) 
+        => Swipe(movingTo).Spawn();
 
-    Game2048 Swipe(Direction whereToMove)
-    {
-        return whereToMove switch
+    Game2048 Swipe(Direction whereToMove) 
+        => whereToMove switch
         {
             Direction.Left => SwipeToLeft(),
             Direction.Up => SwipeUp(),
@@ -137,25 +134,16 @@ public class Game2048
             Direction.Right => SwipeToRight(),
             _ => throw new ArgumentOutOfRangeException(nameof(whereToMove), whereToMove, null)
         };
-    }
 
-    public bool IsWin()
-    {
-        return allLines.SelectMany(x => x).Any(x => x == 2048);
-    }
+    public bool IsWin() => allLines.SelectMany(x => x).Any(x => x == 2048);
 
-    public bool IsLose()
-    {
-        return Equals(SwipeToRight()) &&
-               Equals(SwipeToLeft()) &&
-               Equals(SwipeUp()) &&
-               Equals(SwipeDown());
-    }
+    public bool IsLose() =>
+        Equals(SwipeToRight()) &&
+        Equals(SwipeToLeft()) &&
+        Equals(SwipeUp()) &&
+        Equals(SwipeDown());
 
-    public bool GameOver()
-    {
-        return IsWin() || IsLose();
-    }
+    public bool GameOver() => IsWin() || IsLose();
 }
 
 public enum Direction
