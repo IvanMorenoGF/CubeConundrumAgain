@@ -97,4 +97,11 @@ public class Game2048
         
         return new Game2048(newAllLines);
     }
+
+    public Game2048 SwipeToLeft()
+    {
+        var toTheRight = RotateToTheRight().RotateToTheRight();
+        var swipeToRight = toTheRight.SwipeToRight();
+        return swipeToRight.RotateToTheRight().RotateToTheRight();
+    }
 }

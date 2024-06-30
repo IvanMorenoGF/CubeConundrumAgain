@@ -55,13 +55,27 @@ public class Tests
             "0 0 0",
             "2 0 0"));
     }
+    
+    [Test]
+    public void SwipeLeft()
+    {
+        Game2048.From("2 0 2", 
+            "0 0 0",
+            "0 0 0")
+            .SwipeToLeft()
+            .Should().Be(Game2048.From("4 0 0", 
+            "0 0 0",
+            "0 0 0"));
+    }
 
     [Test]
     public void MergeDown()
     {
         Game2048.From("2 0 0", 
             "2 0 0",
-            "0 0 0").SwipeDown().Should().Be(Game2048.From("0 0 0", 
+            "0 0 0")
+            .SwipeDown()
+            .Should().Be(Game2048.From("0 0 0", 
             "0 0 0",
             "4 0 0"));
     }
