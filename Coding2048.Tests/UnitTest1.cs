@@ -141,4 +141,11 @@ public class Tests
         Game2048.From("2 0 2",
             "0 0 2").CountsOf(2).Should().Be(3);
     }
+
+    [Test]
+    public void SpawnAfterSwipe()
+    {
+        Game2048.From("0 0 2").ASfasfsa(Direction.Left).CountsOf(2).Should().Be(2);
+        Game2048.From("0 0 2").ASfasfsa(Direction.Left).At(0,0).Should().Be(2);
+    }
 }

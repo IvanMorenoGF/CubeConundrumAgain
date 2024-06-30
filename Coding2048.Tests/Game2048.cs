@@ -121,4 +121,23 @@ public class Game2048
         newAllLines[randomCell.x][randomCell.y] = 2;
         return new Game2048(newAllLines);
     }
+
+    public Game2048 ASfasfsa(Direction whereToMove)
+    {
+        return Swipe(whereToMove).Spawn();
+    }
+
+    Game2048 Swipe(Direction whereToMove)
+    {
+        return whereToMove switch
+        {
+            Direction.Left => SwipeToLeft(),
+            _ => throw new ArgumentOutOfRangeException(nameof(whereToMove), whereToMove, null)
+        };
+    }
+}
+    
+public enum Direction
+{
+    Left
 }
