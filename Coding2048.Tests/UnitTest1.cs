@@ -26,4 +26,10 @@ public class Tests
         Game2048.From("0 4 0").SwipeToRight().Should().Be(Game2048.From("0 0 4"));
         Game2048.From("2 0 4").SwipeToRight().Should().Be(Game2048.From("0 2 4"));
     }
+
+    [Test]
+    public void Merge()
+    {
+        Game2048.From("0 2 2").SwipeToRight().Should().Be(Game2048.From("0 0 4"));
+    }
 }

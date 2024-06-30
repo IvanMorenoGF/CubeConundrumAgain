@@ -10,7 +10,7 @@ public class Game2048
             throw new ArgumentException("Todas las filas no tienen el mismo ancho");
         if (allLines.SelectMany(x => x).Any(x => !IsPowerOf2(x)))
             throw new ArgumentException("No todos los números son parte del juego");
-        
+
         this.allLines = allLines;
     }
 
@@ -21,6 +21,7 @@ public class Game2048
 
     static int[] ParseLine(string line) => line.Split(" ").Select(Parse).ToArray();
     static int Parse(string number) => int.Parse(number);
+
     public int At(int x, int y)
     {
         return allLines[y][x];
@@ -28,7 +29,7 @@ public class Game2048
 
     public Game2048 SwipeToRight()
     {
-return new(allLines.Select(SwipeLineToRight).ToList());
+        return new(allLines.Select(SwipeLineToRight).ToList());
     }
 
     int[] SwipeLineToRight(int[] arg)
@@ -38,8 +39,15 @@ return new(allLines.Select(SwipeLineToRight).ToList());
         var result = new int[arg.Length];
         for (int i = 0; i < withoutZeroes.Length; i++)
         {
-            result[zeroes + i] = withoutZeroes[i];
+            if (i + 1 < withoutZeroes.Length && withoutZeroes[i] == withoutZeroes[i + 1])
+            {
+                i++;
+                result[zeroes + i] = withoutZeroes[i] * 2;
+            }
+            else
+                result[zeroes + i] = withoutZeroes[i];
         }
+
         return result;
     }
 
@@ -47,7 +55,7 @@ return new(allLines.Select(SwipeLineToRight).ToList());
     {
         if (obj is not Game2048 other)
             return false;
-        
+
         return ToString() == other.ToString();
     }
 
