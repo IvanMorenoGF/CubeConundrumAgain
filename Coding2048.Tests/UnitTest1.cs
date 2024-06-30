@@ -62,6 +62,26 @@ public class Tests
                       "0 0 0").RotateToTheRight().Should().Be(Game2048.From("0 0 2", 
                                                                   "0 0 0",
                                                                   "0 0 0"));
+        
+        Game2048.From("2 0 0", 
+                      "0 0 0").RotateToTheRight().Should().Be(Game2048.From("0 2", 
+                                                                            "0 0",
+                                                                            "0 0"));
+        
+        Game2048.From("2 0 0", 
+            "0 0 0")
+            .RotateToTheRight()
+            .RotateToTheRight()
+            .Should().Be(Game2048.From("0 0 0", "0 0 2"));
+        
+        Game2048.From("2 0 0", 
+                "0 0 0")
+            .RotateToTheRight()
+            .RotateToTheRight()
+            .RotateToTheRight()
+            .RotateToTheRight()
+            .Should().Be(Game2048.From("2 0 0", 
+            "0 0 0"));
     }
     
 }
