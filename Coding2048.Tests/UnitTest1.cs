@@ -57,6 +57,16 @@ public class Tests
     }
 
     [Test]
+    public void MergeDown()
+    {
+        Game2048.From("2 0 0", 
+            "2 0 0",
+            "0 0 0").SwipeDown().Should().Be(Game2048.From("0 0 0", 
+            "0 0 0",
+            "4 0 0"));
+    }
+
+    [Test]
     public void RotateGame()
     {
         Game2048.From("2 0 0", 
