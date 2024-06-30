@@ -30,22 +30,9 @@ public class Tests
     [Test]
     public void Merge()
     {
-        
-        Game2048.CanMerge(new int[] { 2, 2 }).Should().BeTrue();
-        Game2048.CanMerge(new int[] { 2, 1 }).Should().BeFalse();
-        Game2048.Merge(new int[] { 2, 4 }).SequenceEqual(new int[] { 2, 4 }).Should().BeTrue();
-        Game2048.Merge(new int[] { 2, 2 }).SequenceEqual(new int[] { 0, 4 }).Should().BeTrue();
-        Game2048.MergeFromRight(new int[] { 2, 2, 2 }).SequenceEqual(new int[] { 0, 2, 4 }).Should().BeTrue();
-        Game2048.Merge(new int[] { 2, 2, 2, 2 }).SequenceEqual(new int[] { 0,0, 4, 4 }).Should().BeTrue();
-        
-        Game2048.Merge(new int[] { 2, 2, 2, 2 }).Should().BeEquivalentTo(new int[] { 0, 0, 4, 4 });
-        Game2048.Merge(new int[] { 2, 2, 2, 2, 2, 2 }).Should().BeEquivalentTo(new int[] { 0, 0, 0, 4, 4, 4 });
-    }
-
-    [Test]
-    public void asfasd()
-    {
-        // Game2048.From("0 2 2").SwipeToRight().Should().Be(Game2048.From("0 0 4"));
+        Game2048.From("0 2 2").SwipeToRight().Should().Be(Game2048.From("0 0 4"));
         Game2048.From("2 2 2").SwipeToRight().Should().Be(Game2048.From("0 2 4"));
+        Game2048.From("2 2 2 2").SwipeToRight().Should().Be(Game2048.From("0 0 4 4"));
+        Game2048.From("0 4 4 2").SwipeToRight().Should().Be(Game2048.From("0 0 8 2"));
     }
 }

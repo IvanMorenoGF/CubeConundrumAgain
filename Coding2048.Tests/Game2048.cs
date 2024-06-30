@@ -37,33 +37,21 @@ public class Game2048
         var withoutZeroes = arg.Where(x => x != 0).ToArray();
         var zeroes = arg.Length - withoutZeroes.Length;
         var merge = Merge(withoutZeroes);
-        return PadZeroesToLeft(merge, zeroes);
+        var mergeWithoutZeroes = merge.Where(x => x != 0).ToArray();
+        var mergeZeroes = merge.Length - mergeWithoutZeroes.Length;
+        return PadZeroesToLeft(mergeWithoutZeroes, zeroes + mergeZeroes);
     }
 
     static int[] PadZeroesToLeft(int[] withoutZeroes, int zeroes)
     {
         return new int[zeroes].Concat(withoutZeroes).ToArray() ;
     }
-    
-    public static int[] Merge(int[] ints)
-    {
-        var result = ints.ToArray();
-        
-        for (int i = 0; i < ints.Length - 1; i = i + 2)
-        {
-            if (!CanMerge(new int[] { ints[i], ints[i + 1] })) continue;
-            result[i] = 0;
-            result[i + 1] *= 2;
-        }
-        
-        return result;
-    }
 
-    public static int[] MergeFromRight(int[] ints)
+    static int[] Merge(int[] ints)
     {
         var result = ints.ToArray();
 
-        for (int i = result.Length - 1; i > 0; i = i - 2)
+        for (int i = result.Length - 1; i > 0; i--)
         {
             if (!CanMerge(new int[] { result[i - 1], result[i] })) continue;
             result[i] *= 2;
@@ -73,7 +61,7 @@ public class Game2048
         return result;
     }
 
-    public static bool CanMerge(int[] ints)
+    static bool CanMerge(int[] ints)
     {
         return ints.Last() == ints.First();
     }
