@@ -46,12 +46,14 @@ public class Tests
                                                                         "0 0 4"));
     }
 
-    [Test, Ignore("")]
+    [Test]
     public void MoveDown()
     {
         Game2048.From("2 0 0", 
+                      "0 0 0",
                       "0 0 0").SwipeDown().Should().Be(Game2048.From("0 0 0", 
-                                                                     "2 0 0"));
+            "0 0 0",
+            "2 0 0"));
     }
 
     [Test]

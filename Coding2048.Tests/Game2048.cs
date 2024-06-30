@@ -81,7 +81,9 @@ public class Game2048
 
     public Game2048 SwipeDown()
     {
-        return this.RotateToTheRight().SwipeToRight().RotateToTheRight().RotateToTheRight().RotateToTheRight();
+        var toTheRight = RotateToTheRight().RotateToTheRight().RotateToTheRight();
+        var swipeToRight = toTheRight.SwipeToRight();
+        return swipeToRight.RotateToTheRight();
     }
 
     public Game2048 RotateToTheRight()
