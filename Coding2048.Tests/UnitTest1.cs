@@ -151,4 +151,11 @@ public class Tests
         Game2048.From("0 0 2").PassTurn(Direction.Up).CountsOf(2).Should().Be(2);
         Game2048.From("0 0 2").PassTurn(Direction.Left).At(0,0).Should().Be(2);
     }
+
+    [Test]
+    public void Win()
+    {
+     Game2048.From("2048").IsWin().Should().BeTrue();   
+     Game2048.From("4").IsWin().Should().BeFalse();   
+    }
 }

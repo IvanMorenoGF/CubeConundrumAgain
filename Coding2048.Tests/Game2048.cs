@@ -138,6 +138,11 @@ public class Game2048
             _ => throw new ArgumentOutOfRangeException(nameof(whereToMove), whereToMove, null)
         };
     }
+
+    public bool IsWin()
+    {
+        return allLines.SelectMany(x => x).Any(x => x == 2048);
+    }
 }
     
 public enum Direction
