@@ -166,4 +166,12 @@ public class Tests
         Game2048.From("4 4").IsLose().Should().BeFalse();
         Game2048.From("4 0").IsLose().Should().BeFalse();
     }
+
+    [Test]
+    public void GameOver()
+    {
+        Game2048.From("2048").GameOver().Should().BeTrue();
+        Game2048.From("4 2").GameOver().Should().BeTrue();
+        Game2048.From("4 4").GameOver().Should().BeFalse();
+    }
 }

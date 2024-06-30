@@ -146,10 +146,15 @@ public class Game2048
 
     public bool IsLose()
     {
-        return this.Equals(SwipeToRight()) &&
-               this.Equals(SwipeToLeft()) &&
-               this.Equals(SwipeUp()) &&
-               this.Equals(SwipeDown());
+        return Equals(SwipeToRight()) &&
+               Equals(SwipeToLeft()) &&
+               Equals(SwipeUp()) &&
+               Equals(SwipeDown());
+    }
+
+    public bool GameOver()
+    {
+        return IsWin() || IsLose();
     }
 }
 
