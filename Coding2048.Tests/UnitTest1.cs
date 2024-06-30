@@ -12,6 +12,10 @@ public class Tests
         Game2048.From("2").At(0,0).Should().Be(2);
         Game2048.From("2 0").At(1,0).Should().Be(0);
         Game2048.From("2 0", "0 0").At(0,1).Should().Be(0);
+        Game2048.From("2 0 8", 
+                      "0 0 4",
+                      "4 0 16")
+            .At(2,2).Should().Be(16);
     }
 }
 
@@ -30,7 +34,7 @@ public class Game2048
     }
 
     static int HaveSameWidth(List<int[]> allLines) => allLines.Select(x => x.Length).Distinct().Count();
-    static bool IsPowerOf2(int aNumber) => (aNumber & (aNumber - 1)) == 0;
+    static bool IsPowerOf2(int aNumber) => aNumber != 1 && (aNumber & (aNumber - 1)) == 0;
 
     public static Game2048 From(params string[] allLines) => new(allLines.Select(ParseLine).ToList());
 
