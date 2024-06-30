@@ -1,4 +1,5 @@
 using FluentAssertions;
+using NUnit.Framework.Internal;
 
 namespace Coding2048.Tests;
 
@@ -16,36 +17,27 @@ public class Tests
 
 public class Game2048
 {
-    List<int[]> afsas;
+    List<int[]> allLines;
 
-    public Game2048(List<int[]> afsas)
+    public Game2048(List<int[]> allLines)
     {
-        if (HaveSameWidth(afsas) != 1)
+        if (HaveSameWidth(allLines) != 1)
             throw new ArgumentException("Todas las filas no tienen el mismo ancho");
+        if (allLines.SelectMany(x => x).Any(x => !IsPowerOf2(x)))
+            throw new ArgumentException("No todos los números son parte del juego");
         
-        this.afsas = afsas;
+        this.allLines = allLines;
     }
 
-    static int HaveSameWidth(List<int[]> afsas) => afsas.Select(x => x.Length).Distinct().Count();
-    
+    static int HaveSameWidth(List<int[]> allLines) => allLines.Select(x => x.Length).Distinct().Count();
+    static bool IsPowerOf2(int aNumber) => (aNumber & (aNumber - 1)) == 0;
 
-    public static Game2048 From(params string[] asfsafas)
-    {
-        return new(asfsafas.Select(ParseLine).ToList());
-    }
+    public static Game2048 From(params string[] allLines) => new(allLines.Select(ParseLine).ToList());
 
-    static int[] ParseLine(string asfsafas)
-    {
-        return asfsafas.Split(" ").Select(ParseASdfa).ToArray();
-    }
-
-    static int ParseASdfa(string asfsafas)
-    {
-        return int.Parse(asfsafas);
-    }
-
+    static int[] ParseLine(string line) => line.Split(" ").Select(Parse).ToArray();
+    static int Parse(string number) => int.Parse(number);
     public int At(int x, int y)
     {
-        return afsas[y][x];
+        return allLines[y][x];
     }
 }
