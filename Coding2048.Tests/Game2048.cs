@@ -104,4 +104,21 @@ public class Game2048
         var swipeToRight = toTheRight.SwipeToRight();
         return swipeToRight.RotateToTheRight().RotateToTheRight();
     }
+
+    public Game2048 SwipeUp() 
+        => RotateToTheRight()
+            .SwipeToRight()
+            .RotateToTheRight().RotateToTheRight().RotateToTheRight();
+
+    public Game2048 Spawn()
+    {
+        var allFreeCells = allLines.SelectMany((x, i) => x.Select((y, j) => new {x = i, y = j, value = y}))
+            .Where(x => x.value == 0)
+            .ToList();
+
+        var randomCell = allFreeCells[new Random().Next(0, allFreeCells.Count)];
+        var newAllLines = allLines.Select(x => x.ToArray()).ToList();
+        newAllLines[randomCell.x][randomCell.y] = 2;
+        return new Game2048(newAllLines);
+    }
 }

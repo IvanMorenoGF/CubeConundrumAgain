@@ -69,6 +69,18 @@ public class Tests
     }
 
     [Test]
+    public void SwipeUp()
+    {
+        Game2048.From("2 0 0", 
+            "2 0 0",
+            "0 0 0")
+            .SwipeUp()
+            .Should().Be(Game2048.From("4 0 0", 
+            "0 0 0",
+            "0 0 0"));
+    }
+
+    [Test]
     public void MergeDown()
     {
         Game2048.From("2 0 0", 
@@ -109,5 +121,11 @@ public class Tests
             .Should().Be(Game2048.From("2 0 0", 
             "0 0 0"));
     }
-    
+
+    [Test]
+    public void SpawnNumber()
+    {
+        Game2048.From("2 0 0",
+            "0 0 0").Spawn().Should().NotBe(Game2048.From("2 0 0", "0 0 0"));
+    }
 }
