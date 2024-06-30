@@ -36,24 +36,46 @@ public class Game2048
     {
         var withoutZeroes = arg.Where(x => x != 0).ToArray();
         var zeroes = arg.Length - withoutZeroes.Length;
-        var result = new int[arg.Length];
-        Merge(withoutZeroes, result, zeroes);
+        var merge = Merge(withoutZeroes);
+        return PadZeroesToLeft(merge, zeroes);
+    }
 
+    static int[] PadZeroesToLeft(int[] withoutZeroes, int zeroes)
+    {
+        return new int[zeroes].Concat(withoutZeroes).ToArray() ;
+    }
+    
+    public static int[] Merge(int[] ints)
+    {
+        var result = ints.ToArray();
+        
+        for (int i = 0; i < ints.Length - 1; i = i + 2)
+        {
+            if (!CanMerge(new int[] { ints[i], ints[i + 1] })) continue;
+            result[i] = 0;
+            result[i + 1] *= 2;
+        }
+        
         return result;
     }
 
-    static void Merge(int[] withoutZeroes, int[] result, int zeroes)
+    public static int[] MergeFromRight(int[] ints)
     {
-        for (int i = 0; i < withoutZeroes.Length; i++)
+        var result = ints.ToArray();
+
+        for (int i = result.Length - 1; i > 0; i = i - 2)
         {
-            if (i + 1 < withoutZeroes.Length && withoutZeroes[i] == withoutZeroes[i + 1])
-            {
-                i++;
-                result[zeroes + i] = withoutZeroes[i] * 2;
-            }
-            else
-                result[zeroes + i] = withoutZeroes[i];
+            if (!CanMerge(new int[] { result[i - 1], result[i] })) continue;
+            result[i] *= 2;
+            result[i - 1] = 0;
         }
+        
+        return result;
+    }
+
+    public static bool CanMerge(int[] ints)
+    {
+        return ints.Last() == ints.First();
     }
 
     public override bool Equals(object? obj)
