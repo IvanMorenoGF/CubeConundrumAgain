@@ -44,7 +44,7 @@ public class Game2048
 
     static int[] PadZeroesToLeft(int[] withoutZeroes, int zeroes)
     {
-        return new int[zeroes].Concat(withoutZeroes).ToArray() ;
+        return new int[zeroes].Concat(withoutZeroes).ToArray();
     }
 
     static int[] Merge(int[] ints)
@@ -57,7 +57,7 @@ public class Game2048
             result[i] *= 2;
             result[i - 1] = 0;
         }
-        
+
         return result;
     }
 
@@ -89,12 +89,12 @@ public class Game2048
     public Game2048 RotateToTheRight()
     {
         var newAllLines = new List<int[]>();
-        
+
         for (int i = 0; i < allLines[0].Length; i++)
         {
             newAllLines.Add(allLines.Select(x => x[i]).Reverse().ToArray());
         }
-        
+
         return new Game2048(newAllLines);
     }
 
@@ -105,14 +105,14 @@ public class Game2048
         return swipeToRight.RotateToTheRight().RotateToTheRight();
     }
 
-    public Game2048 SwipeUp() 
+    public Game2048 SwipeUp()
         => RotateToTheRight()
             .SwipeToRight()
             .RotateToTheRight().RotateToTheRight().RotateToTheRight();
 
     public Game2048 Spawn()
     {
-        var allFreeCells = allLines.SelectMany((x, i) => x.Select((y, j) => new {x = i, y = j, value = y}))
+        var allFreeCells = allLines.SelectMany((x, i) => x.Select((y, j) => new { x = i, y = j, value = y }))
             .Where(x => x.value == 0)
             .ToList();
 
@@ -143,8 +143,16 @@ public class Game2048
     {
         return allLines.SelectMany(x => x).Any(x => x == 2048);
     }
+
+    public bool IsLose()
+    {
+        return this.Equals(SwipeToRight()) &&
+               this.Equals(SwipeToLeft()) &&
+               this.Equals(SwipeUp()) &&
+               this.Equals(SwipeDown());
+    }
 }
-    
+
 public enum Direction
 {
     Left,

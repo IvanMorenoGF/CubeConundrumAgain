@@ -41,85 +41,85 @@ public class Tests
     [Test]
     public void MergeTwoLines_ToTheRight()
     {
-        Game2048.From("0 2 2", 
-                      "0 2 2").SwipeToRight().Should().Be(Game2048.From("0 0 4", 
-                                                                        "0 0 4"));
+        Game2048.From("0 2 2",
+            "0 2 2").SwipeToRight().Should().Be(Game2048.From("0 0 4",
+            "0 0 4"));
     }
 
     [Test]
     public void MoveDown()
     {
-        Game2048.From("2 0 0", 
-                      "0 0 0",
-                      "0 0 0").SwipeDown().Should().Be(Game2048.From("0 0 0", 
+        Game2048.From("2 0 0",
+            "0 0 0",
+            "0 0 0").SwipeDown().Should().Be(Game2048.From("0 0 0",
             "0 0 0",
             "2 0 0"));
     }
-    
+
     [Test]
     public void SwipeLeft()
     {
-        Game2048.From("2 0 2", 
-            "0 0 0",
-            "0 0 0")
+        Game2048.From("2 0 2",
+                "0 0 0",
+                "0 0 0")
             .SwipeToLeft()
-            .Should().Be(Game2048.From("4 0 0", 
-            "0 0 0",
-            "0 0 0"));
+            .Should().Be(Game2048.From("4 0 0",
+                "0 0 0",
+                "0 0 0"));
     }
 
     [Test]
     public void SwipeUp()
     {
-        Game2048.From("2 0 0", 
-            "2 0 0",
-            "0 0 0")
+        Game2048.From("2 0 0",
+                "2 0 0",
+                "0 0 0")
             .SwipeUp()
-            .Should().Be(Game2048.From("4 0 0", 
-            "0 0 0",
-            "0 0 0"));
+            .Should().Be(Game2048.From("4 0 0",
+                "0 0 0",
+                "0 0 0"));
     }
 
     [Test]
     public void MergeDown()
     {
-        Game2048.From("2 0 0", 
-            "2 0 0",
-            "0 0 0")
+        Game2048.From("2 0 0",
+                "2 0 0",
+                "0 0 0")
             .SwipeDown()
-            .Should().Be(Game2048.From("0 0 0", 
-            "0 0 0",
-            "4 0 0"));
+            .Should().Be(Game2048.From("0 0 0",
+                "0 0 0",
+                "4 0 0"));
     }
 
     [Test]
     public void RotateGame()
     {
-        Game2048.From("2 0 0", 
-                      "0 0 0",
-                      "0 0 0").RotateToTheRight().Should().Be(Game2048.From("0 0 2", 
-                                                                  "0 0 0",
-                                                                  "0 0 0"));
-        
-        Game2048.From("2 0 0", 
-                      "0 0 0").RotateToTheRight().Should().Be(Game2048.From("0 2", 
-                                                                            "0 0",
-                                                                            "0 0"));
-        
-        Game2048.From("2 0 0", 
-            "0 0 0")
+        Game2048.From("2 0 0",
+            "0 0 0",
+            "0 0 0").RotateToTheRight().Should().Be(Game2048.From("0 0 2",
+            "0 0 0",
+            "0 0 0"));
+
+        Game2048.From("2 0 0",
+            "0 0 0").RotateToTheRight().Should().Be(Game2048.From("0 2",
+            "0 0",
+            "0 0"));
+
+        Game2048.From("2 0 0",
+                "0 0 0")
             .RotateToTheRight()
             .RotateToTheRight()
             .Should().Be(Game2048.From("0 0 0", "0 0 2"));
-        
-        Game2048.From("2 0 0", 
+
+        Game2048.From("2 0 0",
                 "0 0 0")
             .RotateToTheRight()
             .RotateToTheRight()
             .RotateToTheRight()
             .RotateToTheRight()
-            .Should().Be(Game2048.From("2 0 0", 
-            "0 0 0"));
+            .Should().Be(Game2048.From("2 0 0",
+                "0 0 0"));
     }
 
     [Test]
@@ -133,11 +133,11 @@ public class Tests
     public void CountOfNumbers()
     {
         Game2048.From("2 0 0",
-                      "0 0 0").CountsOf(2).Should().Be(1);
-        
+            "0 0 0").CountsOf(2).Should().Be(1);
+
         Game2048.From("2 0 0",
             "0 0 0").CountsOf(4).Should().Be(0);
-        
+
         Game2048.From("2 0 2",
             "0 0 2").CountsOf(2).Should().Be(3);
     }
@@ -149,13 +149,21 @@ public class Tests
         Game2048.From("0 0 2").PassTurn(Direction.Right).CountsOf(2).Should().Be(2);
         Game2048.From("0 0 2").PassTurn(Direction.Down).CountsOf(2).Should().Be(2);
         Game2048.From("0 0 2").PassTurn(Direction.Up).CountsOf(2).Should().Be(2);
-        Game2048.From("0 0 2").PassTurn(Direction.Left).At(0,0).Should().Be(2);
+        Game2048.From("0 0 2").PassTurn(Direction.Left).At(0, 0).Should().Be(2);
     }
 
     [Test]
     public void Win()
     {
-     Game2048.From("2048").IsWin().Should().BeTrue();   
-     Game2048.From("4").IsWin().Should().BeFalse();   
+        Game2048.From("2048").IsWin().Should().BeTrue();
+        Game2048.From("4").IsWin().Should().BeFalse();
+    }
+
+    [Test]
+    public void Lose()
+    {
+        Game2048.From("4 2").IsLose().Should().BeTrue();
+        Game2048.From("4 4").IsLose().Should().BeFalse();
+        Game2048.From("4 0").IsLose().Should().BeFalse();
     }
 }
