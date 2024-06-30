@@ -10,21 +10,27 @@ public class Tests
         Game2048.From("0").At(0,0).Should().Be(0);
         Game2048.From("2").At(0,0).Should().Be(2);
         Game2048.From("2 0").At(1,0).Should().Be(0);
+        Game2048.From("2 0", "0 0").At(0,1).Should().Be(0);
     }
 }
 
 public class Game2048
 {
-    int[] afsas;
+    List<int[]> afsas;
 
-    public Game2048(params int[] afsas)
+    public Game2048(List<int[]> afsas)
     {
         this.afsas = afsas;
     }
 
-    public static Game2048 From(string asfsafas)
+    public static Game2048 From(params string[] asfsafas)
     {
-        return new(asfsafas.Split(" ").Select(ParseASdfa).ToArray());
+        return new(asfsafas.Select(ParseLine).ToList());
+    }
+
+    static int[] ParseLine(string asfsafas)
+    {
+        return asfsafas.Split(" ").Select(ParseASdfa).ToArray();
     }
 
     static int ParseASdfa(string asfsafas)
@@ -34,6 +40,6 @@ public class Game2048
 
     public int At(int x, int y)
     {
-        return afsas[x];
+        return afsas[y][x];
     }
 }
