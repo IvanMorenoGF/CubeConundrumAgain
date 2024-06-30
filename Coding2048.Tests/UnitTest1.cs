@@ -128,4 +128,17 @@ public class Tests
         Game2048.From("2 0 0",
             "0 0 0").Spawn().Should().NotBe(Game2048.From("2 0 0", "0 0 0"));
     }
+
+    [Test]
+    public void CountOfNumbers()
+    {
+        Game2048.From("2 0 0",
+                      "0 0 0").CountsOf(2).Should().Be(1);
+        
+        Game2048.From("2 0 0",
+            "0 0 0").CountsOf(4).Should().Be(0);
+        
+        Game2048.From("2 0 2",
+            "0 0 2").CountsOf(2).Should().Be(3);
+    }
 }
