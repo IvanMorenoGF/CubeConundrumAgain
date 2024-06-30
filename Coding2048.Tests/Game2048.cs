@@ -78,4 +78,21 @@ public class Game2048
     {
         return string.Join("\n", allLines.Select(x => string.Join(" ", x)));
     }
+
+    public Game2048 SwipeDown()
+    {
+        return this.RotateToTheRight().SwipeToRight().RotateToTheRight().RotateToTheRight().RotateToTheRight();
+    }
+
+    public Game2048 RotateToTheRight()
+    {
+        var newAllLines = new List<int[]>();
+        
+        for (int i = 0; i < allLines[0].Length; i++)
+        {
+            newAllLines.Add(allLines.Select(x => x[i]).Reverse().ToArray());
+        }
+        
+        return new Game2048(newAllLines);
+    }
 }

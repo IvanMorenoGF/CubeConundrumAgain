@@ -44,6 +44,24 @@ public class Tests
         Game2048.From("0 2 2", 
                       "0 2 2").SwipeToRight().Should().Be(Game2048.From("0 0 4", 
                                                                         "0 0 4"));
-        
     }
+
+    [Test, Ignore("")]
+    public void MoveDown()
+    {
+        Game2048.From("2 0 0", 
+                      "0 0 0").SwipeDown().Should().Be(Game2048.From("0 0 0", 
+                                                                     "2 0 0"));
+    }
+
+    [Test]
+    public void RotateGame()
+    {
+        Game2048.From("2 0 0", 
+                      "0 0 0",
+                      "0 0 0").RotateToTheRight().Should().Be(Game2048.From("0 0 2", 
+                                                                  "0 0 0",
+                                                                  "0 0 0"));
+    }
+    
 }
