@@ -116,6 +116,9 @@ public class Game2048
             .Where(x => x.value == 0)
             .ToList();
 
+        if (allFreeCells.Count == 0)
+            return this;
+
         var randomCell = allFreeCells[new Random().Next(0, allFreeCells.Count)];
         var newAllLines = allLines.Select(x => x.ToArray()).ToList();
         newAllLines[randomCell.x][randomCell.y] = 2;
@@ -123,7 +126,7 @@ public class Game2048
     }
 
     public Game2048 PassTurn(Direction movingTo) 
-        => Swipe(movingTo).Spawn();
+        => GameOver() ? this : Swipe(movingTo).Spawn();
 
     Game2048 Swipe(Direction whereToMove) 
         => whereToMove switch

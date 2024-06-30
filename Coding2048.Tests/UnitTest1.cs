@@ -1,4 +1,6 @@
 using FluentAssertions;
+using FsCheck;
+using FsCheck.FSharp;
 using NUnit.Framework.Internal;
 
 namespace Coding2048.Tests;
@@ -173,5 +175,44 @@ public class Tests
         Game2048.From("2048").GameOver().Should().BeTrue();
         Game2048.From("4 2").GameOver().Should().BeTrue();
         Game2048.From("4 4").GameOver().Should().BeFalse();
+    }
+
+    [Test]
+    [Repeat(100)]
+    public void PropertyTestGame()
+    {
+        var sut = Game2048.From("0 0 0", "0 2 0", "0 0 0");
+        var nextMove = () => new Random().Next(0, 4) switch
+        {
+            0 => Direction.Left,
+            1 => Direction.Up,
+            2 => Direction.Right,
+            3 => Direction.Down,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+        
+        sut.PassTurn(nextMove()).Should().NotBe(sut);
+    }
+    [Test]
+    [Repeat(100)]
+    public void fasfsa()
+    {
+        var sut = Game2048.From("0 0 0", "0 2 0", "0 0 0");
+        var numberOfMovements = new Random().Next(100, 1000);
+        var nextMove = () => new Random().Next(0, 4) switch
+        {
+            0 => Direction.Left,
+            1 => Direction.Up,
+            2 => Direction.Right,
+            3 => Direction.Down,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+        
+        for (var i = 0; i < numberOfMovements; i++)
+        {   
+            sut = sut.PassTurn(nextMove());
+        }
+        
+        sut.GameOver().Should().BeTrue();
     }
 }
