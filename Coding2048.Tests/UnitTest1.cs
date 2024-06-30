@@ -34,22 +34,25 @@ public class Tests
 
         CanMerge(new int[] { 2, 2 }).Should().BeTrue();
         CanMerge(new int[] { 2, 1 }).Should().BeFalse();
-        MergeTwo(new int[] { 2, 2 }).Should().BeEquivalentTo(new int[] { 0, 4 });
-        MergeTwo(new int[] { 2, 4 }).Should().BeEquivalentTo(new int[] { 2, 4 });
-        MergeMore(new int[] { 2, 2, 2 }).Should().BeEquivalentTo(new int[] { 0, 2, 4 });
-    }
-    
-    int[] MergeMore(int[] ints)
-    {
-        return CanMerge(ints) ? new int[] { 0, ints[1], ints[0] * 2 } : ints;
+        Merge(new int[] { 2, 2 }).Should().BeEquivalentTo(new int[] { 0, 4 });
+        Merge(new int[] { 2, 4 }).Should().BeEquivalentTo(new int[] { 2, 4 });
+        Merge(new int[] { 2, 2, 2 }).Should().BeEquivalentTo(new int[] { 0, 2, 4 });
+        Merge(new int[] { 2, 2, 2, 2 }).Should().BeEquivalentTo(new int[] { 0, 0, 4, 4 });
+        Merge(new int[] { 2, 2, 2, 2, 2, 2 }).Should().BeEquivalentTo(new int[] { 0, 0, 0, 4, 4, 4 });
     }
 
-    int[] MergeTwo(int[] ints)
+    int[] Merge(int[] ints)
     {
-        if(ints.Length != 2)
-            throw new ArgumentException();
+        var result = ints.ToArray();
         
-        return CanMerge(ints) ? new int[] { 0, ints.First() * 2 } : ints;
+        for (int i = 0; i < ints.Length - 1; i = i + 2)
+        {
+            if (!CanMerge(new int[] { ints[i], ints[i + 1] })) continue;
+            result[i] = 0;
+            result[i + 1] *= 2;
+        }
+        
+        return result;
     }
 
     bool CanMerge(int[] ints)
